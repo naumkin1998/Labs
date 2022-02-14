@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
+    //TODO: RSDN
     /// <summary>
     /// Class Person
     /// </summary>
@@ -24,8 +25,9 @@ namespace PersonClass
         /// <returns>True if the name or surname is spelled correctly</returns>
         public bool SpellingOfString(string EnteredString)
         {
+            const string matchSubstring = @"a-zA-Zа-яА-ЯёЁ";
             var isTrue = Regex.IsMatch(EnteredString,
-                @"/^[a-zA-Zа-яА-ЯёЁ'][a-zA-Z-а-яА-ЯёЁ' ]+[a-zA-Zа-яА-ЯёЁ']?$/");
+                $@"/^[{matchSubstring}'][{matchSubstring}' ]+[{matchSubstring}']?$/");
 
             return isTrue;
         }
@@ -45,6 +47,7 @@ namespace PersonClass
         /// </summary>
         private string _surname;
 
+        //TODO: RSDN
         /// <summary>
         /// Min age of person
         /// </summary>
@@ -55,6 +58,7 @@ namespace PersonClass
         /// </summary>
         private int _age;
 
+        //TODO: RSDN
         /// <summary>
         /// Max age of person
         /// </summary>
@@ -85,6 +89,7 @@ namespace PersonClass
             get => _name;
             set
             {
+                //TODO: дубль
                 if (!SpellingOfString(value) || CheckSpaceInString(value))
                 {
                     throw new ArgumentException
@@ -102,11 +107,13 @@ namespace PersonClass
             get => _surname;
             set
             {
+                //TODO: дубль
                 if (!SpellingOfString(value) || CheckSpaceInString(value))
                 {
                     throw new ArgumentException
                        (string.Format("Entered surname is not correct!"));
                 }
+
                 _surname = value;
             }
         }
@@ -149,24 +156,19 @@ namespace PersonClass
                 "AlexSurname", "IgorSurname", "MaksSurname"
             };
 
+            //TODO:
             int rndAge = rnd.Next(0, 119);
 
             int rndGender = rnd.Next(0, 2);
+            var gender = rndGender == 1
+                ? Gender.Male
+                : Gender.Female;
 
-            if (rndGender == 1)
-            {
-                return new Person(Gender.Female,
-                    names[rnd.Next(0, 3)],
-                    surnames[rnd.Next(0, 3)],
-                    rndAge);
-            }
-            else
-            {
-                return new Person(Gender.Male,
-                    names[rnd.Next(0, 3)],
-                    surnames[rnd.Next(0, 3)],
-                    rndAge);
-            }
+            //TODO:
+            return new Person(gender,
+                names[rnd.Next(0, names.Count)],
+                surnames[rnd.Next(0, surnames.Count)],
+                rndAge);
         }
     }
 }
