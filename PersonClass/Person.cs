@@ -89,7 +89,7 @@ namespace PersonClass
         {
             if (condition == "Name")
             {
-                if (!(SpellingOfString(value) && !CheckSpaceInString(value)))
+                if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
                 {
                     throw new ArgumentException
                        (string.Format("Entered name is not correct!"));
@@ -97,7 +97,7 @@ namespace PersonClass
             }
             if (condition == "Surname")
             {
-                if (!(SpellingOfString(value) && !CheckSpaceInString(value)))
+                if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
                 {
                     throw new ArgumentException
                        (string.Format("Entered surname is not correct!"));
@@ -158,9 +158,9 @@ namespace PersonClass
         /// <summary>
         /// Create random person
         /// </summary>
-        public static Person GetRandomPerson()
+        public static Person GetRandomPerson(Random rnd)
         {
-            Random rnd = new Random();
+            
 
             string[] names =
             {
@@ -186,5 +186,15 @@ namespace PersonClass
                 surnames[rnd.Next(0, surnames.Length)],
                 rndAge);
         }
+
+        /// <summary>
+        /// Info about person
+        /// </summary>
+        /// <returns></returns>
+        public string Info()
+        {
+            return $"{this.Gender} {this._surname} {this._age} {this.Gender}";
+        }
+
     }
 }

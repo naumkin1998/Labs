@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
-
-
     /// <summary>
     /// List of person
     /// </summary>
-    class PersonList
+    public class PersonList
     {
         /// <summary>
         /// Array of person
