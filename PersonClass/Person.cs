@@ -169,7 +169,7 @@ namespace PersonClass
 
             string[] surnames =
             {
-                "AlexSurname", "ZhenyaSurname", "ValiaSurname"
+                "Alex-Surname", "Zhenyaalex", "Mysurname"
             };
 
             //TODO: +
@@ -193,7 +193,7 @@ namespace PersonClass
         /// <returns></returns>
         public string Info()
         {
-            return $"{this.Gender} {this._surname} {this._age} {this.Gender}";
+            return $"{this.Gender} {this._surname} {this._name} {this._age}";
         }
 
     }
