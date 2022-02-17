@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
-    /// <summary>
-    /// Enum of person gender
-    /// </summary>
-    public enum Gender
-    {        
-        Male,        
-        Female
+    public class Class1
+    {
     }
 }
