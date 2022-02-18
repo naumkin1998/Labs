@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PersonClass;
 
 namespace Lab1
@@ -16,26 +17,24 @@ namespace Lab1
         {
             Random rnd = new Random();
             Console.WriteLine();
+            
             PersonList personlist1 = new PersonList();
-            Person person1 = Person.GetRandomPerson(rnd);
-            Person person11 = Person.GetRandomPerson(rnd);
-            Person person12 = Person.GetRandomPerson(rnd);
-            personlist1.Add(person: person1);
-            personlist1.Add(person: person11);
-            personlist1.Add(person: person12);
+            
+            personlist1.Add(Person.GetRandomPerson(rnd));
+            personlist1.Add(Person.GetRandomPerson(rnd));
+            personlist1.Add(Person.GetRandomPerson(rnd));
             ShowPersonList(personlist1, 1);
             Console.ReadLine();
 
             PersonList personlist2 = new PersonList();
-            Person person2 = new Person(Gender.Female, 
-                "Tani", "Chernova", 24);
             Person person21 = new Person(Gender.Male, 
                 "Ivan", "Ivanov", 23);
             Person person22 = new Person(Gender.Female, 
                 "Fariza", "Cmeshko", 22);
-            personlist2.Add(person: person2);
-            personlist2.Add(person: person21);
-            personlist2.Add(person: person22);
+            personlist2.Add(new Person(Gender.Female,
+                "Tani", "Chernova", 24));
+            personlist2.Add(person21);
+            personlist2.Add(person22);
             ShowPersonList(personlist2, 2);
             Console.ReadLine();
             
@@ -68,34 +67,29 @@ namespace Lab1
             Console.ReadLine();
             Console.ReadLine();
         }
-
+        
         /// <summary>
         /// Show person in list
         /// </summary>
         /// <param name="personList"></param>
+        /// <param name="number"></param>
         private static void ShowPersonList(PersonList personList, int number)
         {
             Console.WriteLine("-------------------------------");
-            if (number == 1)
+            Console.WriteLine($"Список {number}");
+
+            if (personList.CountElements() != 0)
             {
-                Console.WriteLine("Список 1");
-            }
-            if (number == 2)
-            {
-                Console.WriteLine("Список 2");
-            }
-            if (personList.CountElements() == 0)
-            {
-                Console.WriteLine("Список пуст!");
-            }
-            else
-            {
-                for (int i = 0; i < personList.Length; i++)
+                for (var i = 0; i < personList.Length; i++)
                 {
                     Console.WriteLine(personList.SearchByIndex(i).Info());
                 }
             }
-            
+            else
+            {
+                Console.WriteLine("Список пуст!");
+            }
+
             Console.WriteLine("-------------------------------");
         }
 

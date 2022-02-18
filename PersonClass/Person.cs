@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
-
-    //TODO: RSDN: +
     /// <summary>
     /// Class Person
     /// </summary>
@@ -19,6 +17,7 @@ namespace PersonClass
         /// </summary>
         private string _name;
 
+        //TODO: RSDN
         /// <summary>
         /// Name spelling check 
         /// </summary>
@@ -33,6 +32,7 @@ namespace PersonClass
             return isTrue;
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Check space in name
         /// </summary>
@@ -47,8 +47,7 @@ namespace PersonClass
         /// Surname of person
         /// </summary>
         private string _surname;
-
-        //TODO: RSDN: +
+        
         /// <summary>
         /// Min age of person
         /// </summary>
@@ -58,8 +57,7 @@ namespace PersonClass
         /// Age of person
         /// </summary>
         private int _age;
-
-        //TODO: RSDN +
+        
         /// <summary>
         /// Max age of person
         /// </summary>
@@ -75,6 +73,7 @@ namespace PersonClass
             {
                 if (value < MinAge || value > MaxAge)
                 {
+                    //TODO:
                     throw new ArgumentException
                         (string.Format("Entered age is not correct!"));
                 }
@@ -87,20 +86,22 @@ namespace PersonClass
         /// </summary>
         static void CheckTheSpilling(string value, string condition)
         {
+            //TODO: дубль
             if (condition == "Name")
             {
                 if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
                 {
                     throw new ArgumentException
-                       (string.Format("Entered name is not correct!"));
+                       ("Entered name is not correct!");
                 }
             }
+            //TODO: дубль
             if (condition == "Surname")
             {
                 if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
                 {
                     throw new ArgumentException
-                       (string.Format("Entered surname is not correct!"));
+                       ("Entered surname is not correct!");
                 }
             }
         }
@@ -113,7 +114,6 @@ namespace PersonClass
             get => _name;
             set
             {
-                //TODO: дубль +
                 CheckTheSpilling(value, "Name");
                 _name = value;
             }
@@ -127,7 +127,6 @@ namespace PersonClass
             get => _surname;
             set
             {
-                //TODO: дубль +
                 CheckTheSpilling(value, "Surname");
 
                 _surname = value;
@@ -160,8 +159,6 @@ namespace PersonClass
         /// </summary>
         public static Person GetRandomPerson(Random rnd)
         {
-            
-
             string[] names =
             {
                 "Alex", "Zhenya", "Valia"
@@ -171,16 +168,14 @@ namespace PersonClass
             {
                 "Alex-Surname", "Zhenyaalex", "Mysurname"
             };
-
-            //TODO: +
+            
             int rndAge = rnd.Next(MinAge, MaxAge - 1);
 
             int rndGender = rnd.Next(0, 2);
             var gender = rndGender == 1
                 ? Gender.Male
                 : Gender.Female;
-
-            //TODO: +
+            
             return new Person(gender,
                 names[rnd.Next(0, names.Length)],
                 surnames[rnd.Next(0, surnames.Length)],
@@ -195,6 +190,5 @@ namespace PersonClass
         {
             return $"{this.Gender} {this._surname} {this._name} {this._age}";
         }
-
     }
 }
