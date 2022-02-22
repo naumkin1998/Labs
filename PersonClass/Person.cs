@@ -16,8 +16,7 @@ namespace PersonClass
         /// Name of person
         /// </summary>
         private string _name;
-
-        //TODO: RSDN + 
+        
         /// <summary>
         /// Name spelling check 
         /// </summary>
@@ -31,8 +30,8 @@ namespace PersonClass
 
             return isTrue;
         }
-
-        //TODO: RSDN +
+        
+        //TODO: XML
         /// <summary>
         /// Check space in name
         /// </summary>
@@ -73,7 +72,6 @@ namespace PersonClass
             {
                 if (value < MinAge || value > MaxAge)
                 {
-                    //TODO:+
                     throw new ArgumentException
                         (string.Format($"Введенный возвраст не верный! " +
                         $"Пожалуйста введите возвраст в диапозоне от {MinAge} до {MaxAge}"));
@@ -86,13 +84,12 @@ namespace PersonClass
         /// Check the spilling of name/surname
         /// </summary>
         static void CheckTheSpilling(string value, string condition)
-        {
-            //TODO: дубль +       
+        {      
             if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
             {
                 throw new ArgumentException
                 ($"Entered {condition} is not correct!");
-             }
+            }
         }
 
         /// <summary>
