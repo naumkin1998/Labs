@@ -11,11 +11,11 @@ namespace PersonClass
     /// </summary>
     public class PersonList
     {
-        //TODO: private
+        //TODO: private +
         /// <summary>
         /// Array of person
         /// </summary>
-        public Person[] _personArray = new Person[0];
+        private Person[] _personArray = new Person[0];
 
         /// <summary>
         /// Length of PersonList
@@ -45,7 +45,7 @@ namespace PersonClass
         /// <summary>
         /// Delete person by index
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Имя которое необходимо удалить</param>
         public void DeletingByIndex(int index)
         {
             if (index < 0 || index > _personArray.Length - 1)
@@ -54,28 +54,28 @@ namespace PersonClass
                     ("Entered index is not correct!");
             }
             Console.WriteLine(_personArray.Length);
-            //TODO: RSDN
-            IEnumerable<Person> newarray =
+            //TODO: RSDN +
+            IEnumerable<Person> NewArray =
                 _personArray.SkipWhile(person => person != _personArray[index]);
-            _personArray = newarray.ToArray();
+            _personArray = NewArray.ToArray();
             Console.WriteLine(_personArray.Length);
         }
 
-        //TODO: XML
+        //TODO: XML +
         /// <summary>
         /// Search person in array by index
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">Индекс имени которого необходимо найти</param>
         public Person SearchByIndex(int index)
         {
             return _personArray[index];
         }
 
-        //TODO: XML
+        //TODO: XML +
         /// <summary>
         /// Get index in array by person
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="person">Имя которое необходимое для нахождения индекса</param>
         /// <returns></returns>
         public int GetIndexOfPerson(Person person)
         {
@@ -90,14 +90,17 @@ namespace PersonClass
             Array.Resize<Person>(ref _personArray, 0);
         }
 
-        //TODO: в свойство
+        //TODO: в свойство +
         /// <summary>
         /// Get count elements in array
         /// </summary>
         /// <returns></returns>
-        public int CountElements()
+        public int CountElements
         {
-            return _personArray.Length;
+            get
+            {
+                return _personArray.Length;
+            }            
         }
     }
 }

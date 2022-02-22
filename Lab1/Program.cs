@@ -15,7 +15,7 @@ namespace Lab1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Random rnd = new Random();
+            /*Random rnd = new Random();
             Console.WriteLine();
             
             PersonList personlist1 = new PersonList();
@@ -63,22 +63,29 @@ namespace Lab1
             ShowPersonList(personlist1, 1);
             ShowPersonList(personlist2, 2);
             Console.ReadLine();
+            Console.Clear();*/
+
+
 
             Console.ReadLine();
+
+            var enteredperson = PersonReadFro();
+
+
             Console.ReadLine();
         }
         
         /// <summary>
         /// Show person in list
         /// </summary>
-        /// <param name="personList"></param>
-        /// <param name="number"></param>
+        /// <param name="personList">список персон</param>
+        /// <param name="number">нумерация списка</param>
         private static void ShowPersonList(PersonList personList, int number)
         {
             Console.WriteLine("-------------------------------");
             Console.WriteLine($"Список {number}");
 
-            if (personList.CountElements() != 0)
+            if (personList.CountElements != 0)
             {
                 for (var i = 0; i < personList.Length; i++)
                 {
@@ -93,5 +100,90 @@ namespace Lab1
             Console.WriteLine("-------------------------------");
         }
 
+        /// <summary>
+        /// Список действий  
+        /// </summary>
+        /// <returns>Созданный персонаж</returns>
+        public static Person PersonReadFro()
+        {
+            ///Person newperson = new Person(Gender.Male, null, null, 0);
+            Person newperson = new Person();
+            var actionsTupleList = new List<(Action Action, string Message)>
+            {
+               (
+                    () =>
+                    {
+                        newperson.Name = Console.ReadLine();
+                    },
+                    "Введите имя сотрудника:"),
+                (
+                    () =>
+                    {
+                        newperson.Surname = Console.ReadLine();
+                    },
+                    "Введите фамилия сотрудника:"),
+                (
+                    () =>
+                    {
+                        newperson.Age =
+                            Convert.ToInt32(Console.ReadLine());
+                    },
+                    "Введите возвраст сотрудника:"),
+                (
+                    ()=>
+                    {
+                        int gender = Convert.ToInt32(Console.ReadLine());
+                        switch (gender)
+                        {
+                            case 1:
+                                {
+                                    newperson.Gender = Gender.Male;
+                                    return;
+                                }
+                            case 2:
+                                {
+                                    newperson.Gender = Gender.Female;
+                                    return;
+                                }
+                            default:
+                            {
+                                throw new ArgumentException
+                                    ("Пожалуйста, выберете 1 или 2");
+                            }
+                        }
+                    },
+                    "Выберете пол сотрудника" +
+                    "Если 1 - Муж, если 2 - Жен")
+            };
+
+            foreach (var actionTuple in actionsTupleList)
+            {
+                ActionHandler(actionTuple.Action, actionTuple.Message);
+            }
+            return newperson;
+        }
+
+        /// <summary>
+        ///  выполняет действие либо показывает ошибку
+        /// </summary>
+        /// <param name="action">действие</param>
+        /// <param name="inputMessage">сообщение при возникновении ошибки</param>
+        private static void ActionHandler(Action action, string inputMessage)
+        {
+            while (true)
+            {
+                Console.WriteLine(inputMessage);
+                try
+                {
+                    action.Invoke();
+                    return;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message 
+                        + "\nПопробуйте заново");
+                }
+            }
+        }
     }
 }
