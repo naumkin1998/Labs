@@ -11,7 +11,6 @@ namespace PersonClass
     /// </summary>
     public class PersonList
     {
-        //TODO: private +
         /// <summary>
         /// Array of person
         /// </summary>
@@ -54,14 +53,13 @@ namespace PersonClass
                     ("Entered index is not correct!");
             }
             Console.WriteLine(_personArray.Length);
-            //TODO: RSDN +
-            IEnumerable<Person> NewArray =
+            //TODO: RSDN
+            var newArray = 
                 _personArray.SkipWhile(person => person != _personArray[index]);
-            _personArray = NewArray.ToArray();
+            _personArray = newArray.ToArray();
             Console.WriteLine(_personArray.Length);
         }
-
-        //TODO: XML +
+        
         /// <summary>
         /// Search person in array by index
         /// </summary>
@@ -70,8 +68,7 @@ namespace PersonClass
         {
             return _personArray[index];
         }
-
-        //TODO: XML +
+        
         /// <summary>
         /// Get index in array by person
         /// </summary>
@@ -89,18 +86,11 @@ namespace PersonClass
         {
             Array.Resize<Person>(ref _personArray, 0);
         }
-
-        //TODO: в свойство +
+        
         /// <summary>
         /// Get count elements in array
         /// </summary>
         /// <returns></returns>
-        public int CountElements
-        {
-            get
-            {
-                return _personArray.Length;
-            }            
-        }
+        public int CountElements => _personArray.Length;
     }
 }

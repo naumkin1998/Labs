@@ -106,8 +106,8 @@ namespace Lab1
         /// <returns>Созданный персонаж</returns>
         public static Person PersonReadFro()
         {
-            ///Person newperson = new Person(Gender.Male, null, null, 0);
-            Person newperson = new Person();
+            Person newperson = new Person(Gender.Male, string.Empty, string.Empty, 0);
+            //Person newperson = new Person();
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                (
