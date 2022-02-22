@@ -17,30 +17,30 @@ namespace PersonClass
         /// </summary>
         private string _name;
 
-        //TODO: RSDN
+        //TODO: RSDN + 
         /// <summary>
         /// Name spelling check 
         /// </summary>
-        /// <param name="EnteredString"></param>
+        /// <param name="enteredString"></param>
         /// <returns>True if the name or surname is spelled correctly</returns>
-        static bool SpellingOfString(string EnteredString)
+        static bool SpellingOfString(string enteredString)
         {
             const string matchSubstring = @"a-zA-Zа-яА-ЯёЁ";
-            var isTrue = Regex.IsMatch(EnteredString,
+            var isTrue = Regex.IsMatch(enteredString,
                 $@"/^[{matchSubstring}'][{matchSubstring}' ]+[{matchSubstring}']?$/");
 
             return isTrue;
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Check space in name
         /// </summary>
-        /// <param name="EnteredName"></param>
+        /// <param name="enteredName"></param>
         /// <returns>True if space has in string</returns>
-        static bool CheckSpaceInString(string EnteredString)
+        static bool CheckSpaceInString(string enteredString)
         {
-            return Regex.IsMatch(EnteredString, @" ");
+            return Regex.IsMatch(enteredString, @" ");
         }
 
         /// <summary>
@@ -73,9 +73,10 @@ namespace PersonClass
             {
                 if (value < MinAge || value > MaxAge)
                 {
-                    //TODO:
+                    //TODO:+
                     throw new ArgumentException
-                        (string.Format("Entered age is not correct!"));
+                        (string.Format($"Введенный возвраст не верный! " +
+                        $"Пожалуйста введите возвраст в диапозоне от {MinAge} до {MaxAge}"));
                 }
                 _age = value;
             }
@@ -86,24 +87,12 @@ namespace PersonClass
         /// </summary>
         static void CheckTheSpilling(string value, string condition)
         {
-            //TODO: дубль
-            if (condition == "Name")
+            //TODO: дубль +       
+            if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
             {
-                if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
-                {
-                    throw new ArgumentException
-                       ("Entered name is not correct!");
-                }
-            }
-            //TODO: дубль
-            if (condition == "Surname")
-            {
-                if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
-                {
-                    throw new ArgumentException
-                       ("Entered surname is not correct!");
-                }
-            }
+                throw new ArgumentException
+                ($"Entered {condition} is not correct!");
+             }
         }
 
         /// <summary>
