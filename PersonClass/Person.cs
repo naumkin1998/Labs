@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonClass
 {
+    
     /// <summary>
     /// Class Person
     /// </summary>
@@ -16,18 +17,55 @@ namespace PersonClass
         /// Name of person
         /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Язык написания
+        /// </summary>
+        private string _language = null;
         
         /// <summary>
         /// Name spelling check 
         /// </summary>
         /// <param name="enteredString"></param>
         /// <returns>True if the name or surname is spelled correctly</returns>
-        static bool SpellingOfString(string enteredString)
+        bool SpellingOfString(string enteredString)
         {
-            const string matchSubstring = @"a-zA-Zа-яА-ЯёЁ";
-            var isTrue = Regex.IsMatch(enteredString,
-                $@"/^[{matchSubstring}'][{matchSubstring}' ]+[{matchSubstring}']?$/");
+            var dictionarylanguage = new Dictionary<string, string>()
+            {
+                {"русский", "[а-яА-яёЁ]+"},
+                {"english", "[a-zA-Z]+" }
+            };
 
+            if (enteredString == null)
+            {
+                return true;
+            }
+           
+
+            bool isTrue = false;
+
+            foreach (var language in dictionarylanguage)
+            {
+                string matchSubstring = language.Value;
+                isTrue = Regex.IsMatch(enteredString,
+                    $@"^{matchSubstring}(-)?{matchSubstring}?$");
+                if (isTrue == true)
+                {
+                    if (_language == null)
+                    {
+                        _language = language.Key;
+                    }
+                    else
+                    {
+                        if (_language != language.Key)
+                        {
+                            throw new ArgumentException
+                       (string.Format("Языки имени и фамилии не совпадают"));
+                        } 
+                    }
+                    break;
+                }                
+            }
             return isTrue;
         }
 
@@ -39,6 +77,10 @@ namespace PersonClass
         /// <returns>True if space has in string</returns>
         static bool CheckSpaceInString(string enteredString)
         {
+            if (enteredString == null)
+            {
+                return false;
+            }
             return Regex.IsMatch(enteredString, @" ");
         }
 
@@ -83,9 +125,9 @@ namespace PersonClass
         /// <summary>
         /// Check the spilling of name/surname
         /// </summary>
-        static void CheckTheSpilling(string value, string condition)
+        void CheckTheSpilling(string value, string condition)
         {      
-            if (!(SpellingOfString(value) || !CheckSpaceInString(value)))
+            if (SpellingOfString(value) == false || CheckSpaceInString(value) == true)
             {
                 throw new ArgumentException
                 ($"Entered {condition} is not correct!");
@@ -139,6 +181,8 @@ namespace PersonClass
             Surname = surname;
             Age = age;
         }
+
+        public Person(): this(Gender.Male, null, null, 0) { }
 
         /// <summary>
         /// Create random person

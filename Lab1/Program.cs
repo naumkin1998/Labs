@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using PersonClass;
 
 namespace Lab1
@@ -15,6 +16,10 @@ namespace Lab1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            //Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
             /*Random rnd = new Random();
             Console.WriteLine();
             
@@ -70,6 +75,7 @@ namespace Lab1
             Console.ReadLine();
 
             var enteredperson = PersonReadFro();
+            Console.WriteLine(enteredperson.Info());
 
 
             Console.ReadLine();
@@ -106,7 +112,7 @@ namespace Lab1
         /// <returns>Созданный персонаж</returns>
         public static Person PersonReadFro()
         {
-            Person newperson = new Person(Gender.Male, string.Empty, string.Empty, 0);
+            Person newperson = new Person(Gender.Male, null, null, 0);
             //Person newperson = new Person();
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -158,9 +164,12 @@ namespace Lab1
 
             foreach (var actionTuple in actionsTupleList)
             {
+                
                 ActionHandler(actionTuple.Action, actionTuple.Message);
             }
             return newperson;
+
+            Console.WriteLine(newperson.Info());
         }
 
         /// <summary>
