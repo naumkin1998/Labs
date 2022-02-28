@@ -111,7 +111,7 @@ namespace Lab1
         public static Person PersonReadFro()
         {
             Person newperson = new Person(Gender.Male, null, null, 0);
-            //Person newperson = new Person();
+            
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                (
@@ -120,17 +120,40 @@ namespace Lab1
                         newperson.Name = Console.ReadLine();
                     },
                     "Введите имя сотрудника:"),
+               (
+                    () =>
+                    {
+                        newperson.Name = RegisterWords(newperson.Name );
+                    },
+                    "Исправить региристр в соответствие с примером?" +
+                    "\nпример - Петр" +
+                    "\nВведите да или нет"),
                 (
                     () =>
                     {
                         newperson.Surname = Console.ReadLine();
-                    },
+                    }, 
                     "Введите фамилия сотрудника:"),
                 (
                     () =>
                     {
-                        newperson.Age =
-                            Convert.ToInt32(Console.ReadLine());
+                        newperson.Surname = RegisterWords(newperson.Surname );
+                    },
+                    "Исправить региристр в соответствие с примером?" +
+                    "\nпример - Петр" +
+                    "\nВведите да или нет"),
+                (
+                    () =>
+                    {
+                        string age = Console.ReadLine();
+                        if(!int.TryParse(age, out var number))
+                        {
+                            throw new ArgumentException("Введенное значение не является числовым");
+                        }
+                        else
+                        {
+                            newperson.Age = Convert.ToInt32(age);
+                        }
                     },
                     "Введите возвраст сотрудника:"),
                 (
@@ -190,5 +213,34 @@ namespace Lab1
                 }
             }
         }
+
+        /// <summary>
+        /// Изменение регистра 
+        /// </summary>
+        /// <param name="enteredString"></param>
+        /// <returns>Слово с не/исправленным регистром</returns>
+        public static string RegisterWords(string enteredString)
+        {
+            if (enteredString == null)
+            {
+                return enteredString;
+            }
+            else
+            {                
+                string answer = Console.ReadLine().ToLower();
+                if (answer == "да")
+                {
+                    return enteredString.Substring(0, 1).ToUpper() +
+                     enteredString.Substring(1, enteredString.Length - 1).ToLower();
+                }                
+                if (answer == "нет")
+                {
+                    return enteredString;
+                }
+                throw new ArgumentException("Выберете да или нет!");
+            }
+        }
+
+
     }
 }

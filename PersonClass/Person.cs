@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -39,8 +41,7 @@ namespace PersonClass
             if (enteredString == null)
             {
                 return true;
-            }
-           
+            }          
 
             bool isTrue = false;
 
@@ -67,6 +68,7 @@ namespace PersonClass
             }
             return isTrue;
         }
+       
         
         /// <summary>
         /// Check space in name
@@ -128,7 +130,7 @@ namespace PersonClass
             if (!SpellingOfString(value) || CheckSpaceInString(value))
             {
                 throw new ArgumentException
-                ($"Entered {condition} is not correct!");
+                ($"Введенное {condition} не правильно!");
             }
         }
 
@@ -142,6 +144,7 @@ namespace PersonClass
             {
                 CheckTheSpilling(value, "Name");
                 _name = value;
+                 
             }
         }
 
@@ -154,7 +157,6 @@ namespace PersonClass
             set
             {
                 CheckTheSpilling(value, "Surname");
-
                 _surname = value;
             }
         }
@@ -179,7 +181,7 @@ namespace PersonClass
             Surname = surname;
             Age = age;
         }
-
+        
         public Person(): this(Gender.Male, null, null, 0) { }
 
         /// <summary>
@@ -211,12 +213,32 @@ namespace PersonClass
         }
 
         /// <summary>
+        /// Приведение значения перечисления в удобочитаемый формат. 
+        /// </summary>
+        /// <param name="enumElement"></param>
+        /// <returns>Название элемента на русском языке</returns>
+        static string GetDescription(Enum enumElement)
+        {
+            Type type = enumElement.GetType();
+
+            MemberInfo[] memInfo = type.GetMember(enumElement.ToString());
+            if (memInfo != null && memInfo.Length > 0)
+            {
+                object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                if (attrs != null && attrs.Length > 0)
+                    return ((DescriptionAttribute)attrs[0]).Description;
+            }
+
+            return enumElement.ToString();
+        }
+
+        /// <summary>
         /// Info about person
         /// </summary>
         /// <returns></returns>
         public string Info()
         {
-            return $"{this.Gender} {this._surname} {this._name} {this._age}";
+            return $"{GetDescription(this.Gender)} {this._surname} {this._name} {this._age}";
         }
     }
 }

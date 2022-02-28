@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace PersonClass
 {
@@ -11,7 +12,9 @@ namespace PersonClass
     /// </summary>
     public enum Gender
     {
+        [Description("Мужской")]
         Male,
+        [Description("Женский")]
         Female
     }
 }
