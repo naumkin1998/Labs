@@ -49,7 +49,7 @@ namespace PersonClass
                 string matchSubstring = language.Value;
                 isTrue = Regex.IsMatch(enteredString,
                     $@"^{matchSubstring}(-)?{matchSubstring}?$");
-                if (isTrue == true)
+                if (isTrue)
                 {
                     if (_language == null)
                     {
@@ -59,8 +59,7 @@ namespace PersonClass
                     {
                         if (_language != language.Key)
                         {
-                            throw new ArgumentException
-                       (string.Format("Языки имени и фамилии не совпадают"));
+                            throw new ArgumentException("Языки имени и фамилии не совпадают");
                         } 
                     }
                     break;
@@ -68,8 +67,7 @@ namespace PersonClass
             }
             return isTrue;
         }
-
-        //TODO: XML +
+        
         /// <summary>
         /// Check space in name
         /// </summary>
@@ -127,7 +125,7 @@ namespace PersonClass
         /// </summary>
         void CheckTheSpilling(string value, string condition)
         {      
-            if (SpellingOfString(value) == false || CheckSpaceInString(value) == true)
+            if (!SpellingOfString(value) || CheckSpaceInString(value))
             {
                 throw new ArgumentException
                 ($"Entered {condition} is not correct!");

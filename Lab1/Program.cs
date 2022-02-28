@@ -20,7 +20,7 @@ namespace Lab1
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
-            /*Random rnd = new Random();
+            Random rnd = new Random();
             Console.WriteLine();
             
             PersonList personlist1 = new PersonList();
@@ -68,14 +68,12 @@ namespace Lab1
             ShowPersonList(personlist1, 1);
             ShowPersonList(personlist2, 2);
             Console.ReadLine();
-            Console.Clear();*/
-
-
+            Console.Clear();
 
             Console.ReadLine();
 
-            var enteredperson = PersonReadFro();
-            Console.WriteLine(enteredperson.Info());
+            var enteredPerson = PersonReadFro();
+            Console.WriteLine(enteredPerson.Info());
 
 
             Console.ReadLine();
@@ -164,12 +162,10 @@ namespace Lab1
 
             foreach (var actionTuple in actionsTupleList)
             {
-                
                 ActionHandler(actionTuple.Action, actionTuple.Message);
             }
-            return newperson;
 
-            Console.WriteLine(newperson.Info());
+            return newperson;
         }
 
         /// <summary>

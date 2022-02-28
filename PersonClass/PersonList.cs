@@ -53,7 +53,6 @@ namespace PersonClass
                     ("Entered index is not correct!");
             }
             Console.WriteLine(_personArray.Length);
-            //TODO: RSDN +
             var newArray = 
                 _personArray.SkipWhile(person => person != _personArray[index]);
             _personArray = newArray.ToArray();
