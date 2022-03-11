@@ -110,20 +110,20 @@ namespace Lab1
         /// <returns>Созданный персонаж</returns>
         public static Person PersonReadFro()
         {
-            Person newperson = new Person(Gender.Male, null, null, 0);
+            Person newPerson = new Person(Gender.Male, null, null, 0);
             
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                (
                     () =>
                     {
-                        newperson.Name = Console.ReadLine();
+                        newPerson.Name = Console.ReadLine();
                     },
                     "Введите имя сотрудника:"),
                (
                     () =>
                     {
-                        newperson.Name = RegisterWords(newperson.Name );
+                        newPerson.Name = RegisterWords(newPerson.Name );
                     },
                     "Исправить региристр в соответствие с примером?" +
                     "\nпример - Петр" +
@@ -131,13 +131,13 @@ namespace Lab1
                 (
                     () =>
                     {
-                        newperson.Surname = Console.ReadLine();
+                        newPerson.Surname = Console.ReadLine();
                     }, 
                     "Введите фамилия сотрудника:"),
                 (
                     () =>
                     {
-                        newperson.Surname = RegisterWords(newperson.Surname );
+                        newPerson.Surname = RegisterWords(newPerson.Surname );
                     },
                     "Исправить региристр в соответствие с примером?" +
                     "\nпример - Петр" +
@@ -152,7 +152,7 @@ namespace Lab1
                         }
                         else
                         {
-                            newperson.Age = Convert.ToInt32(age);
+                            newPerson.Age = Convert.ToInt32(age);
                         }
                     },
                     "Введите возвраст сотрудника:"),
@@ -164,12 +164,12 @@ namespace Lab1
                         {
                             case 1:
                                 {
-                                    newperson.Gender = Gender.Male;
+                                    newPerson.Gender = Gender.Male;
                                     return;
                                 }
                             case 2:
                                 {
-                                    newperson.Gender = Gender.Female;
+                                    newPerson.Gender = Gender.Female;
                                     return;
                                 }
                             default:
@@ -188,7 +188,7 @@ namespace Lab1
                 ActionHandler(actionTuple.Action, actionTuple.Message);
             }
 
-            return newperson;
+            return newPerson;
         }
 
         /// <summary>
@@ -240,7 +240,5 @@ namespace Lab1
                 throw new ArgumentException("Выберете да или нет!");
             }
         }
-
-
     }
 }
