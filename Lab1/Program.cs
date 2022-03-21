@@ -25,25 +25,25 @@ namespace Lab1
             
             PersonList personlist1 = new PersonList();
             
-            personlist1.Add(Person.GetRandomPerson(rnd));
-            personlist1.Add(Person.GetRandomPerson(rnd));
-            personlist1.Add(Person.GetRandomPerson(rnd));
+            personlist1.Add(PersonBase.GetRandomPerson(rnd));
+            personlist1.Add(PersonBase.GetRandomPerson(rnd));
+            personlist1.Add(PersonBase.GetRandomPerson(rnd));
             ShowPersonList(personlist1, 1);
             Console.ReadLine();
 
             PersonList personlist2 = new PersonList();
-            Person person21 = new Person(Gender.Male, 
+            PersonBase person21 = new PersonBase(Gender.Male, 
                 "Ivan", "Ivanov", 23);
-            Person person22 = new Person(Gender.Female, 
+            PersonBase person22 = new PersonBase(Gender.Female, 
                 "Fariza", "Cmeshko", 22);
-            personlist2.Add(new Person(Gender.Female,
+            personlist2.Add(new PersonBase(Gender.Female,
                 "Tani", "Chernova", 24));
             personlist2.Add(person21);
             personlist2.Add(person22);
             ShowPersonList(personlist2, 2);
             Console.ReadLine();
             
-            Person newperson = Person.GetRandomPerson(rnd);
+            PersonBase newperson = PersonBase.GetRandomPerson(rnd);
             Console.WriteLine($"Добавление нового человека " +
                 $"в первый список: {newperson.Info()}");
             personlist1.Add(person: newperson);
@@ -108,9 +108,9 @@ namespace Lab1
         /// Список действий  
         /// </summary>
         /// <returns>Созданный персонаж</returns>
-        public static Person PersonReadFro()
+        public static PersonBase PersonReadFro()
         {
-            Person newPerson = new Person(Gender.Male, null, null, 0);
+            PersonBase newPerson = new PersonBase(Gender.Male, null, null, 0);
             
             var actionsTupleList = new List<(Action Action, string Message)>
             {

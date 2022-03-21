@@ -14,7 +14,7 @@ namespace PersonClass
         /// <summary>
         /// Array of person
         /// </summary>
-        private Person[] _personArray = new Person[0];
+        private PersonBase[] _personArray = new PersonBase[0];
 
         /// <summary>
         /// Length of PersonList
@@ -25,10 +25,10 @@ namespace PersonClass
         /// Add new person in PersonList
         /// </summary>
         /// <param name="person"></param>
-        public void Add(Person person)
+        public void Add(PersonBase person)
         {
             int sizeArray = _personArray.Length;
-            Array.Resize<Person>(ref _personArray, sizeArray + 1);
+            Array.Resize<PersonBase>(ref _personArray, sizeArray + 1);
             _personArray[sizeArray] = person;
         }
 
@@ -38,7 +38,7 @@ namespace PersonClass
         public void DeleteLast()
         {
             int sizeArray = _personArray.Length;
-            Array.Resize<Person>(ref _personArray, sizeArray - 1);
+            Array.Resize<PersonBase>(ref _personArray, sizeArray - 1);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace PersonClass
         /// Search person in array by index
         /// </summary>
         /// <param name="index">Индекс имени которого необходимо найти</param>
-        public Person SearchByIndex(int index)
+        public PersonBase SearchByIndex(int index)
         {
             return _personArray[index];
         }
@@ -73,7 +73,7 @@ namespace PersonClass
         /// </summary>
         /// <param name="person">Имя которое необходимое для нахождения индекса</param>
         /// <returns></returns>
-        public int GetIndexOfPerson(Person person)
+        public int GetIndexOfPerson(PersonBase person)
         {
             return Array.IndexOf(_personArray, person);
         }
@@ -83,7 +83,7 @@ namespace PersonClass
         /// </summary>
         public void Clear()
         {
-            Array.Resize<Person>(ref _personArray, 0);
+            Array.Resize<PersonBase>(ref _personArray, 0);
         }
         
         /// <summary>

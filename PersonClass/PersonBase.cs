@@ -13,7 +13,7 @@ namespace PersonClass
     /// <summary>
     /// Class Person
     /// </summary>
-    public class Person
+    public abstract class  PersonBase
     {
         /// <summary>
         /// Name of person
@@ -88,21 +88,21 @@ namespace PersonClass
         /// Surname of person
         /// </summary>
         private string _surname;
-        
+
         /// <summary>
         /// Min age of person
         /// </summary>
-        public const int MinAge = 0;
+        protected abstract int MinAge { get; }
 
         /// <summary>
         /// Age of person
         /// </summary>
         private int _age;
-        
+
         /// <summary>
         /// Max age of person
         /// </summary>
-        public const int MaxAge = 120;
+        protected abstract int MaxAge { get; }
 
         /// <summary>
         /// Age of person
@@ -174,20 +174,20 @@ namespace PersonClass
         /// <param name="name">name of person</param>
         /// <param name="surname">surname of person</param>
         /// <param name="age">age of person</param>
-        public Person(Gender gender, string name, string surname, int age)
+        protected PersonBase(Gender gender, string name, string surname, int age)
         {
             Gender = gender;
             Name = name;
             Surname = surname;
             Age = age;
         }
-        
-        public Person(): this(Gender.Male, null, null, 0) { }
 
-        /// <summary>
+        protected PersonBase(): this(Gender.Male, null, null, 0) { }
+
+/*        /// <summary>
         /// Create random person
         /// </summary>
-        public static Person GetRandomPerson(Random rnd)
+        public static PersonBase GetRandomPerson(Random rnd)
         {
             string[] names =
             {
@@ -206,11 +206,13 @@ namespace PersonClass
                 ? Gender.Male
                 : Gender.Female;
             
-            return new Person(gender,
+            return new PersonBase(gender,
                 names[rnd.Next(0, names.Length)],
                 surnames[rnd.Next(0, surnames.Length)],
                 rndAge);
-        }
+        }*/
+
+
 
         /// <summary>
         /// Приведение значения перечисления в удобочитаемый формат. 
@@ -236,9 +238,7 @@ namespace PersonClass
         /// Info about person
         /// </summary>
         /// <returns></returns>
-        public string Info()
-        {
-            return $"{GetDescription(this.Gender)} {this._surname} {this._name} {this._age}";
-        }
+        public abstract string Info();
+     
     }
 }
