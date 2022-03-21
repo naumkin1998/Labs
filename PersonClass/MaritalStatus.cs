@@ -7,6 +7,7 @@ using System.ComponentModel;
 
 namespace PersonClass
 {
+    //TODO: XML
     public enum MaritalStatus
     {
         [Description("Холост")]

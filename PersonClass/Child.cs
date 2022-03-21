@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonClass
 {
+    //TODO: RSDN
     /// <summary>
     /// Class child
     /// </summary>
@@ -26,21 +23,11 @@ namespace PersonClass
         /// </summary>
         private string _nameOfSchool;
 
-        /// <summary>
-        /// Минимальный возраст ребенка
-        /// </summary>
-        private const int _minAge = 0;
-
-        /// <summary>
-        /// Максимальный возраст ребенка
-        /// </summary>
-        private const int _maxAge = 15;
+        /// <inheritdoc>
+        protected override int MinAge => 15;
 
         /// <inheritdoc>
-        protected override int MinAge => _minAge;
-
-        /// <inheritdoc>
-        protected override int MaxAge => _maxAge;
+        protected override int MaxAge => 0;
 
         /// <summary>
         /// Отец

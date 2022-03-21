@@ -25,6 +25,7 @@ namespace PersonClass
         /// </summary>
         private string _language = null;
         
+        //TODO: RSDN
         /// <summary>
         /// Name spelling check 
         /// </summary>
@@ -122,6 +123,7 @@ namespace PersonClass
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Check the spilling of name/surname
         /// </summary>
@@ -142,9 +144,8 @@ namespace PersonClass
             get => _name;
             set
             {
-                CheckTheSpilling(value, "Name");
+                CheckTheSpilling(value, nameof(Name));
                 _name = value;
-                 
             }
         }
 
@@ -156,6 +157,7 @@ namespace PersonClass
             get => _surname;
             set
             {
+                //TODO: nameof
                 CheckTheSpilling(value, "Surname");
                 _surname = value;
             }
@@ -184,6 +186,7 @@ namespace PersonClass
 
         protected PersonBase(): this(Gender.Male, null, null, 0) { }
 
+        //TODO:
 /*        /// <summary>
         /// Create random person
         /// </summary>
@@ -223,9 +226,11 @@ namespace PersonClass
         {
             Type type = enumElement.GetType();
 
+            //TODO: RSDN
             MemberInfo[] memInfo = type.GetMember(enumElement.ToString());
             if (memInfo != null && memInfo.Length > 0)
             {
+                //TODO: RSDN
                 object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
                 if (attrs != null && attrs.Length > 0)
                     return ((DescriptionAttribute)attrs[0]).Description;
