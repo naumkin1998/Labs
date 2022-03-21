@@ -48,6 +48,7 @@
     <Compile Include="PersonList.cs" />
     <Compile Include="PersonBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

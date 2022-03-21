@@ -25,13 +25,13 @@ namespace PersonClass
         /// </summary>
         private string _language = null;
         
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Name spelling check 
         /// </summary>
         /// <param name="enteredString"></param>
         /// <returns>True if the name or surname is spelled correctly</returns>
-        bool SpellingOfString(string enteredString)
+        private bool SpellingOfString(string enteredString)
         {
             var dictionarylanguage = new Dictionary<string, string>()
             {
@@ -76,7 +76,7 @@ namespace PersonClass
         /// </summary>
         /// <param name="enteredString"></param>
         /// <returns>True if space has in string</returns>
-        static bool CheckSpaceInString(string enteredString)
+        private static bool CheckSpaceInString(string enteredString)
         {
             if (enteredString == null)
             {
@@ -123,11 +123,11 @@ namespace PersonClass
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Check the spilling of name/surname
         /// </summary>
-        void CheckTheSpilling(string value, string condition)
+        private void CheckTheSpilling(string value, string condition)
         {      
             if (!SpellingOfString(value) || CheckSpaceInString(value))
             {
@@ -157,8 +157,8 @@ namespace PersonClass
             get => _surname;
             set
             {
-                //TODO: nameof
-                CheckTheSpilling(value, "Surname");
+                //TODO: nameof +
+                CheckTheSpilling(value, nameof(Surname));
                 _surname = value;
             }
         }
@@ -186,47 +186,17 @@ namespace PersonClass
 
         protected PersonBase(): this(Gender.Male, null, null, 0) { }
 
-        //TODO:
-/*        /// <summary>
-        /// Create random person
-        /// </summary>
-        public static PersonBase GetRandomPerson(Random rnd)
-        {
-            string[] names =
-            {
-                "Alex", "Zhenya", "Valia"
-            };
-
-            string[] surnames =
-            {
-                "Alex-Surname", "Zhenyaalex", "Mysurname"
-            };
-            
-            int rndAge = rnd.Next(MinAge, MaxAge - 1);
-
-            int rndGender = rnd.Next(0, 2);
-            var gender = rndGender == 1
-                ? Gender.Male
-                : Gender.Female;
-            
-            return new PersonBase(gender,
-                names[rnd.Next(0, names.Length)],
-                surnames[rnd.Next(0, surnames.Length)],
-                rndAge);
-        }*/
-
-
-
+        
         /// <summary>
         /// Приведение значения перечисления в удобочитаемый формат. 
         /// </summary>
         /// <param name="enumElement"></param>
         /// <returns>Название элемента на русском языке</returns>
-        static string GetDescription(Enum enumElement)
+        protected static string GetDescription(Enum enumElement)
         {
             Type type = enumElement.GetType();
 
-            //TODO: RSDN
+            //TODO: RSDN +
             MemberInfo[] memInfo = type.GetMember(enumElement.ToString());
             if (memInfo != null && memInfo.Length > 0)
             {

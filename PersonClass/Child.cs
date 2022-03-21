@@ -2,11 +2,11 @@
 
 namespace PersonClass
 {
-    //TODO: RSDN
+    //TODO: RSDN + 
     /// <summary>
     /// Class child
     /// </summary>
-    class Child : PersonBase
+     public class Child : PersonBase
     {
         /// <summary>
         /// Отец
@@ -24,10 +24,16 @@ namespace PersonClass
         private string _nameOfSchool;
 
         /// <inheritdoc>
-        protected override int MinAge => 15;
+        private const int _minAge = 1;
 
         /// <inheritdoc>
-        protected override int MaxAge => 0;
+        private const int _maxAge = 15;
+
+        /// <inheritdoc>
+        protected override int MinAge => _minAge;
+
+        /// <inheritdoc>
+        protected override int MaxAge => _maxAge;
 
         /// <summary>
         /// Отец
@@ -53,13 +59,112 @@ namespace PersonClass
         public string NameOfSchool
         {
             get => _nameOfSchool;
-            set => _nameOfSchool = value;
+            set
+            {
+                if (value != string.Empty || value != null)
+                {
+                    _nameOfSchool = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Введенное наименование школы не может быть пустым значение!");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">Имя</param>
+        /// <param name="surname">Фамилия</param>
+        /// <param name="age">Возраст</param>
+        /// <param name="gender">Пол</param>
+        /// <param name="father">Отец</param>
+        /// <param name="mother">Мать</param>
+        /// <param name="nameofschool">Наименование школы</param>
+        public Child (string name, string surname, int age,
+            Gender gender, string father, string mother, string nameofschool)
+            : base(gender, name, surname, age)
+        {
+            Father = father;
+            Mother = mother;
+            NameOfSchool = nameofschool;
         }
 
         /// <inheritdoc>
         public override string Info()
         {
-            throw new NotImplementedException();
+            string parent = null;
+            if (Father == "-" && Mother == "-")
+            {
+                parent = "Сирота";
+            }
+            if (Father == "-" && Mother != "-")
+            {
+                parent = $"Мать: {Mother}";
+            }
+            if (Mother == "-" && Father != "-")
+            {
+                parent = $"Отец: {Father}";
+            }
+            else
+            {
+                parent = $"Отец: {Father} Мать: {Mother}";
+            }
+
+            return $"{this.Surname} {this.Name} {this.Age} лет {GetDescription(this.Gender)} пол" +
+                $"\n{parent}," +
+                $"\nШкола {this.NameOfSchool} ";
+        }
+
+        /// <summary>
+        /// Создание рандомного ребенка
+        /// </summary>
+        /// <param name="rnd"></param>
+        /// <returns></returns>
+        public static Child GetRandomChild(Random rnd)
+        {
+            string[] names =
+            {
+                "Саша", "Женя", "Валя", "Вася"
+            };
+            
+            string[] surnames =
+            {
+                "Шапиро", "Живаго", "Никитенко" , "Нетто" , "Грабчак"
+            };
+
+            string[] fathers =
+            {
+                "Князев А. Р.", "Щербаков Д. М.", "-"
+            };
+
+            string[] mothers =
+            {
+                "Субботина С. Л.", "Пастухова В. Ф.", "-"
+            };
+
+            string[] shcools = 
+            {
+                "Пуффендуй", "Когтевран", "Иварускил", "Грифендор", "Слизерин", "Хогвартс"
+            };
+
+            int rndAge = rnd.Next(_minAge, _maxAge+1);
+            int rndGender = rnd.Next(0, 2);
+            var gender = rndGender == 1
+                ? Gender.Male
+                : Gender.Female;
+            
+            return new Child
+                (
+                name: names[rnd.Next(0, names.Length)],
+                surname: surnames[rnd.Next(0, surnames.Length)],
+                age: rndAge,
+                gender: gender,
+                father: fathers[rnd.Next(0, fathers.Length)],
+                mother: mothers[rnd.Next(0, mothers.Length)],
+                nameofschool: shcools[rnd.Next(0, shcools.Length)]
+                );
         }
     }
 }

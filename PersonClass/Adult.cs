@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonClass
 {
-    //TODO: RSDN
+    //TODO: RSDN +
     /// <summary>
     /// Class adult
     /// </summary>
-    class Adult : PersonBase
+    public class Adult : PersonBase
     {
         /// <summary>
         /// Номер паспорта 
@@ -21,6 +17,11 @@ namespace PersonClass
         /// Семейное положение
         /// </summary>
         public MaritalStatus MaritalStatus { get; set; }
+        
+        /// <summary>
+        /// Социальный статус
+        /// </summary>
+        public SocialStatus SocialStatus { get; set; }
 
         /// <summary>
         /// Супруга
@@ -72,8 +73,16 @@ namespace PersonClass
                 }
                 else
                 {
-                    throw new ArgumentException("Данный человек холост");
+                    _nameOfWork = null;
                 }
+            }
+        }
+
+        private void CheckNameOfWork(string value)
+        {
+            if (value == string.Empty || value == null)
+            {
+
             }
         }
 
@@ -83,12 +92,177 @@ namespace PersonClass
         public string NameOfWork
         {
             get => _nameOfWork;
-            set => _nameOfWork = value;
+            set
+            {
+                if (value != string.Empty || value != null)
+                {
+                    _nameOfWork = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Введенное наименование работы не может быть пустым значение!");
+                }
+            }
         }
 
+        /// <summary>
+        /// Конструктор взрослого человека
+        /// </summary>
+        /// <param name="id">Номер паспорта</param>
+        /// <param name="name">Имя</param>
+        /// <param name="surname">Фамилия</param>
+        /// <param name="age">Возраст</param>
+        /// <param name="gender">Пол</param>
+        /// <param name="nameofwork">Наименование работы</param>
+        /// <param name="maritalstatus">Статус семейного положения</param>
+        /// <param name="spouse">Супруг/супруга</param>
+        public Adult (int id, string name, string surname, int age, 
+            Gender gender, SocialStatus socialstatus, string nameofwork, MaritalStatus maritalstatus, string spouse)
+            : base(gender, name, surname, age)
+        {
+            Id = id;
+            SocialStatus = socialstatus;
+            NameOfWork = nameofwork;
+            MaritalStatus = maritalstatus;
+            Spouse = spouse;
+        }
+
+        /// <inheritdoc>
         public override string Info()
         {
-            throw new NotImplementedException();
+            string nameSpouse = null;
+            if (MaritalStatus == MaritalStatus.Family)
+            {
+                if (Gender == Gender.Male)
+                {
+                    nameSpouse = $"Супруга: {Spouse}";
+                }
+                if (Gender == Gender.Female)
+                {
+                    nameSpouse = $"Супруг: {Spouse}";
+                }
+            }
+            
+            if (MaritalStatus == MaritalStatus.Single)
+            {
+                nameSpouse = string.Empty;
+            }
+
+          
+            return $"Номер паспорта: {Id} " +
+                $"\n{Surname} {Name} {Age} лет {GetDescription(this.Gender)} пол" +
+                $"\nСемейное положение: {GetDescription(this.MaritalStatus)}" +
+                $"\n{nameSpouse}" + 
+                $"\nСоциальный статус: {GetDescription(SocialStatus.Unemployed)} " +
+                $"\nНазвание места работы: {this.NameOfWork}";
+
+        }
+
+        public static Adult GetRandomAdult(Random rnd)
+        {
+
+            string[] namesMale =
+            {
+                "Алексей", "Святослав", "Михаил",
+                "Александр", "Фёдор", "Мирон",
+                "Евгений", "Даниил", "Иван"
+            };
+
+            string[] namesFemale =
+            {
+                "Дарина", "Анна", "Мия",
+                "Варвара", "Мария", "Алиса",
+                "Елизавета", "Диана", "Виктория"
+            };
+
+            string[] surnamesMale =
+           {
+                "Шевцов", "Медведев", "Черняев",
+                "Королёв", "Гурьев", "Потапов",
+                "Уваров", "Родионов", "Иванов"
+            };
+
+            string[] surnamesFemale =
+           {
+                "Ерема", "Михеева", "Смешко",
+                "Устинова", "Ширяева", "Шарова",
+                "Лебедева", "Кудряшова", "Котова"
+            };
+
+            string[] nameWorks =
+            {
+                "СИБУР", "ПАО «Газпром нефть»", "Госкорпорация Росатом",
+                "МТС", "Норильский никель", "ВТБ24",
+                "АО «Райффайзенбанк»", "Bayer", "МегаФон"
+            };
+
+            int rndAge = rnd.Next(_minAge, _maxAge - 1);
+
+            int rndGender = rnd.Next(0, 2);
+            var gender = rndGender == 1
+                ? Gender.Male
+                : Gender.Female;
+            string name = null;
+            string surname = null;
+            if (gender == Gender.Male)
+            {
+                 name = namesMale[rnd.Next(0, namesMale.Length)];
+                 surname = surnamesMale[rnd.Next(0, surnamesMale.Length)];
+            }
+            if (gender == Gender.Female)
+            {
+                 name = namesFemale[rnd.Next(0, namesFemale.Length)];
+                 surname = surnamesFemale[rnd.Next(0, surnamesFemale.Length)];
+            }
+
+            int rndMaritalStatus = rnd.Next(0, 2);
+            var status = rndMaritalStatus == 1
+                ? MaritalStatus.Family
+                : MaritalStatus.Single;
+
+            string Spouse = null;
+            if (status == MaritalStatus.Family && gender == Gender.Male)
+            {
+                Spouse = $"{namesFemale[rnd.Next(0, namesFemale.Length)]} " +
+                    $"{surnamesFemale[rnd.Next(0, surnamesFemale.Length)]}";
+            }
+            if (status == MaritalStatus.Family && gender == Gender.Female)
+            {
+                Spouse = $"{namesMale[rnd.Next(0, namesMale.Length)]} " +
+                    $" {surnamesMale[rnd.Next(0, surnamesMale.Length)]}";
+            }
+            if (status == MaritalStatus.Single)
+            {
+                Spouse = string.Empty;
+            }
+
+            int rndCosialStatud = rnd.Next(0, 2);
+            var cosialstatus = rndCosialStatud == 1
+                ? SocialStatus.Unemployed
+                : SocialStatus.Working;
+
+            string nameofwork = null;
+            if (cosialstatus == SocialStatus.Unemployed)
+            {
+                nameofwork = "-------";
+            }
+            if (cosialstatus == SocialStatus.Working)
+            {
+                nameofwork = nameWorks[rnd.Next(0, nameWorks.Length)];
+            }
+
+            return new Adult
+                (
+                id: rnd.Next(1000, 10000),
+                name: name,
+                surname: surname,
+                age: rndAge,
+                gender: gender,
+                socialstatus: cosialstatus,
+                nameofwork: nameofwork,
+                maritalstatus: status,
+                spouse: Spouse
+                ); 
         }
     }
 }
