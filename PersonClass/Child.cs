@@ -73,7 +73,7 @@ namespace PersonClass
         }
 
         /// <summary>
-        /// 
+        /// Конструктор ребенка
         /// </summary>
         /// <param name="name">Имя</param>
         /// <param name="surname">Фамилия</param>
@@ -120,8 +120,8 @@ namespace PersonClass
         /// <summary>
         /// Создание рандомного ребенка
         /// </summary>
-        /// <param name="rnd"></param>
-        /// <returns></returns>
+        /// <param name="rnd">рандом</param>
+        /// <returns>Ребенок с рандомными параметрами</returns>
         public static Child GetRandomChild(Random rnd)
         {
             string[] names =
