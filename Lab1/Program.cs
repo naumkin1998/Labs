@@ -30,8 +30,7 @@ namespace Lab1
                 int rndPerson = rnd.Next(1, 3);
                 if (rndPerson == 1)
                 {
-                    personlist1.Add(Adult.GetRandomAdult(rnd));
-                    //personlist1.Add(Child.GetRandomChild(rnd));                   
+                    personlist1.Add(Child.GetRandomChild(rnd));                   
                 }
                 if (rndPerson == 2)
                 {
@@ -43,8 +42,10 @@ namespace Lab1
             
             Console.ReadLine();
 
-/*            PersonBase person21 = new PersonBase(Gender.Male, 
-                "Ivan", "Ivanov", 23);*/
+            var fourthPerson = personlist1.SearchByIndex(3);
+            Console.WriteLine("По заданию получаем человека с порядковым номером в списке людей равным 4:");
+            Console.WriteLine(fourthPerson.Info());
+            Console.WriteLine(fourthPerson.GetType());
 
 
 

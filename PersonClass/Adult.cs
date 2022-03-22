@@ -73,7 +73,7 @@ namespace PersonClass
                 }
                 else
                 {
-                    _nameOfWork = null;
+                    _spouse = null;
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace PersonClass
                 {
                     _nameOfWork = value;
                 }
-                else 
+                else
                 {
                     throw new ArgumentException("Название местра работы не ");
                 }
@@ -150,6 +150,11 @@ namespace PersonClass
 
         }
 
+        /// <summary>
+        /// Создание взрослого человека с рандомными параметрами
+        /// </summary>
+        /// <param name="rnd"></param>
+        /// <returns>взрослый человек с рандомными параметрами</returns>
         public static Adult GetRandomAdult(Random rnd)
         {
 
@@ -251,7 +256,7 @@ namespace PersonClass
 
             return new Adult
                 (
-                id: rnd.Next(1000, 10000),
+                id: rnd.Next(10000000, 100000000),
                 name: name,
                 surname: surname,
                 age: rndAge,
