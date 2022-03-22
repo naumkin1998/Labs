@@ -78,14 +78,6 @@ namespace PersonClass
             }
         }
 
-        private void CheckNameOfWork(string value)
-        {
-            if (value == string.Empty || value == null)
-            {
-
-            }
-        }
-
         /// <summary>
         /// Название места работы
         /// </summary>
@@ -94,13 +86,13 @@ namespace PersonClass
             get => _nameOfWork;
             set
             {
-                if (value != string.Empty || value != null)
+                if (value != string.Empty && value != null)
                 {
                     _nameOfWork = value;
                 }
-                else
+                else 
                 {
-                    throw new ArgumentException("Введенное наименование работы не может быть пустым значение!");
+                    throw new ArgumentException("Название местра работы не ");
                 }
             }
         }
@@ -135,26 +127,26 @@ namespace PersonClass
             {
                 if (Gender == Gender.Male)
                 {
-                    nameSpouse = $"Супруга: {Spouse}";
+                    nameSpouse = $"\nСупруга: {Spouse}";
                 }
                 if (Gender == Gender.Female)
                 {
-                    nameSpouse = $"Супруг: {Spouse}";
+                    nameSpouse = $"\nСупруг: {Spouse}";
                 }
             }
             
             if (MaritalStatus == MaritalStatus.Single)
             {
-                nameSpouse = string.Empty;
+                nameSpouse = null;
             }
 
           
             return $"Номер паспорта: {Id} " +
-                $"\n{Surname} {Name} {Age} лет {GetDescription(this.Gender)} пол" +
-                $"\nСемейное положение: {GetDescription(this.MaritalStatus)}" +
-                $"\n{nameSpouse}" + 
-                $"\nСоциальный статус: {GetDescription(SocialStatus.Unemployed)} " +
-                $"\nНазвание места работы: {this.NameOfWork}";
+                $"\n{Surname} {Name} {Age} лет {GetDescription(Gender)} пол" +
+                $"\nСемейное положение: {GetDescription(MaritalStatus)}" +
+                $"{nameSpouse}" + 
+                $"\nСоциальный статус: {GetDescription(SocialStatus)} " +
+                $"\nНазвание места работы: {NameOfWork}";
 
         }
 
@@ -202,6 +194,8 @@ namespace PersonClass
             var gender = rndGender == 1
                 ? Gender.Male
                 : Gender.Female;
+
+
             string name = null;
             string surname = null;
             if (gender == Gender.Male)
@@ -215,11 +209,12 @@ namespace PersonClass
                  surname = surnamesFemale[rnd.Next(0, surnamesFemale.Length)];
             }
 
+
+            
             int rndMaritalStatus = rnd.Next(0, 2);
             var status = rndMaritalStatus == 1
                 ? MaritalStatus.Family
                 : MaritalStatus.Single;
-
             string Spouse = null;
             if (status == MaritalStatus.Family && gender == Gender.Male)
             {
@@ -236,19 +231,22 @@ namespace PersonClass
                 Spouse = string.Empty;
             }
 
+
+
             int rndCosialStatud = rnd.Next(0, 2);
             var cosialstatus = rndCosialStatud == 1
                 ? SocialStatus.Unemployed
                 : SocialStatus.Working;
 
             string nameofwork = null;
-            if (cosialstatus == SocialStatus.Unemployed)
-            {
-                nameofwork = "-------";
-            }
+                        
             if (cosialstatus == SocialStatus.Working)
             {
                 nameofwork = nameWorks[rnd.Next(0, nameWorks.Length)];
+            }
+            else
+            {
+                nameofwork = "ТУНЕЯДЕЦ!!!";
             }
 
             return new Adult

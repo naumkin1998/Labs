@@ -30,13 +30,12 @@ namespace Lab1
                 int rndPerson = rnd.Next(1, 3);
                 if (rndPerson == 1)
                 {
-                    personlist1.Add(Child.GetRandomChild(rnd));
-                    Console.WriteLine('1');
+                    personlist1.Add(Adult.GetRandomAdult(rnd));
+                    //personlist1.Add(Child.GetRandomChild(rnd));                   
                 }
                 if (rndPerson == 2)
                 {
-                    personlist1.Add(Adult.GetRandomAdult(rnd));
-                    Console.WriteLine('2');
+                    personlist1.Add(Adult.GetRandomAdult(rnd));                    
                 }
             }
 
