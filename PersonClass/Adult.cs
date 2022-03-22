@@ -2,7 +2,6 @@
 
 namespace PersonClass
 {
-    //TODO: RSDN +
     /// <summary>
     /// Class adult
     /// </summary>
@@ -86,7 +85,7 @@ namespace PersonClass
             get => _nameOfWork;
             set
             {
-                if (value != string.Empty && value != null)
+                if (!string.IsNullOrEmpty(value))
                 {
                     _nameOfWork = value;
                 }
@@ -109,6 +108,7 @@ namespace PersonClass
         /// <param name="maritalstatus">Статус семейного положения</param>
         /// <param name="spouse">Супруг/супруга</param>
         public Adult (int id, string name, string surname, int age, 
+            //TODO: RSDN
             Gender gender, SocialStatus socialstatus, string nameofwork, MaritalStatus maritalstatus, string spouse)
             : base(gender, name, surname, age)
         {
@@ -237,22 +237,17 @@ namespace PersonClass
             }
 
 
-
+            //TODO: RSDN
             int rndCosialStatud = rnd.Next(0, 2);
             var cosialstatus = rndCosialStatud == 1
                 ? SocialStatus.Unemployed
                 : SocialStatus.Working;
 
-            string nameofwork = null;
-                        
-            if (cosialstatus == SocialStatus.Working)
-            {
-                nameofwork = nameWorks[rnd.Next(0, nameWorks.Length)];
-            }
-            else
-            {
-                nameofwork = "ТУНЕЯДЕЦ!!!";
-            }
+            //TODO: RSDN
+            var nameofwork  = 
+                cosialstatus == SocialStatus.Working 
+                    ? nameWorks[rnd.Next(0, nameWorks.Length)] 
+                    : "ТУНЕЯДЕЦ!!!";
 
             return new Adult
                 (

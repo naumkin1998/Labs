@@ -7,7 +7,6 @@ using System.ComponentModel;
 
 namespace PersonClass
 {
-    //TODO: XML +
     /// <summary>
     /// Семейное положение
     /// </summary>

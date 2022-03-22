@@ -25,7 +25,6 @@ namespace PersonClass
         /// </summary>
         private string _language = null;
         
-        //TODO: RSDN +
         /// <summary>
         /// Name spelling check 
         /// </summary>
@@ -122,8 +121,7 @@ namespace PersonClass
                 _age = value;
             }
         }
-
-        //TODO: RSDN +
+        
         /// <summary>
         /// Check the spilling of name/surname
         /// </summary>
@@ -157,7 +155,6 @@ namespace PersonClass
             get => _surname;
             set
             {
-                //TODO: nameof +
                 CheckTheSpilling(value, nameof(Surname));
                 _surname = value;
             }
@@ -184,6 +181,7 @@ namespace PersonClass
             Age = age;
         }
 
+        //TODO: XML
         protected PersonBase(): this(Gender.Male, null, null, 0) { }
 
         
@@ -202,6 +200,7 @@ namespace PersonClass
             {
                 //TODO: RSDN
                 object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                //TODO: {}
                 if (attrs != null && attrs.Length > 0)
                     return ((DescriptionAttribute)attrs[0]).Description;
             }

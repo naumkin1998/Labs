@@ -2,6 +2,7 @@
 
 namespace PersonClass
 {
+    //TODO: XML
     public enum SocialStatus
     {
         [Description("Безработный")]

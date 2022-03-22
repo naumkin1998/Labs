@@ -2,7 +2,6 @@
 
 namespace PersonClass
 {
-    //TODO: RSDN + 
     /// <summary>
     /// Class child
     /// </summary>
@@ -61,14 +60,13 @@ namespace PersonClass
             get => _nameOfSchool;
             set
             {
-                if (value != string.Empty || value != null)
+                if (string.IsNullOrEmpty(value))
                 {
-                    _nameOfSchool = value;
+                    throw new ArgumentException(
+                        "Введенное наименование школы не может быть пустым значение!");
                 }
-                else
-                {
-                    throw new ArgumentException("Введенное наименование школы не может быть пустым значение!");
-                }
+
+                _nameOfSchool = value;
             }
         }
 
@@ -81,6 +79,7 @@ namespace PersonClass
         /// <param name="gender">Пол</param>
         /// <param name="father">Отец</param>
         /// <param name="mother">Мать</param>
+        /// //TODO: RSDN
         /// <param name="nameofschool">Наименование школы</param>
         public Child (string name, string surname, int age,
             Gender gender, string father, string mother, string nameofschool)
@@ -115,6 +114,11 @@ namespace PersonClass
             return $"{this.Surname} {this.Name} {this.Age} лет {GetDescription(this.Gender)} пол" +
                 $"\n{parent}," +
                 $"\nШкола {this.NameOfSchool} ";
+        }
+
+        public void WearGuyFoxMask()
+        {
+            //TODO: 
         }
 
         /// <summary>
