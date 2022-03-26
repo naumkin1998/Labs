@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using PersonClass;
 
-namespace Lab1
+namespace Lab3
 {
     /// <summary>
     /// Class program
@@ -16,71 +14,7 @@ namespace Lab1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            //Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.InputEncoding = Encoding.Unicode;
 
-            Random rnd = new Random();
-
-            PersonList personlist1 = new PersonList();
-
-
-            for (int i = 0; i < 7; i++)
-            {
-                int rndPerson = rnd.Next(1, 3);
-                if (rndPerson == 1)
-                {
-                    personlist1.Add(Child.GetRandomChild(rnd));                   
-                }
-                if (rndPerson == 2)
-                {
-                    personlist1.Add(Adult.GetRandomAdult(rnd));                    
-                }
-            }
-
-            ShowPersonList(personlist1, 1);
-            
-            Console.ReadLine();
-
-            var fourthPerson = personlist1.SearchByIndex(3);
-            //TODO:
-            Console.WriteLine("По заданию получаем человека с порядковым номером в списке людей равным 4:");
-            Console.WriteLine(fourthPerson.Info());
-            Console.WriteLine(fourthPerson.GetType());
-
-
-
-
-            Console.ReadLine();
-        }
-        
-        /// <summary>
-        /// Show person in list
-        /// </summary>
-        /// <param name="personList">список персон</param>
-        /// <param name="number">нумерация списка</param>
-        private static void ShowPersonList(PersonList personList, int number)
-        {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine($"Список {number}");
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine();
-
-
-            if (personList.CountElements != 0)
-            {
-                for (var i = 0; i < personList.Length; i++)
-                {
-                    Console.WriteLine(personList.SearchByIndex(i).Info());
-                    Console.WriteLine();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Список пуст!");
-            }
-
-            Console.WriteLine("-------------------------------");
         }
 
     }
