@@ -104,19 +104,25 @@ namespace PersonClass
         /// <param name="surname">Фамилия</param>
         /// <param name="age">Возраст</param>
         /// <param name="gender">Пол</param>
-        /// <param name="nameofwork">Наименование работы</param>
-        /// <param name="maritalstatus">Статус семейного положения</param>
+        /// <param name="nameOfWork">Наименование работы</param>
+        /// <param name="maritalStatus">Статус семейного положения</param>
         /// <param name="spouse">Супруг/супруга</param>
         public Adult (int id, string name, string surname, int age, 
-            //TODO: RSDN
-            Gender gender, SocialStatus socialstatus, string nameofwork, MaritalStatus maritalstatus, string spouse)
+            //TODO: RSDN +
+            Gender gender, SocialStatus socialStatus, string nameOfWork, 
+            MaritalStatus maritalStatus, string spouse)
             : base(gender, name, surname, age)
         {
             Id = id;
-            SocialStatus = socialstatus;
-            NameOfWork = nameofwork;
-            MaritalStatus = maritalstatus;
+            SocialStatus = socialStatus;
+            NameOfWork = nameOfWork;
+            MaritalStatus = maritalStatus;
             Spouse = spouse;
+        }
+
+        public void IsAdult()
+        {
+            Console.WriteLine("Это взрослый человек!");
         }
 
         /// <inheritdoc>
@@ -237,15 +243,15 @@ namespace PersonClass
             }
 
 
-            //TODO: RSDN
+            //TODO: RSDN +
             int rndCosialStatud = rnd.Next(0, 2);
-            var cosialstatus = rndCosialStatud == 1
+            var cosialStatus = rndCosialStatud == 1
                 ? SocialStatus.Unemployed
                 : SocialStatus.Working;
 
-            //TODO: RSDN
-            var nameofwork  = 
-                cosialstatus == SocialStatus.Working 
+            //TODO: RSDN +
+            var nameOfWork  = 
+                cosialStatus == SocialStatus.Working 
                     ? nameWorks[rnd.Next(0, nameWorks.Length)] 
                     : "ТУНЕЯДЕЦ!!!";
 
@@ -256,9 +262,9 @@ namespace PersonClass
                 surname: surname,
                 age: rndAge,
                 gender: gender,
-                socialstatus: cosialstatus,
-                nameofwork: nameofwork,
-                maritalstatus: status,
+                socialStatus: cosialStatus,
+                nameOfWork: nameOfWork,
+                maritalStatus: status,
                 spouse: Spouse
                 ); 
         }

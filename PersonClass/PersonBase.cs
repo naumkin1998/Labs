@@ -181,7 +181,10 @@ namespace PersonClass
             Age = age;
         }
 
-        //TODO: XML
+        //TODO: XML + 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         protected PersonBase(): this(Gender.Male, null, null, 0) { }
 
         
@@ -195,14 +198,17 @@ namespace PersonClass
             Type type = enumElement.GetType();
 
             //TODO: RSDN +
-            MemberInfo[] memInfo = type.GetMember(enumElement.ToString());
-            if (memInfo != null && memInfo.Length > 0)
+            MemberInfo[] memberInfo = type.GetMember(enumElement.ToString());
+            if (memberInfo != null && memberInfo.Length > 0)
             {
-                //TODO: RSDN
-                object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-                //TODO: {}
-                if (attrs != null && attrs.Length > 0)
-                    return ((DescriptionAttribute)attrs[0]).Description;
+                //TODO: RSDN +
+                object[] attribute = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                //TODO: {} +
+                if (attribute != null && attribute.Length > 0)
+                {
+                    return ((DescriptionAttribute)attribute[0]).Description;
+                }    
+                    
             }
 
             return enumElement.ToString();

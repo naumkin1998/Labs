@@ -79,15 +79,15 @@ namespace PersonClass
         /// <param name="gender">Пол</param>
         /// <param name="father">Отец</param>
         /// <param name="mother">Мать</param>
-        /// //TODO: RSDN
-        /// <param name="nameofschool">Наименование школы</param>
+        /// //TODO: RSDN +
+        /// <param name="nameOfSchool">Наименование школы</param>
         public Child (string name, string surname, int age,
-            Gender gender, string father, string mother, string nameofschool)
+            Gender gender, string father, string mother, string nameOfSchool)
             : base(gender, name, surname, age)
         {
             Father = father;
             Mother = mother;
-            NameOfSchool = nameofschool;
+            NameOfSchool = nameOfSchool;
         }
 
         /// <inheritdoc>
@@ -111,14 +111,14 @@ namespace PersonClass
                 parent = $"Отец: {Father} Мать: {Mother}";
             }
 
-            return $"{this.Surname} {this.Name} {this.Age} лет {GetDescription(this.Gender)} пол" +
+            return $"{this.Surname}ё {this.Name} {this.Age} лет {GetDescription(this.Gender)} пол" +
                 $"\n{parent}," +
                 $"\nШкола {this.NameOfSchool} ";
         }
 
-        public void WearGuyFoxMask()
+        public void IsChild()
         {
-            //TODO: 
+            Console.WriteLine("Это ребенок!");
         }
 
         /// <summary>
@@ -167,8 +167,8 @@ namespace PersonClass
                 gender: gender,
                 father: fathers[rnd.Next(0, fathers.Length)],
                 mother: mothers[rnd.Next(0, mothers.Length)],
-                nameofschool: shcools[rnd.Next(0, shcools.Length)]
+                nameOfSchool: shcools[rnd.Next(0, shcools.Length)]
                 );
         }
-    }
+     }
 }

@@ -43,10 +43,16 @@ namespace Lab1
             Console.ReadLine();
 
             var fourthPerson = personlist1.SearchByIndex(3);
-            //TODO:
-            Console.WriteLine("По заданию получаем человека с порядковым номером в списке людей равным 4:");
-            Console.WriteLine(fourthPerson.Info());
-            Console.WriteLine(fourthPerson.GetType());
+            //TODO: +
+            switch(fourthPerson)
+            {
+                case Adult adult:
+                    adult.IsAdult();
+                    break;
+                case Child child:
+                    child.IsChild();
+                    break;
+            }
 
 
 

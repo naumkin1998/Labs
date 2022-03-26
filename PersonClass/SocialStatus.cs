@@ -2,7 +2,10 @@
 
 namespace PersonClass
 {
-    //TODO: XML
+    //TODO: XML +
+    /// <summary>
+    /// Перечисление социального статуса
+    /// </summary>
     public enum SocialStatus
     {
         [Description("Безработный")]
