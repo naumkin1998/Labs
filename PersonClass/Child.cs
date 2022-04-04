@@ -115,7 +115,10 @@ namespace PersonClass
                 $"\nШкола {this.NameOfSchool} ";
         }
 
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Определитель класса
+        /// </summary>
         public void IsChild()
         {
             Console.WriteLine("Это ребенок!");
