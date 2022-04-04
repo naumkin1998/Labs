@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Электрические элементы
+/// </summary>
 namespace ElectricalElements
 {
     /// <summary>
@@ -16,8 +19,8 @@ namespace ElectricalElements
         /// Рабочее напряжение
         /// </summary>
         private int _operatingVoltage;
-        
-        
+
+
         /// <summary>
         /// Рассеиваемая мощность
         /// </summary>
@@ -46,6 +49,9 @@ namespace ElectricalElements
             }
         }
 
+        /// <summary>
+        /// Рабочее напряжение
+        /// </summary>
         public int OperatingVoltage
         {
             get => _operatingVoltage;
@@ -62,6 +68,9 @@ namespace ElectricalElements
             }
         }
 
+        /// <summary>
+        /// Рассеиваемая мощность
+        /// </summary>
         public int PowerDissipation
         {
             get => _powerDissipation;
