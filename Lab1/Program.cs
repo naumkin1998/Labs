@@ -43,7 +43,6 @@ namespace Lab1
             Console.ReadLine();
 
             var fourthPerson = personlist1.SearchByIndex(3);
-            //TODO: +
             switch(fourthPerson)
             {
                 case Adult adult:
@@ -53,9 +52,6 @@ namespace Lab1
                     child.IsChild();
                     break;
             }
-
-
-
 
             Console.ReadLine();
         }

@@ -79,7 +79,6 @@ namespace PersonClass
         /// <param name="gender">Пол</param>
         /// <param name="father">Отец</param>
         /// <param name="mother">Мать</param>
-        /// //TODO: RSDN +
         /// <param name="nameOfSchool">Наименование школы</param>
         public Child (string name, string surname, int age,
             Gender gender, string father, string mother, string nameOfSchool)
@@ -116,6 +115,7 @@ namespace PersonClass
                 $"\nШкола {this.NameOfSchool} ";
         }
 
+        //TODO: XML
         public void IsChild()
         {
             Console.WriteLine("Это ребенок!");

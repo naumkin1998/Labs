@@ -2,7 +2,6 @@
 
 namespace PersonClass
 {
-    //TODO: XML +
     /// <summary>
     /// Перечисление социального статуса
     /// </summary>

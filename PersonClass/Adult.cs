@@ -108,7 +108,7 @@ namespace PersonClass
         /// <param name="maritalStatus">Статус семейного положения</param>
         /// <param name="spouse">Супруг/супруга</param>
         public Adult (int id, string name, string surname, int age, 
-            //TODO: RSDN +
+            //TODO: XML
             Gender gender, SocialStatus socialStatus, string nameOfWork, 
             MaritalStatus maritalStatus, string spouse)
             : base(gender, name, surname, age)
@@ -120,6 +120,7 @@ namespace PersonClass
             Spouse = spouse;
         }
 
+        //TODO: XML
         public void IsAdult()
         {
             Console.WriteLine("Это взрослый человек!");
@@ -242,14 +243,12 @@ namespace PersonClass
                 Spouse = string.Empty;
             }
 
-
-            //TODO: RSDN +
+            //TODO: RSDN
             int rndCosialStatud = rnd.Next(0, 2);
             var cosialStatus = rndCosialStatud == 1
                 ? SocialStatus.Unemployed
                 : SocialStatus.Working;
-
-            //TODO: RSDN +
+            
             var nameOfWork  = 
                 cosialStatus == SocialStatus.Working 
                     ? nameWorks[rnd.Next(0, nameWorks.Length)] 

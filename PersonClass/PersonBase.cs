@@ -180,8 +180,7 @@ namespace PersonClass
             Surname = surname;
             Age = age;
         }
-
-        //TODO: XML + 
+        
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -196,14 +195,11 @@ namespace PersonClass
         protected static string GetDescription(Enum enumElement)
         {
             Type type = enumElement.GetType();
-
-            //TODO: RSDN +
+            
             MemberInfo[] memberInfo = type.GetMember(enumElement.ToString());
             if (memberInfo != null && memberInfo.Length > 0)
             {
-                //TODO: RSDN +
                 object[] attribute = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-                //TODO: {} +
                 if (attribute != null && attribute.Length > 0)
                 {
                     return ((DescriptionAttribute)attribute[0]).Description;
