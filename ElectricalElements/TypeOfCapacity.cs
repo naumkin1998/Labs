@@ -5,7 +5,7 @@ namespace ElectricalElements
     public enum TypeOfCapacity
     {
         [Description("Постоянная емкость")]
-        CConstantCapacity,
+        ConstantCapacity,
         [Description("Переменная емкость")]
         VariableCapacity
     }

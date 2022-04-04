@@ -1,7 +1,7 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
+﻿using ElectricalElements;
+using System;
+using System.Collections.Generic;
 using System.Text;
-using ElectricalElements;
 
 namespace Lab3
 {
@@ -18,27 +18,236 @@ namespace Lab3
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
+            
+
+
         }
 
-
+        /// <summary>
+        /// Список действий при создании резистора
+        /// </summary>
+        /// <returns></returns>
         public static Resistor ResistorRead()
         {
-            Resistor newResistor = new Resistor();
+            Resistor newResistor = new Resistor(0, 0, 0, TypeOfResistor.Linear);
 
+            var actionsTupleList = new List<(Action Action, string Message)>
+            {
+                (() =>
+                {
+                    string nominalValue = Console.ReadLine();
+                    if (!int.TryParse(nominalValue, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newResistor.NominalValue = Convert.ToInt32(nominalValue);
+                    }
+                }, "Введите номинальную величину сопротивления резистора:"),
+
+                (() =>
+                {
+                    string operatingVoltage = Console.ReadLine();
+                    if (!int.TryParse(operatingVoltage, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newResistor.OperatingVoltage = Convert.ToInt32(operatingVoltage);
+                    }
+                }, "Введите рабочее напряжение резистора:"),
+
+                (() =>
+                {
+                    string powerDissipation = Console.ReadLine();
+                    if (!int.TryParse(powerDissipation, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newResistor.PowerDissipation = Convert.ToInt32(powerDissipation);
+                    }
+                }, "Введите мощность рассеивания резистора:"),
+
+                (() =>
+                    {
+                        int typeOfResistor = Convert.ToInt32(Console.ReadLine());
+                        switch (typeOfResistor)
+                        {
+                            case 1:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Linear;
+                                return;
+                            }
+                            case 2:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Varistor;
+                                return;
+                            }
+                            case 3:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Tensoresistors;
+                                return;
+                            }
+                            case 4:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Photoresistors;
+                                return;
+                            }
+                            case 5:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Tensoresistors;
+                                return;
+                            }
+                            case 6:
+                            {
+                                newResistor.TypeOfResistor = TypeOfResistor.Magnetoresistors;
+                                return;
+                            }
+                            default:
+                            {
+                                throw new ArgumentException("Введенный номер отсутствует в списке!" +
+                                                            "\nПожалуйста попробуйте заново:");
+                            }
+                        }
+                    }, "Выберите соответствующий нормер типа резистора:" +
+                       "\n 1.Линейный" +
+                       "\n 2.Варистор" +
+                       "\n 3.Терморезистор" +
+                       "\n 4.Фоторезистор" +
+                       "\n 5.Тензорезистор" +
+                       "\n 6.Магниторезистор")
+            };
+
+            foreach (var actionTuple in actionsTupleList)
+            {
+                ActionHandler(actionTuple.Action, actionTuple.Message);
+            }
+
+            return newResistor;
         }
 
 
         public static InductiveСoil InductiveCoilRead()
         {
-            InductiveСoil newInductiveСoil = new InductiveСoil();
+            InductiveСoil newInductiveСoil = new InductiveСoil(0, 0, 0);
+            var actionsTupleList = new List<(Action Action, string Message)>
+            {
+                (() =>
+                {
+                    string inductance = Console.ReadLine();
+                    if (!int.TryParse(inductance, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newInductiveСoil.Inductance = Convert.ToInt32(inductance);
+                    }
+                }, "Введите сопротивление индуктивности катушки:"),
 
+                (() =>
+                {
+                    string lossResistance = Console.ReadLine();
+                    if (!int.TryParse(lossResistance, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newInductiveСoil.LossResistance = Convert.ToInt32(lossResistance);
+                    }
+                }, "Введите сопротивление потерь катушки:"),
+
+                (() =>
+                {
+                    string qualityFactor = Console.ReadLine();
+                    if (!int.TryParse(qualityFactor, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newInductiveСoil.QualityFactor = Convert.ToInt32(qualityFactor);
+                    }
+                }, "Введите добротность катушки:")
+            };
+
+            foreach (var actionTuple in actionsTupleList)
+            {
+                ActionHandler(actionTuple.Action, actionTuple.Message);
+            }
+
+            return newInductiveСoil;
         }
 
 
         public static Capacitor CapacitorRead()
         {
-            Capacitor newCapacitor = new Capacitor();
+            Capacitor newCapacitor = new Capacitor(0, 0, TypeOfCapacity.ConstantCapacity);
+            var actionsTupleList = new List<(Action Action, string Message)>
+            {
+                (() =>
+                {
+                    string electricalCapacity = Console.ReadLine();
+                    if (!int.TryParse(electricalCapacity, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newCapacitor.ElectricalCapacity = Convert.ToInt32(electricalCapacity);
+                    }
+                }, "Введите емкостное сопротивление конденсатора:"),
 
+                (() =>
+                {
+                    string permissibleDeviation = Console.ReadLine();
+                    if (!int.TryParse(permissibleDeviation, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newCapacitor.PermissibleDeviation = Convert.ToInt32(permissibleDeviation);
+                    }
+                }, "Введите допустимое отклонение погрешности конденсатора"),
+
+                (() =>
+                    {
+                        int typeOfCapacity = Convert.ToInt32(Console.ReadLine());
+                        switch (typeOfCapacity)
+                        {
+                            case 1:
+                            {
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.ConstantCapacity;
+                                return;
+                            }
+                            case 2:
+                            {
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.VariableCapacity;
+                                return;
+                            }
+                            default:
+                            {
+                                throw new ArgumentException("Введенный номер отсутствует в списке!" +
+                                                            "\nПожалуйста попробуйте заново:");
+                            }
+                        }
+                    }, "Выберете тип конденсатора, где: " +
+                       "\n 1.Постоянная емкость" +
+                       "\n 2.Переменная емкость")
+            };
+
+            foreach (var actionTuple in actionsTupleList)
+            {
+                ActionHandler(actionTuple.Action, actionTuple.Message);
+            }
+
+            return newCapacitor;
         }
 
 

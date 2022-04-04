@@ -91,6 +91,11 @@ namespace ElectricalElements
             LossResistance = lossResistance;
             QualityFactor = qualityFactor;
         }
+
+        /// <summary>
+        /// Дефолтный конструктор катушки
+        /// </summary>
+        public InductiveСoil(): this(0, 0, 0) { }
     }
 }
 

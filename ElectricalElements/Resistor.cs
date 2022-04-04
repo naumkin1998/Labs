@@ -102,5 +102,10 @@ namespace ElectricalElements
             TypeOfResistor = typeOfResistor;
         }
 
+        /// <summary>
+        /// Дефолтный конструктор резистора
+        /// </summary>
+        public Resistor() :this (0, 0, 0, TypeOfResistor.Linear) {}
+
     }
 }

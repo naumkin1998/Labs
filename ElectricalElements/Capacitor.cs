@@ -73,5 +73,10 @@ namespace ElectricalElements
             PermissibleDeviation = permissibleDeviation;
             TypeOfCapacity = typeOfCapacity;
         }
+
+        /// <summary>
+        /// Дефолтный конструктор конденсатора
+        /// </summary>
+        public Capacitor() :this(0, 0, TypeOfCapacity.ConstantCapacity) {}
     }
 }
