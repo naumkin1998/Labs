@@ -18,9 +18,11 @@ namespace Lab3
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            
-
-
+            ResistorRead();
+            InductiveCoilRead();
+            CapacitorRead();
+            Console.WriteLine(1234);
+            Console.ReadLine();
         }
 
         /// <summary>

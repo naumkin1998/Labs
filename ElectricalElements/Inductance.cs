@@ -8,12 +8,8 @@ namespace ElectricalElements
     /// <summary>
     /// Класс индуктивности
     /// </summary>
-    public class InductiveСoil
+    public class InductiveСoil : RLCBase
     {
-        /// <summary>
-        /// Индуктивность 
-        /// </summary>
-        private int _inductance;
 
         /// <summary>
         /// Сопротивление потерь
@@ -24,25 +20,7 @@ namespace ElectricalElements
         /// Добротность
         /// </summary>
         private int _qualityFactor;
-
-        /// <summary>
-        /// Индуктивность
-        /// </summary>
-        public int Inductance
-        {
-            get => _inductance;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Индуктивность катушки " +
-                                                "не может быть отрицательной!");
-                }
-
-                _inductance = value;
-            }
-        }
-
+        
         /// <summary>
         /// Сопротивление потерь
         /// </summary>
@@ -85,9 +63,8 @@ namespace ElectricalElements
         /// <param name="inductance">Индуктивность </param>
         /// <param name="lossResistance">Сопротивление потерь</param>
         /// <param name="qualityFactor">Добротность</param>
-        public InductiveСoil(int inductance, int lossResistance, int qualityFactor)
+        public InductiveСoil(int inductance, int lossResistance, int qualityFactor) : base(inductance)
         {
-            Inductance = inductance;
             LossResistance = lossResistance;
             QualityFactor = qualityFactor;
         }

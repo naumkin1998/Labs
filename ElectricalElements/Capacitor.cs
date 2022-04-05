@@ -8,13 +8,9 @@ namespace ElectricalElements
     /// <summary>
     /// Класс конденсаторов
     /// </summary>
-    public class Capacitor
+    public class Capacitor : RLCBase
     {
-        /// <summary>
-        /// Электрическая емкость
-        /// </summary>
-        private int _electricalCapacity;
-
+        
         /// <summary>
         /// Допустимое отклонение погрешности
         /// </summary>
@@ -25,24 +21,7 @@ namespace ElectricalElements
         /// </summary>
         public TypeOfCapacity TypeOfCapacity { get; set; }
 
-        /// <summary>
-        /// Электрическая емкость
-        /// </summary>
-        public int ElectricalCapacity
-        {
-            get => _electricalCapacity;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Емкасть конденсатора " +
-                                                "не может быть отрицательным!");
-                }
-
-                _electricalCapacity = value;
-            }
-        }
-
+        
         /// <summary>
         /// Допустимое отклонение погрешности
         /// </summary>
@@ -67,9 +46,8 @@ namespace ElectricalElements
         /// <param name="electricalCapacity">Электрическая емкость</param>
         /// <param name="permissibleDeviation">Допустимое отклонение погрешности</param>
         /// <param name="typeOfCapacity"></param>
-        public Capacitor(int electricalCapacity, int permissibleDeviation, TypeOfCapacity typeOfCapacity)
+        public Capacitor(int electricalCapacity, int permissibleDeviation, TypeOfCapacity typeOfCapacity) : base(electricalCapacity)
         {
-            ElectricalCapacity = electricalCapacity;
             PermissibleDeviation = permissibleDeviation;
             TypeOfCapacity = typeOfCapacity;
         }

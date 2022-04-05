@@ -8,7 +8,6 @@ namespace ElectricalElements
 {
     class ElectricalCircuit
     {
-
-
+        
     }
 }
