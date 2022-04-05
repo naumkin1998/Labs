@@ -114,8 +114,7 @@ namespace PersonClass
                 $"\n{parent}," +
                 $"\nШкола {this.NameOfSchool} ";
         }
-
-        //TODO: XML +
+        
         /// <summary>
         /// Определитель класса
         /// </summary>

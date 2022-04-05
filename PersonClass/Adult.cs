@@ -109,7 +109,6 @@ namespace PersonClass
         /// <param name="spouse">Супруг/супруга</param>
         /// <param name="socialStatus">Социальный статус</param>
         public Adult (int id, string name, string surname, int age, 
-            //TODO: XML +
             Gender gender, SocialStatus socialStatus, string nameOfWork, 
             MaritalStatus maritalStatus, string spouse)
             : base(gender, name, surname, age)
@@ -120,8 +119,7 @@ namespace PersonClass
             MaritalStatus = maritalStatus;
             Spouse = spouse;
         }
-
-        //TODO: XML +
+        
         /// <summary>
         /// Определитель класса
         /// </summary>
@@ -246,8 +244,7 @@ namespace PersonClass
             {
                 Spouse = string.Empty;
             }
-
-            //TODO: RSDN +
+            
             int rndSosialStatud = rnd.Next(0, 2);
             var sosialStatus = rndSosialStatud == 1
                 ? SocialStatus.Unemployed
