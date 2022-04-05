@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ElectricalElements
 {
+    //TODO: ElementBase
+    //TODO: Complex
     public abstract class RLCBase
     {
         /// <summary>
