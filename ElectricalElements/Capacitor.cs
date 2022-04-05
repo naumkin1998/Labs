@@ -46,7 +46,8 @@ namespace ElectricalElements
         /// <param name="electricalCapacity">Электрическая емкость</param>
         /// <param name="permissibleDeviation">Допустимое отклонение погрешности</param>
         /// <param name="typeOfCapacity"></param>
-        public Capacitor(int electricalCapacity, int permissibleDeviation, TypeOfCapacity typeOfCapacity) : base(electricalCapacity)
+        public Capacitor(int electricalCapacity, int permissibleDeviation, TypeOfCapacity typeOfCapacity) 
+            : base(0, 0, electricalCapacity)
         {
             PermissibleDeviation = permissibleDeviation;
             TypeOfCapacity = typeOfCapacity;

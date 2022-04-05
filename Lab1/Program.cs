@@ -18,6 +18,9 @@ namespace Lab3
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
+            ElectricalCircuit electricalCircuit = new ElectricalCircuit();
+
+
             ResistorRead();
             InductiveCoilRead();
             CapacitorRead();
@@ -44,7 +47,7 @@ namespace Lab3
                     }
                     else
                     {
-                        newResistor.NominalValue = Convert.ToInt32(nominalValue);
+                        newResistor.Resistance = Convert.ToInt32(nominalValue);
                     }
                 }, "Введите номинальную величину сопротивления резистора:"),
 
@@ -276,5 +279,20 @@ namespace Lab3
             }
         }
 
+
+        public void ShowElements(ElectricalCircuit rlc[])
+        {
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("-------Список элементов}-------");
+            Console.WriteLine("-------------------------------");
+            if (rlc.Lenght != 0 )
+            {
+                for (int i = 0; i < rlc.Lenght; i++)
+                {
+                    Console.WriteLine(rlc.SearchByIndex(i).Info());
+                    Console.WriteLine();
+                }
+            }
+        }
     }
 }

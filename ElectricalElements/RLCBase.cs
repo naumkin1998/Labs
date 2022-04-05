@@ -11,14 +11,14 @@ namespace ElectricalElements
         /// <summary>
         /// Номинальное значение сопротивления
         /// </summary>
-        private int _nominalValue;
+        private int _resistance;
 
         /// <summary>
         /// Номинальное значение сопротивления
         /// </summary>
-        public int NominalValue
+        public int Resistance
         {
-            get => _nominalValue;
+            get => _resistance;
             set
             {
                 if (value < 0)
@@ -27,7 +27,7 @@ namespace ElectricalElements
                                                 "не может быть отрицательным!");
                 }
 
-                _nominalValue = value;
+                _resistance = value;
             }
         }
 
@@ -80,16 +80,26 @@ namespace ElectricalElements
         /// <summary>
         /// RLC конструктор
         /// </summary>
-        /// <param name="nominalValue">Сопротивление резистора</param>
+        /// <param name="resistance">Сопротивление резистора</param>
         /// <param name="inductance">Сопротивление катушки</param>
         /// <param name="electricalCapacity">Сопротивление конденсатора</param>
-        protected RLCBase(int nominalValue, int inductance, int electricalCapacity)
+        protected RLCBase(int resistance, int inductance, int electricalCapacity)
         {
-            NominalValue = nominalValue;
+            Resistance = resistance;
             Inductance = inductance;
             ElectricalCapacity = electricalCapacity;
         }
 
-        protected RLCBase(int electricalCapacity): this(0, 0, 0) {}
+        /// <summary>
+        /// Дефолтный конструктор
+        /// </summary>
+        protected RLCBase(): this(0, 0, 0) {}
+
+        /// <summary>
+        /// Информация об RLC
+        /// </summary>
+        /// <returns></returns>
+        public abstract string Info();
+
     }
 }

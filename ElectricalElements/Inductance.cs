@@ -63,7 +63,8 @@ namespace ElectricalElements
         /// <param name="inductance">Индуктивность </param>
         /// <param name="lossResistance">Сопротивление потерь</param>
         /// <param name="qualityFactor">Добротность</param>
-        public InductiveСoil(int inductance, int lossResistance, int qualityFactor) : base(inductance)
+        public InductiveСoil(int inductance, int lossResistance, int qualityFactor) 
+            : base(0, inductance, 0)
         {
             LossResistance = lossResistance;
             QualityFactor = qualityFactor;

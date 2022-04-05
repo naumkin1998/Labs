@@ -67,12 +67,12 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор резистора
         /// </summary>
-        /// <param name="nominalValue">Номинальная величина сопротивления</param>
+        /// <param name="resistance">Номинальная величина сопротивления</param>
         /// <param name="operatingVoltage">Рабочее напряжение</param>
         /// <param name="powerDissipation">Мощность рассивания</param>
         /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(int nominalValue, int operatingVoltage, int powerDissipation, TypeOfResistor typeOfResistor)
-        : base(nominalValue)
+        public Resistor(int resistance, int operatingVoltage, int powerDissipation, TypeOfResistor typeOfResistor)
+        : base(resistance, 0, 0)
         {
             OperatingVoltage = operatingVoltage;
             PowerDissipation = powerDissipation;
@@ -84,5 +84,12 @@ namespace ElectricalElements
         /// </summary>
         public Resistor() :this (0, 0, 0, TypeOfResistor.Linear) {}
 
+        public override string Info()
+        {
+            return $"Номинальное сопротивление:{this.Resistance} " +
+                   $"\nРабочее напряжение: {this.OperatingVoltage} " +
+                   $"\nМощность рассеивания: {this.PowerDissipation} " +
+                   $"\nТип: {this.TypeOfResistor}";
+        }
     }
 }
