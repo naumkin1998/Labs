@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 /// <summary>
 /// Электрические элементы
@@ -8,7 +9,7 @@ namespace ElectricalElements
     /// <summary>
     /// Класс конденсаторов
     /// </summary>
-    public class Capacitor : RLCBase
+    public class Capacitor : ElementBase
     {
         
         /// <summary>
@@ -43,11 +44,11 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор конденсатора
         /// </summary>
-        /// <param name="electricalCapacity">Электрическая емкость</param>
+        /// <param name="complex">Электрическая емкость</param>
         /// <param name="permissibleDeviation">Допустимое отклонение погрешности</param>
         /// <param name="typeOfCapacity"></param>
-        public Capacitor(int electricalCapacity, int permissibleDeviation, TypeOfCapacity typeOfCapacity) 
-            : base(0, 0, electricalCapacity)
+        public Capacitor(Complex complex, int permissibleDeviation, TypeOfCapacity typeOfCapacity) 
+            : base(complex)
         {
             PermissibleDeviation = permissibleDeviation;
             TypeOfCapacity = typeOfCapacity;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 /// <summary>
 /// Электрические элементы
@@ -8,7 +9,7 @@ namespace ElectricalElements
     /// <summary>
     /// Класс индуктивности
     /// </summary>
-    public class InductiveСoil : RLCBase
+    public class InductiveСoil : ElementBase
     {
 
         /// <summary>
@@ -60,11 +61,11 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор катушки индуктивности
         /// </summary>
-        /// <param name="inductance">Индуктивность </param>
+        /// <param name="complex">Индуктивность </param>
         /// <param name="lossResistance">Сопротивление потерь</param>
         /// <param name="qualityFactor">Добротность</param>
-        public InductiveСoil(int inductance, int lossResistance, int qualityFactor) 
-            : base(0, inductance, 0)
+        public InductiveСoil(Complex complex, int lossResistance, int qualityFactor) 
+            : base(complex)
         {
             LossResistance = lossResistance;
             QualityFactor = qualityFactor;

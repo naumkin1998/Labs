@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 /// <summary>
 /// Электрические элементы
@@ -8,7 +9,7 @@ namespace ElectricalElements
     /// <summary>
     /// Класс резистор
     /// </summary>
-    public class Resistor : RLCBase
+    public class Resistor : ElementBase
     {
         /// <summary>
         /// Рабочее напряжение
@@ -67,12 +68,12 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор резистора
         /// </summary>
-        /// <param name="resistance">Номинальная величина сопротивления</param>
+        /// <param name="complex">Номинальная величина сопротивления</param>
         /// <param name="operatingVoltage">Рабочее напряжение</param>
         /// <param name="powerDissipation">Мощность рассивания</param>
         /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(int resistance, int operatingVoltage, int powerDissipation, TypeOfResistor typeOfResistor)
-        : base(resistance, 0, 0)
+        public Resistor(Complex complex, int operatingVoltage, int powerDissipation, TypeOfResistor typeOfResistor)
+        : base(complex)
         {
             OperatingVoltage = operatingVoltage;
             PowerDissipation = powerDissipation;
@@ -82,11 +83,16 @@ namespace ElectricalElements
         /// <summary>
         /// Дефолтный конструктор резистора
         /// </summary>
-        public Resistor() :this (0, 0, 0, TypeOfResistor.Linear) {}
+        public Resistor() :this (Complex(0, 0), 0, 0, TypeOfResistor.Linear) {}
+
+        private static Complex Complex(int v1, int v2)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string Info()
         {
-            return $"Номинальное сопротивление:{this.Resistance} " +
+            return $"Номинальное сопротивление:{this.ActiveResistance} " +
                    $"\nРабочее напряжение: {this.OperatingVoltage} " +
                    $"\nМощность рассеивания: {this.PowerDissipation} " +
                    $"\nТип: {this.TypeOfResistor}";

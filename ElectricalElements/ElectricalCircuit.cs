@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectricalElements
 {
@@ -11,17 +7,17 @@ namespace ElectricalElements
         /// <summary>
         /// Массив элементов
         /// </summary>
-        private RLCBase[] _rlcArray = new RLCBase[0];
+        private ElementBase[] _rlcArray = new ElementBase[0];
 
         public int Lenght => _rlcArray.Length;
 
-        public void Add(RLCBase rlc)
+        public void Add(ElementBase element)
         {
-            Array.Resize<RLCBase>(ref _rlcArray, Lenght + 1);
-            _rlcArray[Lenght] = rlc;
+            Array.Resize<ElementBase>(ref _rlcArray, Lenght + 1);
+            _rlcArray[Lenght] = element;
         }
 
-        public RLCBase SearchByIndex(int index)
+        public ElementBase SearchByIndex(int index)
         {
             return _rlcArray[index]; 
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Numerics;
 
 namespace Lab3
 {
@@ -19,9 +20,9 @@ namespace Lab3
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
             ElectricalCircuit electricalCircuit = new ElectricalCircuit();
+            
 
-
-            ResistorRead();
+            var resistorRead = ResistorRead();
             InductiveCoilRead();
             CapacitorRead();
             Console.WriteLine(1234);
@@ -34,7 +35,7 @@ namespace Lab3
         /// <returns></returns>
         public static Resistor ResistorRead()
         {
-            Resistor newResistor = new Resistor(0, 0, 0, TypeOfResistor.Linear);
+            Resistor newResistor = new Resistor(Complex(0, 0), 0, 0, TypeOfResistor.Linear);
 
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -47,7 +48,7 @@ namespace Lab3
                     }
                     else
                     {
-                        newResistor.Resistance = Convert.ToInt32(nominalValue);
+                        newResistor.ActiveResistance = Convert.ToInt32(nominalValue);
                     }
                 }, "Введите номинальную величину сопротивления резистора:"),
 
@@ -150,7 +151,7 @@ namespace Lab3
                     }
                     else
                     {
-                        newInductiveСoil.Inductance = Convert.ToInt32(inductance);
+                        newInductiveСoil.ReactiveInductance = Convert.ToInt32(inductance);
                     }
                 }, "Введите сопротивление индуктивности катушки:"),
 
