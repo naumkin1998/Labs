@@ -38,7 +38,7 @@ namespace ElectricalElements
         /// <summary>
         /// Базовый конструктор сопротивления
         /// </summary>
-        /// <param name="complex"></param>
+        /// <param name="complex">Коплексное сопротивление</param>
         protected ElementBase(Complex complex)
         {
             ActiveResistance = complex.Real;

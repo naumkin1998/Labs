@@ -23,9 +23,16 @@ namespace Lab3
             
 
             var resistorRead = ResistorRead();
-            InductiveCoilRead();
-            CapacitorRead();
-            Console.WriteLine(1234);
+            var inductiv = InductiveCoilRead();
+            var capacitor  = CapacitorRead();
+
+            Console.WriteLine(resistorRead.Info());
+            Console.WriteLine("\n");
+            Console.WriteLine(inductiv.Info());
+            Console.WriteLine("\n");
+            Console.WriteLine(capacitor.Info());
+
+            Console.WriteLine("\n");
             Console.ReadLine();
         }
 
@@ -35,7 +42,7 @@ namespace Lab3
         /// <returns></returns>
         public static Resistor ResistorRead()
         {
-            Resistor newResistor = new Resistor(Complex(0, 0), 0, 0, TypeOfResistor.Linear);
+            Resistor newResistor = new Resistor(new Complex(0, 0), 0, 0, TypeOfResistor.Linear);
 
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -48,7 +55,8 @@ namespace Lab3
                     }
                     else
                     {
-                        newResistor.ActiveResistance = Convert.ToInt32(nominalValue);
+                        newResistor.ActiveResistance = Convert.ToDouble(nominalValue);
+                        newResistor.ReactiveInductance = 0;
                     }
                 }, "Введите номинальную величину сопротивления резистора:"),
 
@@ -151,7 +159,8 @@ namespace Lab3
                     }
                     else
                     {
-                        newInductiveСoil.ReactiveInductance = Convert.ToInt32(inductance);
+                        newInductiveСoil.ActiveResistance = 0;
+                        newInductiveСoil.ReactiveInductance = Convert.ToDouble(inductance);
                     }
                 }, "Введите сопротивление индуктивности катушки:"),
 
@@ -198,14 +207,15 @@ namespace Lab3
             {
                 (() =>
                 {
-                    string electricalCapacity = Console.ReadLine();
-                    if (!int.TryParse(electricalCapacity, out var number))
+                    string reactiveInductance = Console.ReadLine();
+                    if (!int.TryParse(reactiveInductance, out var number))
                     {
                         throw new ArgumentException("Введенное значение не является числовым");
                     }
                     else
                     {
-                        newCapacitor.ElectricalCapacity = Convert.ToInt32(electricalCapacity);
+                        newCapacitor.ReactiveInductance = Convert.ToDouble(reactiveInductance);
+                        newCapacitor.ActiveResistance = 0;
                     }
                 }, "Введите емкостное сопротивление конденсатора:"),
 
@@ -258,7 +268,7 @@ namespace Lab3
 
 
         // <summary>
-        ///  выполняет действие либо показывает ошибку
+        /// Выполняет действие либо показывает ошибку
         /// </summary>
         /// <param name="action">действие</param>
         /// <param name="inputMessage">сообщение при возникновении ошибки</param>
@@ -281,19 +291,19 @@ namespace Lab3
         }
 
 
-        public void ShowElements(ElectricalCircuit rlc[])
+       /* public void ShowElements(ElectricalCircuit [] rlc)
         {
             Console.WriteLine("-------------------------------");
             Console.WriteLine("-------Список элементов}-------");
             Console.WriteLine("-------------------------------");
-            if (rlc.Lenght != 0 )
+            if (rlc.Length != 0)
             {
-                for (int i = 0; i < rlc.Lenght; i++)
+                for (int i = 0; i < rlc.Length; i++)
                 {
                     Console.WriteLine(rlc.SearchByIndex(i).Info());
                     Console.WriteLine();
                 }
             }
-        }
+        }*/
     }
 }

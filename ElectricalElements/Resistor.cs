@@ -68,7 +68,7 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор резистора
         /// </summary>
-        /// <param name="complex">Номинальная величина сопротивления</param>
+        /// <param name="complex">комплексная величина сопротивления</param>
         /// <param name="operatingVoltage">Рабочее напряжение</param>
         /// <param name="powerDissipation">Мощность рассивания</param>
         /// <param name="typeOfResistor">Тип резистора</param>
@@ -79,20 +79,15 @@ namespace ElectricalElements
             PowerDissipation = powerDissipation;
             TypeOfResistor = typeOfResistor;
         }
-
+        
         /// <summary>
-        /// Дефолтный конструктор резистора
+        /// Инфо об элемента
         /// </summary>
-        public Resistor() :this (Complex(0, 0), 0, 0, TypeOfResistor.Linear) {}
-
-        private static Complex Complex(int v1, int v2)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <returns></returns>
         public override string Info()
         {
-            return $"Номинальное сопротивление:{this.ActiveResistance} " +
+            return $"Номинальное активное сопротивление:{this.ActiveResistance} " +
+                   $"\nРеактивное сопротивление: {this.ReactiveInductance}" +
                    $"\nРабочее напряжение: {this.OperatingVoltage} " +
                    $"\nМощность рассеивания: {this.PowerDissipation} " +
                    $"\nТип: {this.TypeOfResistor}";

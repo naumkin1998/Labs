@@ -72,9 +72,16 @@ namespace ElectricalElements
         }
 
         /// <summary>
-        /// Дефолтный конструктор катушки
+        /// Инфо об элементе
         /// </summary>
-        public InductiveСoil(): this(0, 0, 0) { }
+        /// <returns></returns>
+        public override string Info()
+        {
+            return $"Fктивное сопротивление индуктивности:{this.ActiveResistance} " +
+                   $"\nРеактивное сопротивление индуктивности: {this.ReactiveInductance}" +
+                   $"\nСопротивление потерь: {this.LossResistance} " +
+                   $"\nДобротность: {this.QualityFactor} ";
+        }
     }
 }
 

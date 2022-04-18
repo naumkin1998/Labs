@@ -54,9 +54,14 @@ namespace ElectricalElements
             TypeOfCapacity = typeOfCapacity;
         }
 
-        /// <summary>
-        /// Дефолтный конструктор конденсатора
-        /// </summary>
-        public Capacitor() :this(0, 0, TypeOfCapacity.ConstantCapacity) {}
+
+
+        public override string Info()
+        {
+            return $"Активное сопротивление конденсатора:{this.ActiveResistance} " +
+                   $"\nРеактивное сопротивление конденсатора: {this.ReactiveInductance}" +
+                   $"\nРабочее напряжение: {this.PermissibleDeviation} " +
+                   $"\nМощность рассеивания: {this.TypeOfCapacity} ";
+        }
     }
 }
