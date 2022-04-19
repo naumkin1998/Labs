@@ -73,7 +73,7 @@ namespace ElectricalElements
         /// <summary>
         /// Расчет имеданса
         /// </summary>
-        public override Complex Impedance => new Complex(0, -1/ Capacitance * Frequency);
+        public override Complex Impedance => new Complex(0, -1/ (Capacitance * Frequency));
 
         /// <summary>
         /// Показать информацию по элементу
@@ -84,7 +84,8 @@ namespace ElectricalElements
             return $"Емкость конденсатора : {this.Capacitance}" +
                    $"\nЧастота электрического тока : {this.Frequency}" +
                    $"\nТип конденсатора : {this.TypeOfCapacity}" +
-                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} - j{Math.Abs(Impedance.Imaginary)}";
         }
+
     }
 }
