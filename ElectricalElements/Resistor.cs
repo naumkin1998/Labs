@@ -60,7 +60,7 @@ namespace ElectricalElements
         {
             return $"Сопротивление резистора:{this.Resistance} " +
                    $"\nТип: {this.TypeOfResistor} " +
-                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
     }
 }

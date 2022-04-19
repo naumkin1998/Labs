@@ -79,7 +79,7 @@ namespace ElectricalElements
         {
             return $"\nИндуктивность катушки : {this.Inductance}" +
                    $"\nЧастота электрического тока : {this.Frequency}" +
-                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
     }
 }
