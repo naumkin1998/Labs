@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Numerics;
 
-/// <summary>
-/// Электрические элементы
-/// </summary>
 namespace ElectricalElements
 {
     /// <summary>
@@ -12,58 +9,32 @@ namespace ElectricalElements
     public class Resistor : ElementBase
     {
         /// <summary>
-        /// Рабочее напряжение
+        /// Сопротивление резистора
         /// </summary>
-        private int _operatingVoltage;
-
+        private double _resistance;
 
         /// <summary>
-        /// Рассеиваемая мощность
+        /// Сопротивление резистора
         /// </summary>
-        private int _powerDissipation;
+        public double Resistance
+        {
+            get => _resistance;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Активное сопротивление элемента " +
+                                                "не может быть отрицательным!");
+                }
 
+                _resistance = value;
+            }
+        }
+        
         /// <summary>
         /// Тип резистора
         /// </summary>
         public TypeOfResistor TypeOfResistor { get; set; }
-        
-        /// <summary>
-        /// Рабочее напряжение
-        /// </summary>
-        public int OperatingVoltage
-        {
-            get => _operatingVoltage;
-            set
-            {
-
-                if (value < 0)
-                {
-                    throw new ArgumentException("Рабочее напряжение резистора " +
-                                                "не может быть отрицательным!");
-                }
-
-                _operatingVoltage = value;
-            }
-        }
-
-        /// <summary>
-        /// Рассеиваемая мощность
-        /// </summary>
-        public int PowerDissipation
-        {
-            get => _powerDissipation;
-            set
-            {
-
-                if (value < 0)
-                {
-                    throw new ArgumentException("Мощность рассеивания резистора " +
-                                                "не может быть отрицательным!");
-                }
-
-                _powerDissipation = value;
-            }
-        }
 
         /// <summary>
         /// Конструктор резистора
@@ -72,11 +43,10 @@ namespace ElectricalElements
         /// <param name="operatingVoltage">Рабочее напряжение</param>
         /// <param name="powerDissipation">Мощность рассивания</param>
         /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(Complex complex, int operatingVoltage, int powerDissipation, TypeOfResistor typeOfResistor)
+        public Resistor(double resistance , TypeOfResistor typeOfResistor, Complex complex)
         : base(complex)
         {
-            OperatingVoltage = operatingVoltage;
-            PowerDissipation = powerDissipation;
+            Resistance = resistance;
             TypeOfResistor = typeOfResistor;
         }
         
@@ -86,11 +56,9 @@ namespace ElectricalElements
         /// <returns></returns>
         public override string Info()
         {
-            return $"Номинальное активное сопротивление:{this.ActiveResistance} " +
-                   $"\nРеактивное сопротивление: {this.ReactiveInductance}" +
-                   $"\nРабочее напряжение: {this.OperatingVoltage} " +
-                   $"\nМощность рассеивания: {this.PowerDissipation} " +
-                   $"\nТип: {this.TypeOfResistor}";
+            return $"Сопротивление резистора:{this.Resistance} " +
+                   $"\nТип: {this.TypeOfResistor} " +
+                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
         }
     }
 }

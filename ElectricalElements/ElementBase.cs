@@ -3,8 +3,7 @@ using System.Numerics;
 
 namespace ElectricalElements
 {
-    //TODO: ElementBase
-    //TODO: Complex
+
     public abstract class ElementBase
     {
         /// <summary>
@@ -15,20 +14,8 @@ namespace ElectricalElements
         /// <summary>
         /// Величина активного сопротивления
         /// </summary>
-        public double ActiveResistance
-        {
-            get => _activeResistance;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Активное сопротивление элемента " +
-                                                "не может быть отрицательным!");
-                }
-
-                _activeResistance = value;
-            }
-        }
+        public double ActiveResistance { get; set; }
+        
 
         /// <summary>
         /// Величина реактивного сопротивления

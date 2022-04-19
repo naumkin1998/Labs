@@ -11,64 +11,60 @@ namespace ElectricalElements
     /// </summary>
     public class InductiveСoil : ElementBase
     {
+        /// <summary>
+        /// Частота электрического тока
+        /// </summary>
+        private int _frequency;
 
         /// <summary>
-        /// Сопротивление потерь
+        /// Индуктивность катушки
         /// </summary>
-        private int _lossResistance;
+        private double _inductance;
 
         /// <summary>
-        /// Добротность
+        /// Частота электрического тока
         /// </summary>
-        private int _qualityFactor;
-        
-        /// <summary>
-        /// Сопротивление потерь
-        /// </summary>
-        public int LossResistance
+        public int Frequency
         {
-            get => _lossResistance;
+            get => _frequency;
             set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Сопротивление потерь " +
-                                                "не может быть отрицательным!");
-                }
-
-                _lossResistance = value;
-            }
-        }
-
-        /// <summary>
-        /// Добротность
-        /// </summary>
-        public int QualityFactor
-        {
-            get => _qualityFactor;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Добротность катушки " +
+                    throw new ArgumentException("Частота электрического тока " +
                                                 "не может быть отрицательной!");
                 }
-
-                _qualityFactor = value;
+                _frequency = value;
             }
         }
 
         /// <summary>
-        /// Конструктор катушки индуктивности
+        /// Индуктивность катушки
         /// </summary>
-        /// <param name="complex">Индуктивность </param>
-        /// <param name="lossResistance">Сопротивление потерь</param>
-        /// <param name="qualityFactor">Добротность</param>
-        public InductiveСoil(Complex complex, int lossResistance, int qualityFactor) 
-            : base(complex)
+        public double Inductance
         {
-            LossResistance = lossResistance;
-            QualityFactor = qualityFactor;
+            get => _inductance;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Индуктивность катушки " +
+                                                "не может быть отрицательной!");
+                }
+                _inductance = value;
+            }
+        }
+
+        /// <summary>
+        /// Конструктор индуктивности
+        /// </summary>
+        /// <param name="inductance">Индуктивность</param>
+        /// <param name="frequency">Частота</param>
+        /// <param name="complex">Комплексное сопротивление катушки индуктивности</param>
+        public InductiveСoil(double inductance, int frequency, Complex complex) :base(complex)
+        {
+            Inductance = inductance;
+            Frequency = frequency;
         }
 
         /// <summary>
@@ -77,10 +73,9 @@ namespace ElectricalElements
         /// <returns></returns>
         public override string Info()
         {
-            return $"Fктивное сопротивление индуктивности:{this.ActiveResistance} " +
-                   $"\nРеактивное сопротивление индуктивности: {this.ReactiveInductance}" +
-                   $"\nСопротивление потерь: {this.LossResistance} " +
-                   $"\nДобротность: {this.QualityFactor} ";
+            return $"\nИндуктивность катушки : {this.Inductance}" +
+                   $"\nЧастота электрического тока : {this.Frequency}" +
+                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Numerics;
 
-/// <summary>
-/// Электрические элементы
-/// </summary>
 namespace ElectricalElements
 {
     /// <summary>
@@ -11,57 +8,76 @@ namespace ElectricalElements
     /// </summary>
     public class Capacitor : ElementBase
     {
-        
         /// <summary>
-        /// Допустимое отклонение погрешности
+        /// Частота электрического тока
         /// </summary>
-        private int _permissibleDeviation;
+        private int _frequency;
+
+        /// <summary>
+        /// Емкость конденсатора
+        /// </summary>
+        private double _capacitance;
+
+        /// <summary>
+        /// Частота электрического тока
+        /// </summary>
+        public int Frequency
+        {
+            get => _frequency;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Частота электрического тока " +
+                                                "не может быть отрицательной!");
+                }
+                _frequency = value;
+            }
+        }
+
+        public double Capacitance
+        {
+            get => _capacitance;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Емкость конденсатора " +
+                                                "не может быть отрицательной!");
+                }
+                _capacitance = value;
+            }
+        }
 
         /// <summary>
         /// Тип конденсатора
         /// </summary>
         public TypeOfCapacity TypeOfCapacity { get; set; }
 
-        
-        /// <summary>
-        /// Допустимое отклонение погрешности
-        /// </summary>
-        public int PermissibleDeviation
-        {
-            get => _permissibleDeviation;
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Погрешность конденсатора " +
-                                               "не может быть отрицательной!");
-                }
-                _permissibleDeviation = value;
-            }
-        }
-
-
         /// <summary>
         /// Конструктор конденсатора
         /// </summary>
-        /// <param name="complex">Электрическая емкость</param>
-        /// <param name="permissibleDeviation">Допустимое отклонение погрешности</param>
-        /// <param name="typeOfCapacity"></param>
-        public Capacitor(Complex complex, int permissibleDeviation, TypeOfCapacity typeOfCapacity) 
+        /// <param name="capacitance">Емкость</param>
+        /// <param name="frequency">Частота</param>
+        /// <param name="typeOfCapacity">Тип</param>
+        /// <param name="complex">Комплексное сопротивление</param>
+        public Capacitor(double capacitance, int frequency, TypeOfCapacity typeOfCapacity, Complex complex)
             : base(complex)
         {
-            PermissibleDeviation = permissibleDeviation;
+            Capacitance = capacitance;
+            Frequency = frequency;
             TypeOfCapacity = typeOfCapacity;
         }
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string Info()
         {
-            return $"Активное сопротивление конденсатора:{this.ActiveResistance} " +
-                   $"\nРеактивное сопротивление конденсатора: {this.ReactiveInductance}" +
-                   $"\nРабочее напряжение: {this.PermissibleDeviation} " +
-                   $"\nМощность рассеивания: {this.TypeOfCapacity} ";
+            return $"Емкость конденсатора : {this.Capacitance}" +
+                   $"\nЧастота электрического тока : {this.Frequency}" +
+                   $"\nТип конденсатора : {this.TypeOfCapacity}" +
+                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
         }
     }
 }

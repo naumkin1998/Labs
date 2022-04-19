@@ -17,22 +17,77 @@ namespace Lab3
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            ElectricalCircuit electricalCircuit = new ElectricalCircuit();
             
+            
+            
+            string action;
+            string exitAction = "нет";
+            do
+            {
+                Console.WriteLine("Хотите расчитать комплексное сопротивление? \nВведите да или нет");
+                action = Console.ReadLine().ToLower();
+                if (action == "да")
+                {
+                    Console.WriteLine("Введите номер действия, которое хотите выполнить:");
+                    Console.WriteLine("1. Расчет комплексного сопротивления резистора");
+                    Console.WriteLine("2. Расчет комплексного сопротивления катушки индуктивности");
+                    Console.WriteLine("3. Расчет комплексного сопротивления емкости конденсатора");
+                    
+                    if (!int.TryParse(Console.ReadLine(), out int input))
+                    {
+                        Console.WriteLine("Не удалось распознать число");
+                        continue;
+                    }
+                    try
+                    {
+                        switch (input)
+                        {
 
-            var resistorRead = ResistorRead();
-            var inductiv = InductiveCoilRead();
-            var capacitor  = CapacitorRead();
+                            case 1:
+                            {
+                                var resistorRead = ResistorRead();
+                                Console.WriteLine(resistorRead.Info());
+                                Console.WriteLine("\n");
+                                break;
+                            }
+                            case 2:
+                            {
+                                var inductiv = InductiveCoilRead();
+                                Console.WriteLine(inductiv.Info());
+                                Console.WriteLine("\n");
+                                break;
+                            }
+                            case 3:
+                            {
+                                var capacitor = CapacitorRead();
+                                Console.WriteLine(capacitor.Info());
+                                Console.WriteLine("\n");
+                                break;
+                            }
 
-            Console.WriteLine(resistorRead.Info());
-            Console.WriteLine("\n");
-            Console.WriteLine(inductiv.Info());
-            Console.WriteLine("\n");
-            Console.WriteLine(capacitor.Info());
+                            default:
+                            {
+                                throw new ArgumentException("Введенный номер отсутствует в списке!");
+                            }
+                        }
+                    }
+                    catch (ArgumentException e )
+                    {
+                        Console.WriteLine(e.Message);
+                        
+                    }
+                }
+                if (action != exitAction)
+                {
+                    Console.WriteLine("Не удалось определить ответ.");
+                }
 
-            Console.WriteLine("\n");
+            } while (action != exitAction);
+            
+            
             Console.ReadLine();
         }
 
@@ -42,7 +97,7 @@ namespace Lab3
         /// <returns></returns>
         public static Resistor ResistorRead()
         {
-            Resistor newResistor = new Resistor(new Complex(0, 0), 0, 0, TypeOfResistor.Linear);
+            Resistor newResistor = new Resistor(0, TypeOfResistor.Linear, new Complex(0, 0));
 
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -55,36 +110,11 @@ namespace Lab3
                     }
                     else
                     {
+                        newResistor.Resistance = Convert.ToDouble(nominalValue);
                         newResistor.ActiveResistance = Convert.ToDouble(nominalValue);
                         newResistor.ReactiveInductance = 0;
                     }
                 }, "Введите номинальную величину сопротивления резистора:"),
-
-                (() =>
-                {
-                    string operatingVoltage = Console.ReadLine();
-                    if (!int.TryParse(operatingVoltage, out var number))
-                    {
-                        throw new ArgumentException("Введенное значение не является числовым");
-                    }
-                    else
-                    {
-                        newResistor.OperatingVoltage = Convert.ToInt32(operatingVoltage);
-                    }
-                }, "Введите рабочее напряжение резистора:"),
-
-                (() =>
-                {
-                    string powerDissipation = Console.ReadLine();
-                    if (!int.TryParse(powerDissipation, out var number))
-                    {
-                        throw new ArgumentException("Введенное значение не является числовым");
-                    }
-                    else
-                    {
-                        newResistor.PowerDissipation = Convert.ToInt32(powerDissipation);
-                    }
-                }, "Введите мощность рассеивания резистора:"),
 
                 (() =>
                     {
@@ -147,9 +177,22 @@ namespace Lab3
 
         public static InductiveСoil InductiveCoilRead()
         {
-            InductiveСoil newInductiveСoil = new InductiveСoil(0, 0, 0);
+            InductiveСoil newInductiveСoil = new InductiveСoil(0, 0, new Complex(0, 0));
             var actionsTupleList = new List<(Action Action, string Message)>
             {
+                (() =>
+                {
+                    string frequency = Console.ReadLine();
+                    if (!int.TryParse(frequency, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newInductiveСoil.Frequency = Convert.ToInt32(frequency);
+                    }
+                }, "Введите частоту электрического тока:"),
+
                 (() =>
                 {
                     string inductance = Console.ReadLine();
@@ -159,36 +202,11 @@ namespace Lab3
                     }
                     else
                     {
+                        newInductiveСoil.Inductance = Convert.ToInt32(inductance);
                         newInductiveСoil.ActiveResistance = 0;
-                        newInductiveСoil.ReactiveInductance = Convert.ToDouble(inductance);
+                        newInductiveСoil.ReactiveInductance = Convert.ToDouble(inductance) *  newInductiveСoil.Frequency;
                     }
-                }, "Введите сопротивление индуктивности катушки:"),
-
-                (() =>
-                {
-                    string lossResistance = Console.ReadLine();
-                    if (!int.TryParse(lossResistance, out var number))
-                    {
-                        throw new ArgumentException("Введенное значение не является числовым");
-                    }
-                    else
-                    {
-                        newInductiveСoil.LossResistance = Convert.ToInt32(lossResistance);
-                    }
-                }, "Введите сопротивление потерь катушки:"),
-
-                (() =>
-                {
-                    string qualityFactor = Console.ReadLine();
-                    if (!int.TryParse(qualityFactor, out var number))
-                    {
-                        throw new ArgumentException("Введенное значение не является числовым");
-                    }
-                    else
-                    {
-                        newInductiveСoil.QualityFactor = Convert.ToInt32(qualityFactor);
-                    }
-                }, "Введите добротность катушки:")
+                }, "Введите сопротивление индуктивности катушки:")
             };
 
             foreach (var actionTuple in actionsTupleList)
@@ -202,9 +220,22 @@ namespace Lab3
 
         public static Capacitor CapacitorRead()
         {
-            Capacitor newCapacitor = new Capacitor(0, 0, TypeOfCapacity.ConstantCapacity);
+            Capacitor newCapacitor = new Capacitor(0, 0, TypeOfCapacity.Tantalum, new Complex(0, 0));
             var actionsTupleList = new List<(Action Action, string Message)>
             {
+                (() =>
+                {
+                    string frequency = Console.ReadLine();
+                    if (!int.TryParse(frequency, out var number))
+                    {
+                        throw new ArgumentException("Введенное значение не является числовым");
+                    }
+                    else
+                    {
+                        newCapacitor.Frequency = Convert.ToInt32(frequency);
+                    }
+                },"Введите частоту электрического тока:"),
+
                 (() =>
                 {
                     string reactiveInductance = Console.ReadLine();
@@ -214,24 +245,12 @@ namespace Lab3
                     }
                     else
                     {
-                        newCapacitor.ReactiveInductance = Convert.ToDouble(reactiveInductance);
+                        newCapacitor.Capacitance = Convert.ToDouble(reactiveInductance);
+                        newCapacitor.ReactiveInductance = -1/(Convert.ToDouble(reactiveInductance) * newCapacitor.Frequency);
                         newCapacitor.ActiveResistance = 0;
                     }
                 }, "Введите емкостное сопротивление конденсатора:"),
-
-                (() =>
-                {
-                    string permissibleDeviation = Console.ReadLine();
-                    if (!int.TryParse(permissibleDeviation, out var number))
-                    {
-                        throw new ArgumentException("Введенное значение не является числовым");
-                    }
-                    else
-                    {
-                        newCapacitor.PermissibleDeviation = Convert.ToInt32(permissibleDeviation);
-                    }
-                }, "Введите допустимое отклонение погрешности конденсатора"),
-
+                
                 (() =>
                     {
                         int typeOfCapacity = Convert.ToInt32(Console.ReadLine());
@@ -239,12 +258,22 @@ namespace Lab3
                         {
                             case 1:
                             {
-                                newCapacitor.TypeOfCapacity = TypeOfCapacity.ConstantCapacity;
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.Aluminum;
                                 return;
                             }
                             case 2:
                             {
-                                newCapacitor.TypeOfCapacity = TypeOfCapacity.VariableCapacity;
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.Ceramic;
+                                return;
+                            }
+                            case 3:
+                            {
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.Polyester;
+                                return;
+                            }
+                            case 4:
+                            {
+                                newCapacitor.TypeOfCapacity = TypeOfCapacity.Tantalum;
                                 return;
                             }
                             default:
@@ -254,8 +283,10 @@ namespace Lab3
                             }
                         }
                     }, "Выберете тип конденсатора, где: " +
-                       "\n 1.Постоянная емкость" +
-                       "\n 2.Переменная емкость")
+                       "\n 1.Алюминевый" +
+                       "\n 2.Керамический" +
+                       "\n 3.Танталовые" +
+                       "\n 4.Полиэстеровые")
             };
 
             foreach (var actionTuple in actionsTupleList)
@@ -289,21 +320,6 @@ namespace Lab3
                 }
             }
         }
-
-
-       /* public void ShowElements(ElectricalCircuit [] rlc)
-        {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("-------Список элементов}-------");
-            Console.WriteLine("-------------------------------");
-            if (rlc.Length != 0)
-            {
-                for (int i = 0; i < rlc.Length; i++)
-                {
-                    Console.WriteLine(rlc.SearchByIndex(i).Info());
-                    Console.WriteLine();
-                }
-            }
-        }*/
     }
+
 }

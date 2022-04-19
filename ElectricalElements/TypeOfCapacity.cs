@@ -4,9 +4,13 @@ namespace ElectricalElements
 {
     public enum TypeOfCapacity
     {
-        [Description("Постоянная емкость")]
-        ConstantCapacity,
-        [Description("Переменная емкость")]
-        VariableCapacity
+        [Description("Алюминевый")]
+        Aluminum,
+        [Description("Керамический")]
+        Ceramic,
+        [Description("Танталовые")]
+        Tantalum,
+        [Description("Полиэстеровые")]
+        Polyester
     }
 }
