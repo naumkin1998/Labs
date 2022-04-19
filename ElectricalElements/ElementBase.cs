@@ -7,30 +7,10 @@ namespace ElectricalElements
     public abstract class ElementBase
     {
         /// <summary>
-        /// Величина активного сопротивления
+        /// Импеданс
         /// </summary>
-        private double _activeResistance;
-
-        /// <summary>
-        /// Величина активного сопротивления
-        /// </summary>
-        public double ActiveResistance { get; set; }
+        public abstract Complex Impedance { get; }
         
-
-        /// <summary>
-        /// Величина реактивного сопротивления
-        /// </summary>
-        public double ReactiveInductance { get; set; }
-
-        /// <summary>
-        /// Базовый конструктор сопротивления
-        /// </summary>
-        /// <param name="complex">Коплексное сопротивление</param>
-        protected ElementBase(Complex complex)
-        {
-            ActiveResistance = complex.Real;
-            ReactiveInductance = complex.Imaginary;
-        }
 
         /// <summary>
         /// Информация о сопротивление 

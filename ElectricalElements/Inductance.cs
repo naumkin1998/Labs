@@ -60,12 +60,16 @@ namespace ElectricalElements
         /// </summary>
         /// <param name="inductance">Индуктивность</param>
         /// <param name="frequency">Частота</param>
-        /// <param name="complex">Комплексное сопротивление катушки индуктивности</param>
-        public InductiveСoil(double inductance, int frequency, Complex complex) :base(complex)
+        public InductiveСoil(double inductance, int frequency) 
         {
             Inductance = inductance;
             Frequency = frequency;
         }
+
+        /// <summary>
+        /// Расчет имеданса
+        /// </summary>
+        public override Complex Impedance => new Complex(0, Inductance* Frequency);
 
         /// <summary>
         /// Инфо об элементе
@@ -75,7 +79,7 @@ namespace ElectricalElements
         {
             return $"\nИндуктивность катушки : {this.Inductance}" +
                    $"\nЧастота электрического тока : {this.Frequency}" +
-                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
         }
     }
 }

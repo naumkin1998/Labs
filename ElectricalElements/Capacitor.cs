@@ -35,6 +35,9 @@ namespace ElectricalElements
             }
         }
 
+        /// <summary>
+        /// Емкость конденсатора
+        /// </summary>
         public double Capacitance
         {
             get => _capacitance;
@@ -60,16 +63,20 @@ namespace ElectricalElements
         /// <param name="capacitance">Емкость</param>
         /// <param name="frequency">Частота</param>
         /// <param name="typeOfCapacity">Тип</param>
-        /// <param name="complex">Комплексное сопротивление</param>
-        public Capacitor(double capacitance, int frequency, TypeOfCapacity typeOfCapacity, Complex complex)
-            : base(complex)
+        public Capacitor(double capacitance, int frequency, TypeOfCapacity typeOfCapacity)
         {
             Capacitance = capacitance;
             Frequency = frequency;
             TypeOfCapacity = typeOfCapacity;
         }
+
         /// <summary>
-        /// 
+        /// Расчет имеданса
+        /// </summary>
+        public override Complex Impedance => new Complex(0, -1/ Capacitance * Frequency);
+
+        /// <summary>
+        /// Показать информацию по элементу
         /// </summary>
         /// <returns></returns>
         public override string Info()
@@ -77,7 +84,7 @@ namespace ElectricalElements
             return $"Емкость конденсатора : {this.Capacitance}" +
                    $"\nЧастота электрического тока : {this.Frequency}" +
                    $"\nТип конденсатора : {this.TypeOfCapacity}" +
-                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
         }
     }
 }

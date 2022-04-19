@@ -55,16 +55,16 @@ namespace Lab3
                             }
                             case 2:
                             {
-                                var inductiv = InductiveCoilRead();
-                                Console.WriteLine(inductiv.Info());
-                                Console.WriteLine("\n");
+                                    var inductiv = InductiveCoilRead();
+                                    Console.WriteLine(inductiv.Info());
+                                    Console.WriteLine("\n");
                                 break;
                             }
                             case 3:
                             {
-                                var capacitor = CapacitorRead();
-                                Console.WriteLine(capacitor.Info());
-                                Console.WriteLine("\n");
+                                    var capacitor = CapacitorRead();
+                                    Console.WriteLine(capacitor.Info());
+                                    Console.WriteLine("\n");
                                 break;
                             }
 
@@ -80,7 +80,7 @@ namespace Lab3
                         
                     }
                 }
-                if (action != exitAction)
+                if (action != exitAction && action != "да")
                 {
                     Console.WriteLine("Не удалось определить ответ.");
                 }
@@ -97,7 +97,7 @@ namespace Lab3
         /// <returns></returns>
         public static Resistor ResistorRead()
         {
-            Resistor newResistor = new Resistor(0, TypeOfResistor.Linear, new Complex(0, 0));
+            Resistor newResistor = new Resistor(0, TypeOfResistor.Linear);
 
             var actionsTupleList = new List<(Action Action, string Message)>
             {
@@ -111,8 +111,6 @@ namespace Lab3
                     else
                     {
                         newResistor.Resistance = Convert.ToDouble(nominalValue);
-                        newResistor.ActiveResistance = Convert.ToDouble(nominalValue);
-                        newResistor.ReactiveInductance = 0;
                     }
                 }, "Введите номинальную величину сопротивления резистора:"),
 
@@ -174,10 +172,13 @@ namespace Lab3
             return newResistor;
         }
 
-
+        /// <summary>
+        /// Список действий при создании катушки индуктивности
+        /// </summary>
+        /// <returns></returns>
         public static InductiveСoil InductiveCoilRead()
         {
-            InductiveСoil newInductiveСoil = new InductiveСoil(0, 0, new Complex(0, 0));
+            InductiveСoil newInductiveСoil = new InductiveСoil(0, 0);
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                 (() =>
@@ -203,8 +204,6 @@ namespace Lab3
                     else
                     {
                         newInductiveСoil.Inductance = Convert.ToInt32(inductance);
-                        newInductiveСoil.ActiveResistance = 0;
-                        newInductiveСoil.ReactiveInductance = Convert.ToDouble(inductance) *  newInductiveСoil.Frequency;
                     }
                 }, "Введите сопротивление индуктивности катушки:")
             };
@@ -217,10 +216,13 @@ namespace Lab3
             return newInductiveСoil;
         }
 
-
+        /// <summary>
+        /// Список действий при создании конденсатора
+        /// </summary>
+        /// <returns></returns>
         public static Capacitor CapacitorRead()
         {
-            Capacitor newCapacitor = new Capacitor(0, 0, TypeOfCapacity.Tantalum, new Complex(0, 0));
+            Capacitor newCapacitor = new Capacitor(0, 0, TypeOfCapacity.Tantalum);
             var actionsTupleList = new List<(Action Action, string Message)>
             {
                 (() =>
@@ -246,11 +248,10 @@ namespace Lab3
                     else
                     {
                         newCapacitor.Capacitance = Convert.ToDouble(reactiveInductance);
-                        newCapacitor.ReactiveInductance = -1/(Convert.ToDouble(reactiveInductance) * newCapacitor.Frequency);
-                        newCapacitor.ActiveResistance = 0;
+                        
                     }
                 }, "Введите емкостное сопротивление конденсатора:"),
-                
+
                 (() =>
                     {
                         int typeOfCapacity = Convert.ToInt32(Console.ReadLine());

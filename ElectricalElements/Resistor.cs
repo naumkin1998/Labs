@@ -39,16 +39,18 @@ namespace ElectricalElements
         /// <summary>
         /// Конструктор резистора
         /// </summary>
-        /// <param name="complex">комплексная величина сопротивления</param>
-        /// <param name="operatingVoltage">Рабочее напряжение</param>
-        /// <param name="powerDissipation">Мощность рассивания</param>
+        /// <param name="resistance">Сопротивлене резистора</param>
         /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(double resistance , TypeOfResistor typeOfResistor, Complex complex)
-        : base(complex)
+        public Resistor(double resistance , TypeOfResistor typeOfResistor)
         {
             Resistance = resistance;
             TypeOfResistor = typeOfResistor;
         }
+
+        /// <summary>
+        /// Расчет имеданса
+        /// </summary>
+        public override Complex Impedance => new Complex(Resistance, 0);
         
         /// <summary>
         /// Инфо об элемента
@@ -58,7 +60,7 @@ namespace ElectricalElements
         {
             return $"Сопротивление резистора:{this.Resistance} " +
                    $"\nТип: {this.TypeOfResistor} " +
-                   $"\nКомплексное сопротивление элемента: {this.ActiveResistance} + j{this.ReactiveInductance}";
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} + j{Impedance.Imaginary}";
         }
     }
 }
