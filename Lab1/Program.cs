@@ -20,9 +20,7 @@ namespace Lab3
             
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            
-            
-            
+
             string action;
             string exitAction = "нет";
             do
@@ -55,16 +53,16 @@ namespace Lab3
                             }
                             case 2:
                             {
-                                    var inductiv = InductiveCoilRead();
-                                    Console.WriteLine(inductiv.Info());
-                                    Console.WriteLine("\n");
+                                var inductiv = InductiveCoilRead();
+                                Console.WriteLine(inductiv.Info());
+                                Console.WriteLine("\n");
                                 break;
                             }
                             case 3:
                             {
-                                    var capacitor = CapacitorRead();
-                                    Console.WriteLine(capacitor.Info());
-                                    Console.WriteLine("\n");
+                                var capacitor = CapacitorRead();
+                                Console.WriteLine(capacitor.Info());
+                                Console.WriteLine("\n");
                                 break;
                             }
 
