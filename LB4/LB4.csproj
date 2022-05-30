@@ -77,7 +77,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Labs\ElectricalElements\ElectricalElements.csproj">
+    <ProjectReference Include="..\ElectricalElements\ElectricalElements.csproj">
       <Project>{c178b487-e190-42d8-b3e7-0f75981ae1a2}</Project>
       <Name>ElectricalElements</Name>
     </ProjectReference>
