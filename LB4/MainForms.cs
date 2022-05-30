@@ -17,14 +17,22 @@ namespace LB4
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Вызов формы добавления элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddElementsClick(object sender, EventArgs e)
         {
+            var addElements = new AddElements();
+            addElements.Show();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void searchClick(object sender, EventArgs e)
         {
-
+            var searchElements = new SearchElements();
+            searchElements.Show();            
         }
 
         private void button5_Click(object sender, EventArgs e)

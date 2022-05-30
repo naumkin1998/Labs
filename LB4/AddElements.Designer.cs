@@ -1,7 +1,7 @@
 ﻿
 namespace LB4
 {
-    partial class Добавление_элементов
+    partial class AddElements
     {
         /// <summary>
         /// Required designer variable.
@@ -125,8 +125,9 @@ namespace LB4
             this.button2.TabIndex = 4;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Добавление_элементов
+            // AddElements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,8 +146,8 @@ namespace LB4
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Добавление_элементов";
-            this.Text = "Добавление_элементов";
+            this.Name = "AddElements";
+            this.Text = "AddElements";
             this.ResumeLayout(false);
             this.PerformLayout();
 

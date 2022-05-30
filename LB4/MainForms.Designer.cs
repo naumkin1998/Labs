@@ -46,7 +46,7 @@ namespace LB4
             this.button1.TabIndex = 0;
             this.button1.Text = "Добавить элемент";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.AddElementsClick);
             // 
             // button2
             // 
@@ -56,7 +56,7 @@ namespace LB4
             this.button2.TabIndex = 1;
             this.button2.Text = "Найти";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.searchClick);
             // 
             // button3
             // 
@@ -112,7 +112,7 @@ namespace LB4
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Main";
+            this.Text = "ElectricalElements";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
