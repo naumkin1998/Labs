@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace LB4
 {
-    public partial class Form1 : Form
+    public partial class Добавление_элементов : Form
     {
-        public Form1()
+        public Добавление_элементов()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
