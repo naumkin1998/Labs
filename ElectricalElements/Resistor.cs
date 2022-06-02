@@ -30,21 +30,16 @@ namespace ElectricalElements
                 _resistance = value;
             }
         }
-        
-        /// <summary>
-        /// Тип резистора
-        /// </summary>
-        public TypeOfResistor TypeOfResistor { get; set; }
+ 
 
         /// <summary>
         /// Конструктор резистора
         /// </summary>
         /// <param name="resistance">Сопротивлене резистора</param>
         /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(double resistance , TypeOfResistor typeOfResistor)
+        public Resistor(double resistance)
         {
-            Resistance = resistance;
-            TypeOfResistor = typeOfResistor;
+            Resistance = resistance;            
         }
 
         /// <summary>
@@ -54,13 +49,13 @@ namespace ElectricalElements
         
         /// <summary>
         /// Инфо об элемента
-        /// </summary>
+        /// </summary>s
         /// <returns></returns>
         public override string Info()
         {
-            return $"Сопротивление резистора:{this.Resistance} " +
-                   $"\nТип: {this.TypeOfResistor} " +
+            return $"Сопротивление резистора:{this.Resistance} " +                   
                    $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
+
     }
 }
