@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Capacitor.cs" />
     <Compile Include="ElementBase.cs" />
+    <Compile Include="TypeOfCapacity.cs" />
+    <Compile Include="TypeOfResistor.cs" />
     <Compile Include="Inductance.cs" />
     <Compile Include="Resistor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,6 +17,5 @@ namespace ElectricalElements
         /// </summary>
         /// <returns></returns>
         public abstract string Info();
-
     }
 }

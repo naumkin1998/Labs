@@ -53,14 +53,21 @@ namespace ElectricalElements
         }
 
         /// <summary>
+        /// Тип конденсатора
+        /// </summary>
+        public TypeOfCapacity TypeOfCapacity { get; set; }
+
+        /// <summary>
         /// Конструктор конденсатора
         /// </summary>
         /// <param name="capacitance">Емкость</param>
-        /// <param name="frequency">Частота</param>        
-        public Capacitor(double capacitance, int frequency)
+        /// <param name="frequency">Частота</param>
+        /// <param name="typeOfCapacity">Тип</param>
+        public Capacitor(double capacitance, int frequency, TypeOfCapacity typeOfCapacity)
         {
             Capacitance = capacitance;
-            Frequency = frequency;            
+            Frequency = frequency;
+            TypeOfCapacity = typeOfCapacity;
         }
 
         /// <summary>
@@ -75,7 +82,8 @@ namespace ElectricalElements
         public override string Info()
         {
             return $"Емкость конденсатора : {this.Capacitance}" +
-                   $"\nЧастота электрического тока : {this.Frequency}" +                   
+                   $"\nЧастота электрического тока : {this.Frequency}" +
+                   $"\nТип конденсатора : {this.TypeOfCapacity}" +
                    $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
 

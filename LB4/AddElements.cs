@@ -1,82 +1,115 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using ElectricalElements;
 
 namespace LB4
 {
-    public partial class AddElements : EventForm
+    public partial class AddElements : Form
     {
-        /// <summary>
-        /// Инициализация формы
-        /// </summary>
+
+        
+
         public AddElements()
         {
             InitializeComponent();
-            groupBoxResistor.Visible = false;
-            groupBoxCondensator.Visible = false;
-            groupBoxInduction.Visible = false;
-        }                    
-      
-        /// <summary>
-        /// Описание работы radioButton
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radioButtonResistor_CheckedChanged(object sender, EventArgs e)
-        {                       
-            groupBoxInduction.Visible = radioButtonInductance.Checked;
-            groupBoxCondensator.Visible = radioButtonCondensator.Checked;
-            groupBoxResistor.Visible = radioButtonResistor.Checked;
+            groupBox4.Visible = false;
+            groupBox3.Visible = false;
+            groupBox2.Visible = false;
         }
 
-        /// <summary>
-        /// Отмена действия
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CancelButtonClick(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            CancelForm?.Invoke(sender, e);
+
         }
 
-        /// <summary>
-        /// Добавление элемента
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonAddClick(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (DataTableAddValidation())
-            {
-                return;
-            }
+            this.Close();
+        }
 
-            try
-            {               
-                this.Close();
-            }
-            catch (ArgumentException text)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            if (radioButton.Checked)
             {
-                MessageBoxEvent?.Invoke(text.Message, e);
+                groupBox4.Visible = true;
             }
-            catch (Exception text)
+            else
             {
-                MessageBoxEvent?.Invoke(text.Message, e);
+                groupBox4.Visible = false;
             }
         }
 
-        private bool DataTableAddValidation()
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonInductance.Checked & 
-                radioButtonCondensator.Checked & 
-                radioButtonResistor.Checked == false)
+            RadioButton radioButton = (RadioButton)sender;
+            if (radioButton.Checked)
             {
-                MessageBoxEvent?.Invoke(
-                    "Пожалуйста, выберите элемент", EventArgs.Empty);
-                return true;
-            }            
-            
-            return false;
+                groupBox2.Visible = true;
+            }
+            else
+            {
+                groupBox2.Visible = false;
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            if (radioButton.Checked)
+            {
+                groupBox3.Visible = true;
+            }
+            else
+            {
+                groupBox3.Visible = false;
+            }
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
