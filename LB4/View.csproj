@@ -61,12 +61,6 @@
     <Compile Include="AddElements.Designer.cs">
       <DependentUpon>AddElements.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchElements.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SearchElements.Designer.cs">
-      <DependentUpon>SearchElements.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AddElements.resx">
       <DependentUpon>AddElements.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,9 +76,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchElements.resx">
-      <DependentUpon>SearchElements.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\DataSources\ElectricalElements.Capacitor.datasource" />
     <None Include="Properties\DataSources\ElectricalElements.InductiveСoil.datasource" />
     <None Include="Properties\DataSources\ElectricalElements.Resistor.datasource" />

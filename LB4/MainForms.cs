@@ -28,30 +28,16 @@ namespace LB4
         public MainForm()
         {
             InitializeComponent();
+
+            this.dataGridView1.DataSource = _elemenList;
+            this.dataGridView1.AllowUserToAddRows = false;
         }
 
-
-
-        /// <summary>
-        /// Вызов формы добавления элемента
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddElementsClick(object sender, EventArgs e)
+        private void AddElementsClick_Click(object sender, EventArgs e)
         {
             var addElements = new AddElements();
+            this.AddElementsClick.Enabled = false;
             addElements.Show();
-        }
-
-        /// <summary>SearchClick
-        /// Вызов формы поиска элемента
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchClick(object sender, EventArgs e)
-        {
-            var searchElements = new SearchElements();
-            searchElements.Show();
         }
     }
 }

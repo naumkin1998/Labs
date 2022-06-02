@@ -45,11 +45,11 @@ namespace LB4
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.GroupBoxCapacitor = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).BeginInit();
             this.GroupBoxRadioButton.SuspendLayout();
             this.GroupBoxInductance.SuspendLayout();
@@ -106,6 +106,7 @@ namespace LB4
             this.button2.TabIndex = 4;
             this.button2.Text = "Отмена";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // resistorBindingSource
             // 
@@ -133,6 +134,7 @@ namespace LB4
             this.RradioButtonCapacitor.TabStop = true;
             this.RradioButtonCapacitor.Text = "Конденсатор";
             this.RradioButtonCapacitor.UseVisualStyleBackColor = true;
+            this.RradioButtonCapacitor.CheckedChanged += new System.EventHandler(this.GroupBoxRadioButton_CheckedChanged);
             // 
             // RadioButtonInductance
             // 
@@ -144,6 +146,7 @@ namespace LB4
             this.RadioButtonInductance.TabStop = true;
             this.RadioButtonInductance.Text = "Катушка";
             this.RadioButtonInductance.UseVisualStyleBackColor = true;
+            this.RadioButtonInductance.CheckedChanged += new System.EventHandler(this.GroupBoxRadioButton_CheckedChanged);
             // 
             // RadioButtonResistor
             // 
@@ -155,6 +158,7 @@ namespace LB4
             this.RadioButtonResistor.TabStop = true;
             this.RadioButtonResistor.Text = "Резистор";
             this.RadioButtonResistor.UseVisualStyleBackColor = true;
+            this.RadioButtonResistor.CheckedChanged += new System.EventHandler(this.GroupBoxRadioButton_CheckedChanged);
             // 
             // GroupBoxInductance
             // 
@@ -162,7 +166,7 @@ namespace LB4
             this.GroupBoxInductance.Controls.Add(this.textBox1);
             this.GroupBoxInductance.Controls.Add(this.label3);
             this.GroupBoxInductance.Controls.Add(this.label6);
-            this.GroupBoxInductance.Location = new System.Drawing.Point(28, 532);
+            this.GroupBoxInductance.Location = new System.Drawing.Point(229, 12);
             this.GroupBoxInductance.Name = "GroupBoxInductance";
             this.GroupBoxInductance.Size = new System.Drawing.Size(297, 131);
             this.GroupBoxInductance.TabIndex = 6;
@@ -191,12 +195,19 @@ namespace LB4
             this.GroupBoxCapacitor.Controls.Add(this.textBox3);
             this.GroupBoxCapacitor.Controls.Add(this.label5);
             this.GroupBoxCapacitor.Controls.Add(this.label7);
-            this.GroupBoxCapacitor.Location = new System.Drawing.Point(28, 358);
+            this.GroupBoxCapacitor.Location = new System.Drawing.Point(229, 12);
             this.GroupBoxCapacitor.Name = "GroupBoxCapacitor";
             this.GroupBoxCapacitor.Size = new System.Drawing.Size(297, 131);
             this.GroupBoxCapacitor.TabIndex = 7;
             this.GroupBoxCapacitor.TabStop = false;
             this.GroupBoxCapacitor.Text = "Конденсатор";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(163, 92);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(121, 20);
+            this.textBox5.TabIndex = 2;
             // 
             // textBox3
             // 
@@ -227,25 +238,18 @@ namespace LB4
             // 
             this.GroupBoxResistor.Controls.Add(this.label4);
             this.GroupBoxResistor.Controls.Add(this.textBox2);
-            this.GroupBoxResistor.Location = new System.Drawing.Point(28, 206);
+            this.GroupBoxResistor.Location = new System.Drawing.Point(229, 12);
             this.GroupBoxResistor.Name = "GroupBoxResistor";
             this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
             this.GroupBoxResistor.TabIndex = 8;
             this.GroupBoxResistor.TabStop = false;
             this.GroupBoxResistor.Text = "Резистор";
             // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(163, 92);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(121, 20);
-            this.textBox5.TabIndex = 2;
-            // 
             // AddElements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 840);
+            this.ClientSize = new System.Drawing.Size(535, 192);
             this.ControlBox = false;
             this.Controls.Add(this.GroupBoxResistor);
             this.Controls.Add(this.GroupBoxCapacitor);

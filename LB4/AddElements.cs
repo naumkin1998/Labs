@@ -27,5 +27,17 @@ namespace LB4
         {
 
         }
+
+        private void GroupBoxRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            GroupBoxResistor.Visible = RadioButtonResistor.Checked;
+            GroupBoxInductance.Visible = RadioButtonInductance.Checked;
+            GroupBoxCapacitor.Visible = RradioButtonCapacitor.Checked;
+        }
+
+        private void CancelButtonClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
