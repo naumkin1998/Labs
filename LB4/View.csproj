@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElementListEventArgs.cs" />
     <Compile Include="MainForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +85,9 @@
     <EmbeddedResource Include="SearchElements.resx">
       <DependentUpon>SearchElements.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\ElectricalElements.Capacitor.datasource" />
+    <None Include="Properties\DataSources\ElectricalElements.InductiveСoil.datasource" />
+    <None Include="Properties\DataSources\ElectricalElements.Resistor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

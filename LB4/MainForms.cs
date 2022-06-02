@@ -7,15 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectricalElements;
 
 namespace LB4
 {
     public partial class MainForm : Form
     {
+
+        /// <summary>
+        /// Начальный список элементов
+        /// </summary>
+        private BindingList<ElementBase> _elemenList =
+            new BindingList<ElementBase>()
+            {
+                new Resistor(1000, TypeOfResistor.Linear),
+                new Capacitor(100, 50, TypeOfCapacity.Aluminum),
+                new InductiveСoil(40, 50)
+            };
+
         public MainForm()
         {
             InitializeComponent();
         }
+
+
 
         /// <summary>
         /// Вызов формы добавления элемента
@@ -26,28 +41,17 @@ namespace LB4
         {
             var addElements = new AddElements();
             addElements.Show();
-
         }
 
-        private void searchClick(object sender, EventArgs e)
+        /// <summary>SearchClick
+        /// Вызов формы поиска элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchClick(object sender, EventArgs e)
         {
             var searchElements = new SearchElements();
-            searchElements.Show();            
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
+            searchElements.Show();
         }
     }
 }
