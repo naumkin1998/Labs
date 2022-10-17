@@ -8,6 +8,8 @@ namespace ElectricalElements
     /// </summary>
     public class Capacitor : ElementBase
     {
+        private const int V = 1;
+
         /// <summary>
         /// Частота электрического тока
         /// </summary>
@@ -53,27 +55,30 @@ namespace ElectricalElements
         }
 
         /// <summary>
-        /// Тип конденсатора
-        /// </summary>
-        public TypeOfCapacity TypeOfCapacity { get; set; }
-
-        /// <summary>
         /// Конструктор конденсатора
         /// </summary>
         /// <param name="capacitance">Емкость</param>
-        /// <param name="frequency">Частота</param>
-        /// <param name="typeOfCapacity">Тип</param>
-        public Capacitor(double capacitance, int frequency, TypeOfCapacity typeOfCapacity)
+        /// <param name="frequency">Частота</param>        
+        public Capacitor(double capacitance, int frequency, string typeOfElements) : base(typeOfElements)
         {
             Capacitance = capacitance;
             Frequency = frequency;
-            TypeOfCapacity = typeOfCapacity;
+            TypeOfElements = typeOfElements;
         }
 
         /// <summary>
-        /// Расчет имеданса
+        ///  Calculated Impedance Capacitor
         /// </summary>
-        public override Complex Impedance => 1 / new Complex(0,  (Capacitance * Frequency));
+        /// <returns></returns>
+        public override Complex CalculatedImpedance()
+        {
+            return V/new Complex(0, Capacitance * Frequency);
+        }
+
+        /// <summary>
+        /// XML
+        /// </summary>
+        public Capacitor() { }
 
         /// <summary>
         /// Показать информацию по элементу
@@ -82,8 +87,7 @@ namespace ElectricalElements
         public override string Info()
         {
             return $"Емкость конденсатора : {this.Capacitance}" +
-                   $"\nЧастота электрического тока : {this.Frequency}" +
-                   $"\nТип конденсатора : {this.TypeOfCapacity}" +
+                   $"\nЧастота электрического тока : {this.Frequency}" +                  
                    $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
 

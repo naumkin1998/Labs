@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Numerics;
+using System.Xml.Serialization;
 
 namespace ElectricalElements
 {
+    
     /// <summary>
     /// Класс резистор
     /// </summary>
@@ -30,28 +32,33 @@ namespace ElectricalElements
                 _resistance = value;
             }
         }
-        
-        /// <summary>
-        /// Тип резистора
-        /// </summary>
-        public TypeOfResistor TypeOfResistor { get; set; }
-
+                
         /// <summary>
         /// Конструктор резистора
         /// </summary>
-        /// <param name="resistance">Сопротивлене резистора</param>
-        /// <param name="typeOfResistor">Тип резистора</param>
-        public Resistor(double resistance , TypeOfResistor typeOfResistor)
-        {
+        /// <param name="resistance">Сопротивлене резистора</param>        
+        public Resistor(double resistance, string typeOfElements) : base(typeOfElements) 
+
+        { 
             Resistance = resistance;
-            TypeOfResistor = typeOfResistor;
+            TypeOfElements = typeOfElements;
         }
 
         /// <summary>
-        /// Расчет имеданса
+        /// XML
         /// </summary>
-        public override Complex Impedance => new Complex(Resistance, 0);
-        
+        public Resistor() { }
+
+        /// <summary>
+        /// Calculated Impedance Resistor
+        /// </summary>
+        /// <returns></returns>
+        public override Complex CalculatedImpedance()
+        {
+            return new Complex(Resistance, 0);
+        }
+
+       
         /// <summary>
         /// Инфо об элемента
         /// </summary>
@@ -59,7 +66,6 @@ namespace ElectricalElements
         public override string Info()
         {
             return $"Сопротивление резистора:{this.Resistance} " +
-                   $"\nТип: {this.TypeOfResistor} " +
                    $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
         }
     }

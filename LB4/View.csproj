@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElementListEventArgs.cs" />
+    <Compile Include="ElementsEventArgs.cs" />
+    <Compile Include="EventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,14 +59,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AddElements.cs">
+    <Compile Include="AddElementsForms.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddElements.Designer.cs">
-      <DependentUpon>AddElements.cs</DependentUpon>
+    <Compile Include="AddElementsForms.Designer.cs">
+      <DependentUpon>AddElementsForms.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddElements.resx">
-      <DependentUpon>AddElements.cs</DependentUpon>
+    <EmbeddedResource Include="AddElementsForms.resx">
+      <DependentUpon>AddElementsForms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms.resx">
       <DependentUpon>MainForms.cs</DependentUpon>
@@ -93,9 +97,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ElectricalElements\ElectricalElements.csproj">
+    <ProjectReference Include="..\ElectricalElements\Model-View.csproj">
       <Project>{c178b487-e190-42d8-b3e7-0f75981ae1a2}</Project>
-      <Name>ElectricalElements</Name>
+      <Name>Model-View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

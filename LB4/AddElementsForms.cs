@@ -10,12 +10,17 @@ using System.Windows.Forms;
 
 namespace LB4
 {
-    public partial class AddElements : Form
+    /// <summary>
+    /// Реализация класса AddElementsForms
+    /// </summary>
+    public partial class AddElementsForms : Form
     {
 
-        
 
-        public AddElements()
+        /// <summary>
+        /// Инициализация формы 
+        /// </summary>
+        public AddElementsForms()
         {
             InitializeComponent();
             GroupBoxResistor.Visible = false;
@@ -23,11 +28,21 @@ namespace LB4
             GroupBoxInductance.Visible = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddElements_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GroupBoxRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             GroupBoxResistor.Visible = RadioButtonResistor.Checked;
@@ -35,9 +50,6 @@ namespace LB4
             GroupBoxCapacitor.Visible = RradioButtonCapacitor.Checked;
         }
 
-        private void CancelButtonClick(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

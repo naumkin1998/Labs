@@ -60,21 +60,42 @@ namespace ElectricalElements
         /// </summary>
         /// <param name="inductance">Индуктивность</param>
         /// <param name="frequency">Частота</param>
-        public InductiveСoil(double inductance, int frequency) 
+        public InductiveСoil(double inductance, int frequency, string typeOfElements) : base(typeOfElements)
         {
             Inductance = inductance;
             Frequency = frequency;
+            TypeOfElements = typeOfElements;
         }
 
         /// <summary>
-        /// Расчет имеданса
-        /// </summary>
-        public override Complex Impedance => new Complex(0, Inductance* Frequency);
-
-        /// <summary>
-        /// Инфо об элементе
+        /// Calculated Impedance Inductive
         /// </summary>
         /// <returns></returns>
+        public override Complex CalculatedImpedance()
+        { 
+           return new Complex(0, (Frequency * Inductance)); 
+        }
+
+
+        /// <summary>
+        /// XML
+        /// </summary>
+        public InductiveСoil() { }
+
+        /* /// <summary>
+         /// Тип элемента
+         /// </summary>
+         public override string TypeOfElements => "Катушка индуктивности";
+
+         /// <summary>
+         /// Расчет имеданса
+         /// </summary>
+         public override Complex Impedance => new Complex(0, Inductance* Frequency);
+
+         /// <summary>
+         /// Инфо об элементе
+         /// </summary>
+         /// <returns></returns>*/
         public override string Info()
         {
             return $"\nИндуктивность катушки : {this.Inductance}" +

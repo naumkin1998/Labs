@@ -1,7 +1,7 @@
 ﻿
 namespace LB4
 {
-    partial class AddElements
+    partial class AddElementsForms
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,6 @@ namespace LB4
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.resistorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GroupBoxRadioButton = new System.Windows.Forms.GroupBox();
             this.RradioButtonCapacitor = new System.Windows.Forms.RadioButton();
@@ -97,16 +96,6 @@ namespace LB4
             this.button1.TabIndex = 3;
             this.button1.Text = "Добавить";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(451, 160);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Отмена";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // resistorBindingSource
             // 
@@ -238,6 +227,7 @@ namespace LB4
             // 
             this.GroupBoxResistor.Controls.Add(this.label4);
             this.GroupBoxResistor.Controls.Add(this.textBox2);
+            this.GroupBoxResistor.Enabled = false;
             this.GroupBoxResistor.Location = new System.Drawing.Point(229, 12);
             this.GroupBoxResistor.Name = "GroupBoxResistor";
             this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
@@ -245,23 +235,21 @@ namespace LB4
             this.GroupBoxResistor.TabStop = false;
             this.GroupBoxResistor.Text = "Резистор";
             // 
-            // AddElements
+            // AddElementsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 192);
-            this.ControlBox = false;
             this.Controls.Add(this.GroupBoxResistor);
             this.Controls.Add(this.GroupBoxCapacitor);
             this.Controls.Add(this.GroupBoxInductance);
             this.Controls.Add(this.GroupBoxRadioButton);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddElements";
+            this.Name = "AddElementsForms";
             this.Text = "AddElements";
             this.Load += new System.EventHandler(this.AddElements_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).EndInit();
@@ -283,7 +271,6 @@ namespace LB4
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.BindingSource resistorBindingSource;
         private System.Windows.Forms.GroupBox GroupBoxRadioButton;
         private System.Windows.Forms.RadioButton RradioButtonCapacitor;
