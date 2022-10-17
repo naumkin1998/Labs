@@ -13,9 +13,10 @@ using ElectricalElements;
 
 namespace LB4
 {
+    //TODO: XML
     public partial class MainForm : Form
     {
-
+        //TODO:
         /// <summary>
         /// Начальный список элементов
         /// </summary>
@@ -56,8 +57,6 @@ namespace LB4
             var addElements = new AddElementsForms();
             addElements.StartPosition = FormStartPosition.CenterScreen;
             addElements.Show();
-            
-
         }
 
         /// <summary>

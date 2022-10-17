@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Numerics;
 
-/// <summary>
-/// Электрические элементы
-/// </summary>
 namespace ElectricalElements
 {
     /// <summary>
