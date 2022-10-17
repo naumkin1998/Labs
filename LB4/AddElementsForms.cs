@@ -29,7 +29,7 @@ namespace LB4
         }
 
         /// <summary>
-        /// 
+        /// Добавление элемента
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -39,7 +39,7 @@ namespace LB4
         }
 
         /// <summary>
-        /// 
+        /// RadioButton 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

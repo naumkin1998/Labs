@@ -27,11 +27,7 @@ namespace LB4
                 new InductiveСoil(10, 50, "Катушка индуктивности")                
             };
 
-        /// <summary>
-        /// Dictionary with string keys and actions
-        /// </summary>
-        private readonly Dictionary<string, Action> _randomElementDictionary;
-
+        
         /// <summary>
         /// Инициализация основной формы
         /// </summary>
