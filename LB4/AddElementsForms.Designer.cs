@@ -32,23 +32,23 @@ namespace LB4
             this.components = new System.ComponentModel.Container();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxFreqInduc = new System.Windows.Forms.TextBox();
+            this.textBoxResistor = new System.Windows.Forms.TextBox();
+            this.buttonAddElement = new System.Windows.Forms.Button();
             this.resistorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GroupBoxRadioButton = new System.Windows.Forms.GroupBox();
             this.RradioButtonCapacitor = new System.Windows.Forms.RadioButton();
             this.RadioButtonInductance = new System.Windows.Forms.RadioButton();
             this.RadioButtonResistor = new System.Windows.Forms.RadioButton();
             this.GroupBoxInductance = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxInduc = new System.Windows.Forms.TextBox();
             this.GroupBoxCapacitor = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
+            this.textBoxCap = new System.Windows.Forms.TextBox();
+            this.textBoxFreqCap = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).BeginInit();
             this.GroupBoxRadioButton.SuspendLayout();
             this.GroupBoxInductance.SuspendLayout();
@@ -74,28 +74,29 @@ namespace LB4
             this.label4.TabIndex = 0;
             this.label4.Text = "Введите сопротивление \r\nэлемента ";
             // 
-            // textBox1
+            // textBoxFreqInduc
             // 
-            this.textBox1.Location = new System.Drawing.Point(163, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxFreqInduc.Location = new System.Drawing.Point(163, 53);
+            this.textBoxFreqInduc.Name = "textBoxFreqInduc";
+            this.textBoxFreqInduc.Size = new System.Drawing.Size(121, 20);
+            this.textBoxFreqInduc.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxResistor
             // 
-            this.textBox2.Location = new System.Drawing.Point(163, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 2;
+            this.textBoxResistor.Location = new System.Drawing.Point(163, 53);
+            this.textBoxResistor.Name = "textBoxResistor";
+            this.textBoxResistor.Size = new System.Drawing.Size(121, 20);
+            this.textBoxResistor.TabIndex = 2;
             // 
-            // button1
+            // buttonAddElement
             // 
-            this.button1.Location = new System.Drawing.Point(370, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonAddElement.Location = new System.Drawing.Point(450, 157);
+            this.buttonAddElement.Name = "buttonAddElement";
+            this.buttonAddElement.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddElement.TabIndex = 3;
+            this.buttonAddElement.Text = "Добавить";
+            this.buttonAddElement.UseVisualStyleBackColor = true;
+            this.buttonAddElement.Click += new System.EventHandler(this.buttonAddElement_Click);
             // 
             // resistorBindingSource
             // 
@@ -151,59 +152,61 @@ namespace LB4
             // 
             // GroupBoxInductance
             // 
-            this.GroupBoxInductance.Controls.Add(this.textBox4);
-            this.GroupBoxInductance.Controls.Add(this.textBox1);
+            this.GroupBoxInductance.Controls.Add(this.textBoxInduc);
+            this.GroupBoxInductance.Controls.Add(this.textBoxFreqInduc);
             this.GroupBoxInductance.Controls.Add(this.label3);
             this.GroupBoxInductance.Controls.Add(this.label6);
-            this.GroupBoxInductance.Location = new System.Drawing.Point(229, 12);
+            this.GroupBoxInductance.Location = new System.Drawing.Point(228, 12);
             this.GroupBoxInductance.Name = "GroupBoxInductance";
             this.GroupBoxInductance.Size = new System.Drawing.Size(297, 131);
             this.GroupBoxInductance.TabIndex = 6;
             this.GroupBoxInductance.TabStop = false;
             this.GroupBoxInductance.Text = "Катушка";
             // 
-            // textBox4
+            // textBoxInduc
             // 
-            this.textBox4.Location = new System.Drawing.Point(163, 92);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(121, 20);
-            this.textBox4.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 26);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Введите индуктивность\r\nкатушки";
+            this.textBoxInduc.Location = new System.Drawing.Point(163, 92);
+            this.textBoxInduc.Name = "textBoxInduc";
+            this.textBoxInduc.Size = new System.Drawing.Size(121, 20);
+            this.textBoxInduc.TabIndex = 2;
             // 
             // GroupBoxCapacitor
             // 
-            this.GroupBoxCapacitor.Controls.Add(this.textBox5);
-            this.GroupBoxCapacitor.Controls.Add(this.textBox3);
+            this.GroupBoxCapacitor.Controls.Add(this.textBoxCap);
+            this.GroupBoxCapacitor.Controls.Add(this.textBoxFreqCap);
             this.GroupBoxCapacitor.Controls.Add(this.label5);
             this.GroupBoxCapacitor.Controls.Add(this.label7);
-            this.GroupBoxCapacitor.Location = new System.Drawing.Point(229, 12);
+            this.GroupBoxCapacitor.Location = new System.Drawing.Point(228, 12);
             this.GroupBoxCapacitor.Name = "GroupBoxCapacitor";
             this.GroupBoxCapacitor.Size = new System.Drawing.Size(297, 131);
             this.GroupBoxCapacitor.TabIndex = 7;
             this.GroupBoxCapacitor.TabStop = false;
             this.GroupBoxCapacitor.Text = "Конденсатор";
             // 
-            // textBox5
+            // GroupBoxResistor
             // 
-            this.textBox5.Location = new System.Drawing.Point(163, 92);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(121, 20);
-            this.textBox5.TabIndex = 2;
+            this.GroupBoxResistor.Controls.Add(this.label4);
+            this.GroupBoxResistor.Controls.Add(this.textBoxResistor);
+            this.GroupBoxResistor.Location = new System.Drawing.Point(228, 12);
+            this.GroupBoxResistor.Name = "GroupBoxResistor";
+            this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
+            this.GroupBoxResistor.TabIndex = 8;
+            this.GroupBoxResistor.TabStop = false;
+            this.GroupBoxResistor.Text = "Резистор";
             // 
-            // textBox3
+            // textBoxCap
             // 
-            this.textBox3.Location = new System.Drawing.Point(163, 53);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 20);
-            this.textBox3.TabIndex = 2;
+            this.textBoxCap.Location = new System.Drawing.Point(163, 92);
+            this.textBoxCap.Name = "textBoxCap";
+            this.textBoxCap.Size = new System.Drawing.Size(121, 20);
+            this.textBoxCap.TabIndex = 2;
+            // 
+            // textBoxFreqCap
+            // 
+            this.textBoxFreqCap.Location = new System.Drawing.Point(163, 53);
+            this.textBoxFreqCap.Name = "textBoxFreqCap";
+            this.textBoxFreqCap.Size = new System.Drawing.Size(121, 20);
+            this.textBoxFreqCap.TabIndex = 2;
             // 
             // label5
             // 
@@ -219,39 +222,35 @@ namespace LB4
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 89);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 26);
+            this.label7.Size = new System.Drawing.Size(98, 26);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Введите индуктивность\r\nкатушки";
+            this.label7.Text = "Введите емкость \r\nконденсатора";
             // 
-            // GroupBoxResistor
+            // label6
             // 
-            this.GroupBoxResistor.Controls.Add(this.label4);
-            this.GroupBoxResistor.Controls.Add(this.textBox2);
-            this.GroupBoxResistor.Enabled = false;
-            this.GroupBoxResistor.Location = new System.Drawing.Point(229, 12);
-            this.GroupBoxResistor.Name = "GroupBoxResistor";
-            this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
-            this.GroupBoxResistor.TabIndex = 8;
-            this.GroupBoxResistor.TabStop = false;
-            this.GroupBoxResistor.Text = "Резистор";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 26);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Введите индуктивность\r\nкатушки";
             // 
             // AddElementsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 192);
-            this.Controls.Add(this.GroupBoxResistor);
-            this.Controls.Add(this.GroupBoxCapacitor);
-            this.Controls.Add(this.GroupBoxInductance);
+            this.ClientSize = new System.Drawing.Size(534, 188);
             this.Controls.Add(this.GroupBoxRadioButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAddElement);
+            this.Controls.Add(this.GroupBoxCapacitor);
+            this.Controls.Add(this.GroupBoxResistor);
+            this.Controls.Add(this.GroupBoxInductance);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddElementsForms";
             this.Text = "AddElements";
-            this.Load += new System.EventHandler(this.AddElements_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).EndInit();
             this.GroupBoxRadioButton.ResumeLayout(false);
             this.GroupBoxRadioButton.PerformLayout();
@@ -268,9 +267,9 @@ namespace LB4
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxFreqInduc;
+        private System.Windows.Forms.TextBox textBoxResistor;
+        private System.Windows.Forms.Button buttonAddElement;
         private System.Windows.Forms.BindingSource resistorBindingSource;
         private System.Windows.Forms.GroupBox GroupBoxRadioButton;
         private System.Windows.Forms.RadioButton RradioButtonCapacitor;
@@ -279,11 +278,11 @@ namespace LB4
         private System.Windows.Forms.GroupBox GroupBoxInductance;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox GroupBoxCapacitor;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxFreqCap;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox GroupBoxResistor;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxInduc;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxCap;
     }
 }

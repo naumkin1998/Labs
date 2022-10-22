@@ -13,14 +13,18 @@ using ElectricalElements;
 
 namespace LB4
 {
-    //TODO: XML
+    //TODO: XML +
+    /// <summary>
+    /// Класс основной формы
+    /// </summary>
     public partial class MainForm : Form
     {
+        
         //TODO:
         /// <summary>
         /// Начальный список элементов
         /// </summary>
-        private BindingList<ElementBase> _elemenList =
+        private BindingList<ElementBase> _elementList =
             new BindingList<ElementBase>()
             {
                 new Resistor(100, "Резистор"),
@@ -35,16 +39,10 @@ namespace LB4
         public MainForm()
         {
             InitializeComponent();
-
-            this.dataGridView1.DataSource = _elemenList;
+            this.dataGridView1.DataSource = _elementList;
             this.dataGridView1.AllowUserToAddRows = false;
-
-            var columnNames = new List<string>();
-            for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
-            {
-                columnNames.Add(this.dataGridView1.Columns[i].Name);
-            }
-            this.ColumnSortComboBox.DataSource = columnNames;
+            this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
+            this.dataGridView1.Columns[1].HeaderText = "Импеданс";
         }
 
         /// <summary>
@@ -55,8 +53,21 @@ namespace LB4
         private void AddElementsClick_Click(object sender, EventArgs e)
         {
             var addElements = new AddElementsForms();
+            AddElementsClick.Enabled = false ;
             addElements.StartPosition = FormStartPosition.CenterScreen;
             addElements.Show();
+            addElements.Closed += (o, args) => 
+            {
+                if (addElements.Element != null)
+                {
+                    _elementList.Add(addElements.Element);
+                    dataGridView1.DataSource = _elementList;
+                }
+                
+            };
+            addElements.FormClosed += (s, a) => this.AddElementsClick.Enabled = true;
+            
+            
         }
 
         /// <summary>
@@ -74,7 +85,7 @@ namespace LB4
 
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
-                _elemenList.RemoveAt(row.Index);
+                _elementList.RemoveAt(row.Index);
             }
 
             if (dataGridView1.RowCount != 0)
@@ -105,7 +116,7 @@ namespace LB4
 
             using (var fileWriter = new FileStream(path, FileMode.Create))
             {
-                xmlSerialaizer.Serialize(fileWriter, _elemenList);
+                xmlSerialaizer.Serialize(fileWriter, _elementList);
             }
         }
 
@@ -134,34 +145,19 @@ namespace LB4
             {
                 using (var fileReader = new FileStream(path, FileMode.Open))
                 {
-                    _elemenList = (BindingList<ElementBase>)
+                    _elementList = (BindingList<ElementBase>)
                         xmlSerializer.Deserialize(fileReader);
 
                 }
 
-                dataGridView1.DataSource = _elemenList;
+                dataGridView1.DataSource = _elementList;
 
             }
-            catch (InvalidOperationException _)
+            catch (ArgumentException _)
             {
                 ErrorMessageBox("Файл поврежден");
             }
         }
-
-        /// <summary>
-        /// Сортировка
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SortButton_Click(object sender, EventArgs e)
-        {
-            
-            var listDataSource = (BindingList<ElementBase>)this.dataGridView1.DataSource;
-            var sortedEmployees = new BindingList<ElementBase>();
-            var selectedColumn = this.ColumnSortComboBox.Text;
-            var stringData = this.DataSortTextBox.Text;
-        }
-
 
 
         /// <summary>
@@ -172,7 +168,9 @@ namespace LB4
         private void CancelFilterButton_Click(object sender, EventArgs e)
         {
             this.dataGridView1.DataSource = null;
-            this.dataGridView1.DataSource = _elemenList;
+            this.dataGridView1.DataSource = _elementList;
+            this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
+            this.dataGridView1.Columns[1].HeaderText = "Импеданс";
         }
 
 
@@ -189,5 +187,112 @@ namespace LB4
                 MessageBoxIcon.Error,
                 MessageBoxDefaultButton.Button1);
         }
+
+        /// <summary>
+        /// Random
+        /// </summary>
+        public Random rnd = new Random();
+
+        /// <summary>
+        /// Список рандомных элементов
+        /// </summary>
+        public List<ElementBase> _elementBases =>
+            new List<ElementBase>()
+            {
+                new Resistor(rnd.Next(0, 1000), "Резистор"),
+                new Capacitor(rnd.Next(0, 1000), rnd.Next(0, 100), "Конденсатор"),
+                new InductiveСoil(rnd.Next(0, 1000), rnd.Next(0, 100), "Катушка индуктивности")
+            };
+
+        /// <summary>
+        /// Создание рандомного элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomElementButton_Click(object sender, EventArgs e)
+        {
+            _elementList.Add(_elementBases[rnd.Next(0, _elementBases.Count)]);
+            dataGridView1.DataSource = _elementList;
+        }
+
+        /// <summary>
+        /// Реализация проверки выбранных параметров на форме
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckSortParam()
+        {
+            if (this.ColumnSortComboBox.SelectedIndex == -1)
+            {
+                ErrorMessageBox("Пожалуйста, выберите тип столбца.");
+                return true;
+            }
+            if (this.comboBoxSortingAction.SelectedIndex == -1)
+            {
+                ErrorMessageBox("Пожалуйста, выберите тип действие сортировки.");
+                return true;
+            }
+            if (string.IsNullOrEmpty(DataSortTextBox.Text) == true)
+            {
+                ErrorMessageBox("Пожалуйста, ввеедите значение которое хотите найти.");
+                return true;
+            }
+            if (this.ColumnSortComboBox.SelectedIndex == 1                 
+                && double.TryParse(DataSortTextBox.Text, out double res) ==  false)
+            {
+                ErrorMessageBox("Пожалуйста, ввеедите число.");
+                return true;
+            }
+            return false;
+
+        }
+
+
+        /// <summary>
+        /// Сортировка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            var _sortedEmployees = new BindingList<ElementBase>();
+            var selectedColumn = this.ColumnSortComboBox.Text;
+
+            var sortingAction = comboBoxSortingAction.Text;
+            var stringData = this.DataSortTextBox.Text;
+
+            if (CheckSortParam())
+            {
+                return;
+            }
+            if(_elementList.Count == 0)
+            {
+                ErrorMessageBox("Табица пуста.");
+            }
+            switch (ColumnSortComboBox.SelectedIndex)
+            {
+                case 0:
+                    foreach (var element in _elementList)
+                    {
+                        if (element.TypeOfElements.ToLower() == DataSortTextBox.Text.ToLower())
+                        {
+                            _sortedEmployees.Add(element);
+                        }
+                    }
+
+                    break;
+                
+                case 1:
+                    foreach (var element in _elementList)
+                    {
+
+                    }
+                    break;
+            }
+            this.dataGridView1.DataSource = _sortedEmployees;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
+            this.dataGridView1.Columns[1].HeaderText = "Импеданс";
+        }
+
     }
 }

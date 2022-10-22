@@ -39,7 +39,7 @@ namespace LB4
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.CancelFilterButton = new System.Windows.Forms.Button();
             this.SortButton = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxSortingAction = new System.Windows.Forms.ComboBox();
             this.ColumnSortComboBox = new System.Windows.Forms.ComboBox();
             this.DataSortTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -128,7 +128,7 @@ namespace LB4
             // 
             this.groupBox3.Controls.Add(this.CancelFilterButton);
             this.groupBox3.Controls.Add(this.SortButton);
-            this.groupBox3.Controls.Add(this.comboBox2);
+            this.groupBox3.Controls.Add(this.comboBoxSortingAction);
             this.groupBox3.Controls.Add(this.ColumnSortComboBox);
             this.groupBox3.Controls.Add(this.DataSortTextBox);
             this.groupBox3.Controls.Add(this.label2);
@@ -161,17 +161,28 @@ namespace LB4
             this.SortButton.UseVisualStyleBackColor = true;
             this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
-            // comboBox2
+            // comboBoxSortingAction
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(146, 53);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(100, 21);
-            this.comboBox2.TabIndex = 4;
+            this.comboBoxSortingAction.DisplayMember = "> = <";
+            this.comboBoxSortingAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSortingAction.FormattingEnabled = true;
+            this.comboBoxSortingAction.Items.AddRange(new object[] {
+            ">",
+            "=",
+            "<"});
+            this.comboBoxSortingAction.Location = new System.Drawing.Point(146, 53);
+            this.comboBoxSortingAction.Name = "comboBoxSortingAction";
+            this.comboBoxSortingAction.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxSortingAction.TabIndex = 4;
+            this.comboBoxSortingAction.ValueMember = "> = <";
             // 
             // ColumnSortComboBox
             // 
+            this.ColumnSortComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ColumnSortComboBox.FormattingEnabled = true;
+            this.ColumnSortComboBox.Items.AddRange(new object[] {
+            "Тип элемента",
+            "Импеданс"});
             this.ColumnSortComboBox.Location = new System.Drawing.Point(6, 53);
             this.ColumnSortComboBox.Name = "ColumnSortComboBox";
             this.ColumnSortComboBox.Size = new System.Drawing.Size(100, 21);
@@ -219,6 +230,7 @@ namespace LB4
             this.RandomElementButton.TabIndex = 9;
             this.RandomElementButton.Text = "Случайный элемент";
             this.RandomElementButton.UseVisualStyleBackColor = true;
+            this.RandomElementButton.Click += new System.EventHandler(this.RandomElementButton_Click);
             // 
             // MainForm
             // 
@@ -257,7 +269,7 @@ namespace LB4
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button CancelFilterButton;
         private System.Windows.Forms.Button SortButton;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxSortingAction;
         private System.Windows.Forms.ComboBox ColumnSortComboBox;
         private System.Windows.Forms.TextBox DataSortTextBox;
         private System.Windows.Forms.Label label2;

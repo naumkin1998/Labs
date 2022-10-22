@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectricalElements;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,16 +29,7 @@ namespace LB4
             GroupBoxInductance.Visible = false;
         }
 
-        /// <summary>
-        /// Добавление элемента
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddElements_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        
         /// <summary>
         /// RadioButton 
         /// </summary>
@@ -50,6 +42,80 @@ namespace LB4
             GroupBoxCapacitor.Visible = RradioButtonCapacitor.Checked;
         }
 
-       
+        /// <summary>
+        /// Вызов сообщения об ошибке
+        /// </summary>
+        /// <param name="text"></param>
+        private void ErrorMessageBox(string text)
+        {
+            MessageBox.Show(this,
+                text,
+                "Ошибка!",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error,
+                MessageBoxDefaultButton.Button1);
+        }
+
+        /// <summary>
+        /// Новый элемент
+        /// </summary>
+        public ElementBase Element;
+
+        /// <summary>
+        /// Добавление элемента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddElement_Click(object sender, EventArgs e)
+        {
+            
+
+            if (RadioButtonResistor.Checked == true)
+            {
+                try
+                {
+
+                    Element = new Resistor(float.Parse(textBoxResistor.Text), "Резистор");
+                   
+                }
+                catch (Exception)
+                {
+                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
+                        "\nПожалуйста, попробуйте заново");
+
+                }
+            }
+            if (RadioButtonInductance.Checked == true)
+            {
+                try
+                {
+                    Element = new InductiveСoil(float.Parse(textBoxInduc.Text), 
+                                              int.Parse(textBoxFreqInduc.Text), "Катушка индуктивности");                   
+                }
+                catch (Exception)
+                {
+
+                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
+                        "\nПожалуйста, попробуйте заново");
+                }
+            }
+            if (RradioButtonCapacitor.Checked == true)
+            {
+                try
+                {
+                    Element = new Capacitor(float.Parse(textBoxCap.Text), 
+                                             int.Parse(textBoxFreqCap.Text), "Конденсатор");
+                   
+                }
+                catch (Exception)
+                {
+
+                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
+                        "\nПожалуйста, попробуйте заново");
+                }
+            }
+            this.Close();
+
+        }
     }
 }
