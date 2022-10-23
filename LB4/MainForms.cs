@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using ElectricalElements;
@@ -255,10 +250,7 @@ namespace LB4
         private void SortButton_Click(object sender, EventArgs e)
         {
             var _sortedEmployees = new BindingList<ElementBase>();
-            var selectedColumn = this.ColumnSortComboBox.Text;
-
-            var sortingAction = comboBoxSortingAction.Text;
-            var stringData = this.DataSortTextBox.Text;
+            
 
             if (CheckSortParam())
             {
@@ -284,7 +276,31 @@ namespace LB4
                 case 1:
                     foreach (var element in _elementList)
                     {
+                        switch(comboBoxSortingAction.Text)
+                        {
+                            case ">":
+                                if (element.Impedance.Real > Convert.ToDouble(DataSortTextBox.Text)
+                                    || element.Impedance.Imaginary > Convert.ToDouble(DataSortTextBox.Text))
+                                {
+                                    _sortedEmployees.Add(element);
+                                }
+                                break;
+                            case "=":
+                                if (element.Impedance.Real == Convert.ToDouble(DataSortTextBox.Text)
+                                    || element.Impedance.Imaginary == Convert.ToDouble(DataSortTextBox.Text))
+                                {
+                                    _sortedEmployees.Add(element);
+                                }
+                                break;
+                            case "<":
+                                if (element.Impedance.Real < Convert.ToDouble(DataSortTextBox.Text)
+                                    || element.Impedance.Imaginary < Convert.ToDouble(DataSortTextBox.Text))
+                                {
+                                    _sortedEmployees.Add(element);
+                                }
+                                break;
 
+                        }
                     }
                     break;
             }
