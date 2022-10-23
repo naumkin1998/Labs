@@ -4,6 +4,9 @@ using System.Xml.Serialization;
 
 namespace ElectricalElements
 {
+    /// <summary>
+    /// Абстрактный базовый класс для элементов
+    /// </summary>
     [XmlInclude(typeof(Capacitor))]
     [XmlInclude(typeof(Resistor))]
     [XmlInclude(typeof(InductiveСoil))]

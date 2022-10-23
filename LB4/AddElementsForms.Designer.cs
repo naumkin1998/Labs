@@ -42,13 +42,13 @@ namespace LB4
             this.RadioButtonResistor = new System.Windows.Forms.RadioButton();
             this.GroupBoxInductance = new System.Windows.Forms.GroupBox();
             this.textBoxInduc = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.GroupBoxCapacitor = new System.Windows.Forms.GroupBox();
-            this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
             this.textBoxCap = new System.Windows.Forms.TextBox();
             this.textBoxFreqCap = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).BeginInit();
             this.GroupBoxRadioButton.SuspendLayout();
             this.GroupBoxInductance.SuspendLayout();
@@ -170,6 +170,15 @@ namespace LB4
             this.textBoxInduc.Size = new System.Drawing.Size(121, 20);
             this.textBoxInduc.TabIndex = 2;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 26);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Введите индуктивность\r\nкатушки";
+            // 
             // GroupBoxCapacitor
             // 
             this.GroupBoxCapacitor.Controls.Add(this.textBoxCap);
@@ -182,17 +191,6 @@ namespace LB4
             this.GroupBoxCapacitor.TabIndex = 7;
             this.GroupBoxCapacitor.TabStop = false;
             this.GroupBoxCapacitor.Text = "Конденсатор";
-            // 
-            // GroupBoxResistor
-            // 
-            this.GroupBoxResistor.Controls.Add(this.label4);
-            this.GroupBoxResistor.Controls.Add(this.textBoxResistor);
-            this.GroupBoxResistor.Location = new System.Drawing.Point(228, 12);
-            this.GroupBoxResistor.Name = "GroupBoxResistor";
-            this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
-            this.GroupBoxResistor.TabIndex = 8;
-            this.GroupBoxResistor.TabStop = false;
-            this.GroupBoxResistor.Text = "Резистор";
             // 
             // textBoxCap
             // 
@@ -226,20 +224,23 @@ namespace LB4
             this.label7.TabIndex = 0;
             this.label7.Text = "Введите емкость \r\nконденсатора";
             // 
-            // label6
+            // GroupBoxResistor
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 26);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Введите индуктивность\r\nкатушки";
+            this.GroupBoxResistor.Controls.Add(this.label4);
+            this.GroupBoxResistor.Controls.Add(this.textBoxResistor);
+            this.GroupBoxResistor.Location = new System.Drawing.Point(228, 12);
+            this.GroupBoxResistor.Name = "GroupBoxResistor";
+            this.GroupBoxResistor.Size = new System.Drawing.Size(297, 131);
+            this.GroupBoxResistor.TabIndex = 8;
+            this.GroupBoxResistor.TabStop = false;
+            this.GroupBoxResistor.Text = "Резистор";
             // 
             // AddElementsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 188);
+            this.ControlBox = false;
             this.Controls.Add(this.GroupBoxRadioButton);
             this.Controls.Add(this.buttonAddElement);
             this.Controls.Add(this.GroupBoxCapacitor);
