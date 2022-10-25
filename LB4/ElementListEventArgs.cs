@@ -7,6 +7,8 @@ using ElectricalElements;
 
 namespace LB4 
 {
+    //TODO: Дублируется
+    //TODO: RSDN
     /// <summary>
     /// Класс ElementList
     /// </summary>

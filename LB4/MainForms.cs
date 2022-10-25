@@ -8,14 +8,11 @@ using ElectricalElements;
 
 namespace LB4
 {
-    //TODO: XML +
     /// <summary>
     /// Класс основной формы
     /// </summary>
     public partial class MainForm : Form
     {
-        
-        //TODO:
         /// <summary>
         /// Начальный список элементов
         /// </summary>
@@ -60,7 +57,8 @@ namespace LB4
                 }
                 
             };
-            addElements.FormClosed += (s, a) => this.AddElementsClick.Enabled = true;
+            addElements.FormClosed += 
+                (s, a) => this.AddElementsClick.Enabled = true;
             
             
         }
@@ -183,11 +181,14 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
+        //TODO: условная компиляция
+        //TODO: RSDN
         /// <summary>
         /// Random
         /// </summary>
         public Random rnd = new Random();
 
+        //TODO: RSDN
         /// <summary>
         /// Список рандомных элементов
         /// </summary>
@@ -226,7 +227,7 @@ namespace LB4
                 ErrorMessageBox("Пожалуйста, выберите тип действие сортировки.");
                 return true;
             }
-            if (string.IsNullOrEmpty(DataSortTextBox.Text) == true)
+            if (string.IsNullOrEmpty(DataSortTextBox.Text))
             {
                 ErrorMessageBox("Пожалуйста, ввеедите значение которое хотите найти.");
                 return true;
@@ -249,6 +250,7 @@ namespace LB4
         /// <param name="e"></param>
         private void SortButton_Click(object sender, EventArgs e)
         {
+            //TODO: RSDN
             var _sortedEmployees = new BindingList<ElementBase>();
             
 

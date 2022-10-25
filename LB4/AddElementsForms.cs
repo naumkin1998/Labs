@@ -56,11 +56,13 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
+        //TODO: нарушешение инкапсулции
         /// <summary>
         /// Новый элемент
         /// </summary>
         public ElementBase Element;
 
+        //TODO: RSDN
         /// <summary>
         /// Добавление элемента
         /// </summary>
@@ -68,8 +70,7 @@ namespace LB4
         /// <param name="e"></param>
         private void buttonAddElement_Click(object sender, EventArgs e)
         {
-            
-
+            //TODO: Дубли
             if (RadioButtonResistor.Checked == true)
             {
                 try
