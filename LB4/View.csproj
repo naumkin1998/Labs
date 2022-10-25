@@ -97,11 +97,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ElectricalElements\Model-View.csproj">
-      <Project>{c178b487-e190-42d8-b3e7-0f75981ae1a2}</Project>
-      <Name>Model-View</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
