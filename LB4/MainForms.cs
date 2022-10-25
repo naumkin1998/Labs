@@ -144,7 +144,7 @@ namespace LB4
                 }
 
                 dataGridView1.DataSource = _elementList;
-
+                //BUG: добавить другие варианты исключений
             }
             catch (ArgumentException _)
             {
