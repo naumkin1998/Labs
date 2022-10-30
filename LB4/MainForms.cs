@@ -13,6 +13,8 @@ namespace LB4
     /// </summary>
     public partial class MainForm : Form
     {
+
+
         /// <summary>
         /// Начальный список элементов
         /// </summary>
@@ -35,6 +37,10 @@ namespace LB4
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
+            #if !DEBUG
+            this.RandomElementButton.Visible = false;
+            #endif
+
         }
 
         /// <summary>
@@ -50,13 +56,17 @@ namespace LB4
             addElements.Show();
             addElements.Closed += (o, args) => 
             {
-                if (addElements.Element != null)
+                if (addElements.ElementAdded != null)
                 {
-                    _elementList.Add(addElements.Element);
+                    addElements.ElementAdded += (oElment, argsElement)
+                         =>
+                    {
+                        _elementList.Add(argsElement.Element);
+                    };
                     dataGridView1.DataSource = _elementList;
                 }
-                
             };
+
             addElements.FormClosed += 
                 (s, a) => this.AddElementsClick.Enabled = true;
             
@@ -181,23 +191,25 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
-        //TODO: условная компиляция
-        //TODO: RSDN
+        //TODO: условная компиляция +
+        //TODO: RSDN +
         /// <summary>
         /// Random
         /// </summary>
-        public Random rnd = new Random();
+        public Random Rnd = new Random();
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Список рандомных элементов
         /// </summary>
-        public List<ElementBase> _elementBases =>
+        public List<ElementBase> ElementBases =>
             new List<ElementBase>()
             {
-                new Resistor(rnd.Next(0, 1000), "Резистор"),
-                new Capacitor(rnd.Next(0, 1000), rnd.Next(0, 100), "Конденсатор"),
-                new InductiveСoil(rnd.Next(0, 1000), rnd.Next(0, 100), "Катушка индуктивности")
+                new Resistor(Rnd.Next(0, 1000), "Резистор"),
+                new Capacitor(Rnd.Next(0, 1000), 
+                    Rnd.Next(0, 100), "Конденсатор"),
+                new InductiveСoil(Rnd.Next(0, 1000), 
+                    Rnd.Next(0, 100), "Катушка индуктивности")
             };
 
         /// <summary>
@@ -207,7 +219,7 @@ namespace LB4
         /// <param name="e"></param>
         private void RandomElementButton_Click(object sender, EventArgs e)
         {
-            _elementList.Add(_elementBases[rnd.Next(0, _elementBases.Count)]);
+            _elementList.Add(ElementBases[Rnd.Next(0, ElementBases.Count)]);
             dataGridView1.DataSource = _elementList;
         }
 
@@ -250,8 +262,8 @@ namespace LB4
         /// <param name="e"></param>
         private void SortButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN
-            var _sortedEmployees = new BindingList<ElementBase>();
+            //TODO: RSDN+
+            var sortedEmployees = new BindingList<ElementBase>();
             
 
             if (CheckSortParam())
@@ -269,7 +281,7 @@ namespace LB4
                     {
                         if (element.TypeOfElements.ToLower() == DataSortTextBox.Text.ToLower())
                         {
-                            _sortedEmployees.Add(element);
+                            sortedEmployees.Add(element);
                         }
                     }
 
@@ -284,21 +296,21 @@ namespace LB4
                                 if (element.Impedance.Real > Convert.ToDouble(DataSortTextBox.Text)
                                     || element.Impedance.Imaginary > Convert.ToDouble(DataSortTextBox.Text))
                                 {
-                                    _sortedEmployees.Add(element);
+                                    sortedEmployees.Add(element);
                                 }
                                 break;
                             case "=":
                                 if (element.Impedance.Real == Convert.ToDouble(DataSortTextBox.Text)
                                     || element.Impedance.Imaginary == Convert.ToDouble(DataSortTextBox.Text))
                                 {
-                                    _sortedEmployees.Add(element);
+                                    sortedEmployees.Add(element);
                                 }
                                 break;
                             case "<":
                                 if (element.Impedance.Real < Convert.ToDouble(DataSortTextBox.Text)
                                     || element.Impedance.Imaginary < Convert.ToDouble(DataSortTextBox.Text))
                                 {
-                                    _sortedEmployees.Add(element);
+                                    sortedEmployees.Add(element);
                                 }
                                 break;
 
@@ -306,7 +318,7 @@ namespace LB4
                     }
                     break;
             }
-            this.dataGridView1.DataSource = _sortedEmployees;
+            this.dataGridView1.DataSource = sortedEmployees;
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";

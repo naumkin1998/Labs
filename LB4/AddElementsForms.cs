@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectricalElements;
 
 namespace LB4
 {
     /// <summary>
     /// Реализация класса AddElementsForms
     /// </summary>
-    public partial class AddElementsForms : Form
+    public partial class AddElementsForms : EventForm
     {
 
 
@@ -56,28 +57,30 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
-        //TODO: нарушешение инкапсулции
+        //TODO: нарушешение инкапсулции+
         /// <summary>
         /// Новый элемент
         /// </summary>
-        public ElementBase Element;
+        public EventHandler<ElementsEventArgs> ElementAdded;
 
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Добавление элемента
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonAddElement_Click(object sender, EventArgs e)
+        private void ButtonAddElement_Click(object sender, EventArgs e)
         {
+            ElementBase element = null;
             //TODO: Дубли
             if (RadioButtonResistor.Checked == true)
             {
                 try
                 {
 
-                    Element = new Resistor(float.Parse(textBoxResistor.Text), "Резистор");
-                   
+                    element = new Resistor(float.Parse(textBoxResistor.Text), "Резистор");
+                    
+
                 }
                 catch (Exception)
                 {
@@ -90,8 +93,9 @@ namespace LB4
             {
                 try
                 {
-                    Element = new InductiveСoil(float.Parse(textBoxInduc.Text), 
-                                              int.Parse(textBoxFreqInduc.Text), "Катушка индуктивности");                   
+                    element = new InductiveСoil(float.Parse(textBoxInduc.Text), 
+                                              int.Parse(textBoxFreqInduc.Text), "Катушка индуктивности");
+                    
                 }
                 catch (Exception)
                 {
@@ -104,9 +108,10 @@ namespace LB4
             {
                 try
                 {
-                    Element = new Capacitor(float.Parse(textBoxCap.Text), 
+                    element = new Capacitor(float.Parse(textBoxCap.Text), 
                                              int.Parse(textBoxFreqCap.Text), "Конденсатор");
-                   
+                    
+
                 }
                 catch (Exception)
                 {
@@ -115,8 +120,22 @@ namespace LB4
                         "\nПожалуйста, попробуйте заново");
                 }
             }
-            this.Close();
-
+            if (element != null)
+            {
+                ElementAdded?.Invoke(this, new ElementsEventArgs(element));
+                Close();
+            }
         }
+
+        /// <summary>
+        /// Реализация работы отмены действия
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelButtonClick_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

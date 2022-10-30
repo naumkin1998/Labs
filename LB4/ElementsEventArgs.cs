@@ -3,11 +3,11 @@ using ElectricalElements;
 
 namespace LB4
 {
-    //TODO: Дублируется
+    //TODO: Дублируется+
     /// <summary>
     /// Класс DiscountEventArgs
     /// </summary>
-    class ElementsEventArgs
+    public class ElementsEventArgs
     {
         /// <summary>
         /// Добавление элемента

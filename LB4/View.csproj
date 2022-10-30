@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElementListEventArgs.cs" />
     <Compile Include="ElementsEventArgs.cs" />
     <Compile Include="EventForm.cs">
       <SubType>Form</SubType>

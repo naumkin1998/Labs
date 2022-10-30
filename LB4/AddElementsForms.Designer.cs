@@ -49,6 +49,7 @@ namespace LB4
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.GroupBoxResistor = new System.Windows.Forms.GroupBox();
+            this.CancelButtonClick = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resistorBindingSource)).BeginInit();
             this.GroupBoxRadioButton.SuspendLayout();
             this.GroupBoxInductance.SuspendLayout();
@@ -90,17 +91,13 @@ namespace LB4
             // 
             // buttonAddElement
             // 
-            this.buttonAddElement.Location = new System.Drawing.Point(450, 157);
+            this.buttonAddElement.Location = new System.Drawing.Point(362, 153);
             this.buttonAddElement.Name = "buttonAddElement";
             this.buttonAddElement.Size = new System.Drawing.Size(75, 23);
             this.buttonAddElement.TabIndex = 3;
             this.buttonAddElement.Text = "Добавить";
             this.buttonAddElement.UseVisualStyleBackColor = true;
-            this.buttonAddElement.Click += new System.EventHandler(this.buttonAddElement_Click);
-            // 
-            // resistorBindingSource
-            // 
-            this.resistorBindingSource.DataSource = typeof(ElectricalElements.Resistor);
+            this.buttonAddElement.Click += new System.EventHandler(this.ButtonAddElement_Click);
             // 
             // GroupBoxRadioButton
             // 
@@ -235,12 +232,23 @@ namespace LB4
             this.GroupBoxResistor.TabStop = false;
             this.GroupBoxResistor.Text = "Резистор";
             // 
+            // CancelButtonClick
+            // 
+            this.CancelButtonClick.Location = new System.Drawing.Point(450, 153);
+            this.CancelButtonClick.Name = "CancelButtonClick";
+            this.CancelButtonClick.Size = new System.Drawing.Size(75, 23);
+            this.CancelButtonClick.TabIndex = 9;
+            this.CancelButtonClick.Text = "Отмена";
+            this.CancelButtonClick.UseVisualStyleBackColor = true;
+            this.CancelButtonClick.Click += new System.EventHandler(this.CancelButtonClick_Click);
+            // 
             // AddElementsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 188);
             this.ControlBox = false;
+            this.Controls.Add(this.CancelButtonClick);
             this.Controls.Add(this.GroupBoxRadioButton);
             this.Controls.Add(this.buttonAddElement);
             this.Controls.Add(this.GroupBoxCapacitor);
@@ -285,5 +293,6 @@ namespace LB4
         private System.Windows.Forms.TextBox textBoxInduc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxCap;
+        private System.Windows.Forms.Button CancelButtonClick;
     }
 }

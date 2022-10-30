@@ -37,6 +37,7 @@ namespace LB4
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RandomElementButton = new System.Windows.Forms.Button();
             this.CancelFilterButton = new System.Windows.Forms.Button();
             this.SortButton = new System.Windows.Forms.Button();
             this.comboBoxSortingAction = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@ namespace LB4
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.RandomElementButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -99,7 +99,7 @@ namespace LB4
             this.dataGridView1.Location = new System.Drawing.Point(12, 141);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(748, 328);
+            this.dataGridView1.Size = new System.Drawing.Size(627, 328);
             this.dataGridView1.TabIndex = 5;
             // 
             // groupBox1
@@ -126,6 +126,7 @@ namespace LB4
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.RandomElementButton);
             this.groupBox3.Controls.Add(this.CancelFilterButton);
             this.groupBox3.Controls.Add(this.SortButton);
             this.groupBox3.Controls.Add(this.comboBoxSortingAction);
@@ -134,16 +135,26 @@ namespace LB4
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(385, 11);
+            this.groupBox3.Location = new System.Drawing.Point(263, 11);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(376, 124);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Сортировка";
             // 
+            // RandomElementButton
+            // 
+            this.RandomElementButton.Location = new System.Drawing.Point(85, 78);
+            this.RandomElementButton.Name = "RandomElementButton";
+            this.RandomElementButton.Size = new System.Drawing.Size(72, 40);
+            this.RandomElementButton.TabIndex = 9;
+            this.RandomElementButton.Text = "Случайный элемент";
+            this.RandomElementButton.UseVisualStyleBackColor = true;
+            this.RandomElementButton.Click += new System.EventHandler(this.RandomElementButton_Click);
+            // 
             // CancelFilterButton
             // 
-            this.CancelFilterButton.Location = new System.Drawing.Point(230, 95);
+            this.CancelFilterButton.Location = new System.Drawing.Point(295, 95);
             this.CancelFilterButton.Name = "CancelFilterButton";
             this.CancelFilterButton.Size = new System.Drawing.Size(75, 23);
             this.CancelFilterButton.TabIndex = 5;
@@ -153,7 +164,7 @@ namespace LB4
             // 
             // SortButton
             // 
-            this.SortButton.Location = new System.Drawing.Point(64, 95);
+            this.SortButton.Location = new System.Drawing.Point(178, 95);
             this.SortButton.Name = "SortButton";
             this.SortButton.Size = new System.Drawing.Size(111, 23);
             this.SortButton.TabIndex = 5;
@@ -222,21 +233,10 @@ namespace LB4
             this.label1.TabIndex = 0;
             this.label1.Text = "Столбец для \r\nсортировки";
             // 
-            // RandomElementButton
-            // 
-            this.RandomElementButton.Location = new System.Drawing.Point(287, 45);
-            this.RandomElementButton.Name = "RandomElementButton";
-            this.RandomElementButton.Size = new System.Drawing.Size(75, 56);
-            this.RandomElementButton.TabIndex = 9;
-            this.RandomElementButton.Text = "Случайный элемент";
-            this.RandomElementButton.UseVisualStyleBackColor = true;
-            this.RandomElementButton.Click += new System.EventHandler(this.RandomElementButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(773, 481);
-            this.Controls.Add(this.RandomElementButton);
+            this.ClientSize = new System.Drawing.Size(653, 481);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
