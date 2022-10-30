@@ -43,8 +43,8 @@ namespace LB4
             this.comboBoxSortingAction = new System.Windows.Forms.ComboBox();
             this.ColumnSortComboBox = new System.Windows.Forms.ComboBox();
             this.DataSortTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelSortAction = new System.Windows.Forms.Label();
+            this.labelInfSort = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -99,6 +99,7 @@ namespace LB4
             this.dataGridView1.Location = new System.Drawing.Point(12, 141);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(627, 328);
             this.dataGridView1.TabIndex = 5;
             // 
@@ -132,8 +133,8 @@ namespace LB4
             this.groupBox3.Controls.Add(this.comboBoxSortingAction);
             this.groupBox3.Controls.Add(this.ColumnSortComboBox);
             this.groupBox3.Controls.Add(this.DataSortTextBox);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.labelSortAction);
+            this.groupBox3.Controls.Add(this.labelInfSort);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(263, 11);
             this.groupBox3.Name = "groupBox3";
@@ -181,7 +182,7 @@ namespace LB4
             ">",
             "=",
             "<"});
-            this.comboBoxSortingAction.Location = new System.Drawing.Point(146, 53);
+            this.comboBoxSortingAction.Location = new System.Drawing.Point(258, 53);
             this.comboBoxSortingAction.Name = "comboBoxSortingAction";
             this.comboBoxSortingAction.Size = new System.Drawing.Size(100, 21);
             this.comboBoxSortingAction.TabIndex = 4;
@@ -198,31 +199,32 @@ namespace LB4
             this.ColumnSortComboBox.Name = "ColumnSortComboBox";
             this.ColumnSortComboBox.Size = new System.Drawing.Size(100, 21);
             this.ColumnSortComboBox.TabIndex = 3;
+            this.ColumnSortComboBox.SelectedIndexChanged += new System.EventHandler(this.ColumnSortComboBox_SelectedIndexChanged);
             // 
             // DataSortTextBox
             // 
-            this.DataSortTextBox.Location = new System.Drawing.Point(273, 54);
+            this.DataSortTextBox.Location = new System.Drawing.Point(132, 53);
             this.DataSortTextBox.Name = "DataSortTextBox";
             this.DataSortTextBox.Size = new System.Drawing.Size(100, 20);
             this.DataSortTextBox.TabIndex = 2;
             // 
-            // label2
+            // labelSortAction
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(155, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Действие для \r\nсортировки";
+            this.labelSortAction.AutoSize = true;
+            this.labelSortAction.Location = new System.Drawing.Point(267, 24);
+            this.labelSortAction.Name = "labelSortAction";
+            this.labelSortAction.Size = new System.Drawing.Size(81, 26);
+            this.labelSortAction.TabIndex = 1;
+            this.labelSortAction.Text = "Действие для \r\nсортировки";
             // 
-            // label3
+            // labelInfSort
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(276, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 26);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Информация для \r\nсортировки";
+            this.labelInfSort.AutoSize = true;
+            this.labelInfSort.Location = new System.Drawing.Point(131, 24);
+            this.labelInfSort.Name = "labelInfSort";
+            this.labelInfSort.Size = new System.Drawing.Size(97, 26);
+            this.labelInfSort.TabIndex = 0;
+            this.labelInfSort.Text = "Информация для \r\nсортировки";
             // 
             // label1
             // 
@@ -272,8 +274,8 @@ namespace LB4
         private System.Windows.Forms.ComboBox comboBoxSortingAction;
         private System.Windows.Forms.ComboBox ColumnSortComboBox;
         private System.Windows.Forms.TextBox DataSortTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelSortAction;
+        private System.Windows.Forms.Label labelInfSort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RandomElementButton;
     }

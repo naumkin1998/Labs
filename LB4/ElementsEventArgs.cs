@@ -7,7 +7,7 @@ namespace LB4
     /// <summary>
     /// Класс DiscountEventArgs
     /// </summary>
-    public class ElementsEventArgs
+    public class ElementsEventArgs : EventArgs
     {
         /// <summary>
         /// Добавление элемента

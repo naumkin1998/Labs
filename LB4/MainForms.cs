@@ -37,9 +37,10 @@ namespace LB4
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
-            #if !DEBUG
+            this.comboBoxSortingAction.SelectedIndexChanged +=  new System.EventHandler(ColumnSortComboBox_SelectedIndexChanged);
+#if !DEBUG
             this.RandomElementButton.Visible = false;
-            #endif
+#endif
 
         }
 
@@ -54,23 +55,14 @@ namespace LB4
             AddElementsClick.Enabled = false ;
             addElements.StartPosition = FormStartPosition.CenterScreen;
             addElements.Show();
-            addElements.Closed += (o, args) => 
+            addElements.ElementAdded += (oElment, argsElement)
+                =>
             {
-                if (addElements.ElementAdded != null)
-                {
-                    addElements.ElementAdded += (oElment, argsElement)
-                         =>
-                    {
-                        _elementList.Add(argsElement.Element);
-                    };
-                    dataGridView1.DataSource = _elementList;
-                }
+                _elementList.Add(argsElement.Element);
             };
 
             addElements.FormClosed += 
                 (s, a) => this.AddElementsClick.Enabled = true;
-            
-            
         }
 
         /// <summary>
@@ -85,16 +77,22 @@ namespace LB4
                 ErrorMessageBox("Не выбрана строка для удаления.");
                 return;
             }
+            
+            if(dataGridView1.RowCount < 0)
+            {
+                ErrorMessageBox("Таблица пуста, невозможно удаление.");
+            }
 
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            if (CheckingForSorting == true)
+            {
+                ErrorMessageBox("Отсортированные элементы нельзя удалять.");
+            }
+
+            foreach (DataGridViewRow row  in dataGridView1.SelectedRows)
             {
                 _elementList.RemoveAt(row.Index);
-            }
-
-            if (dataGridView1.RowCount != 0)
-            {
-                dataGridView1.Rows[0].Selected = true;
-            }
+            }            
+           
         }
 
         /// <summary>
@@ -154,14 +152,20 @@ namespace LB4
                 }
 
                 dataGridView1.DataSource = _elementList;
-                //BUG: добавить другие варианты исключений
+                //BUG: добавить другие варианты исключений+
             }
             catch (ArgumentException _)
             {
                 ErrorMessageBox("Файл поврежден");
             }
+            catch (InvalidOperationException q )
+            {
+                ErrorMessageBox("Структура файла изменена");
+            }
+
         }
 
+        private bool CheckingForSorting;
 
         /// <summary>
         /// Сброс сортировки
@@ -174,6 +178,7 @@ namespace LB4
             this.dataGridView1.DataSource = _elementList;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
+            CheckingForSorting = false;
         }
 
 
@@ -191,7 +196,7 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
-        //TODO: условная компиляция +
+        //TODO: условная компиляция+
         //TODO: RSDN +
         /// <summary>
         /// Random
@@ -264,8 +269,8 @@ namespace LB4
         {
             //TODO: RSDN+
             var sortedEmployees = new BindingList<ElementBase>();
-            
 
+            CheckingForSorting = true;
             if (CheckSortParam())
             {
                 return;
@@ -277,9 +282,10 @@ namespace LB4
             switch (ColumnSortComboBox.SelectedIndex)
             {
                 case 0:
+                    
                     foreach (var element in _elementList)
                     {
-                        if (element.TypeOfElements.ToLower() == DataSortTextBox.Text.ToLower())
+                        if (element.TypeOfElements.ToLower().IndexOf(DataSortTextBox.Text.ToLower()) > -1)
                         {
                             sortedEmployees.Add(element);
                         }
@@ -324,5 +330,25 @@ namespace LB4
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
         }
 
+        /// <summary>
+        /// Скрывает лишнее от пользователя при сортировки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ColumnSortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (ColumnSortComboBox.SelectedIndex == 0)
+            {
+                labelSortAction.Visible = false;
+                comboBoxSortingAction.SelectedIndex = 1;
+                comboBoxSortingAction.Visible = false;
+            } 
+            if (ColumnSortComboBox.SelectedIndex == 1 )
+            {
+                labelSortAction.Visible = true;
+                comboBoxSortingAction.Visible = true;
+            }
+        }
     }
 }

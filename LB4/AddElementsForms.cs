@@ -72,21 +72,17 @@ namespace LB4
         private void ButtonAddElement_Click(object sender, EventArgs e)
         {
             ElementBase element = null;
-            //TODO: Дубли
+            //TODO: Дубли+
             if (RadioButtonResistor.Checked == true)
             {
                 try
                 {
-
-                    element = new Resistor(float.Parse(textBoxResistor.Text), "Резистор");
-                    
-
+                    element = new Resistor(float.Parse(textBoxResistor.Text), 
+                                            "Резистор");                    
                 }
                 catch (Exception)
                 {
-                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
-                        "\nПожалуйста, попробуйте заново");
-
+                    ErroneousDataEntry();
                 }
             }
             if (RadioButtonInductance.Checked == true)
@@ -94,14 +90,12 @@ namespace LB4
                 try
                 {
                     element = new InductiveСoil(float.Parse(textBoxInduc.Text), 
-                                              int.Parse(textBoxFreqInduc.Text), "Катушка индуктивности");
-                    
+                                              int.Parse(textBoxFreqInduc.Text), 
+                                              "Катушка индуктивности");                    
                 }
                 catch (Exception)
                 {
-
-                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
-                        "\nПожалуйста, попробуйте заново");
+                    ErroneousDataEntry();
                 }
             }
             if (RradioButtonCapacitor.Checked == true)
@@ -109,22 +103,27 @@ namespace LB4
                 try
                 {
                     element = new Capacitor(float.Parse(textBoxCap.Text), 
-                                             int.Parse(textBoxFreqCap.Text), "Конденсатор");
-                    
+                                             int.Parse(textBoxFreqCap.Text), 
+                                             "Конденсатор");                    
 
                 }
                 catch (Exception)
                 {
-
-                    ErrorMessageBox("Некорректный ввод данных или пустое поле." +
-                        "\nПожалуйста, попробуйте заново");
+                    ErroneousDataEntry();
                 }
             }
             if (element != null)
             {
-                ElementAdded?.Invoke(this, new ElementsEventArgs(element));
+                ElementAdded.Invoke(this, new ElementsEventArgs(element));
                 Close();
             }
+        }
+
+
+        private void ErroneousDataEntry()
+        {
+            ErrorMessageBox("Некорректный ввод данных или пустое поле." +
+                        "\nПожалуйста, попробуйте заново");
         }
 
         /// <summary>
