@@ -81,7 +81,7 @@ namespace LB4
                 ErrorMessageBox("Таблица пуста, невозможно удаление.");
             }
 
-            if (CheckingForSorting == true)
+            if (_checkingForSorting == true)
             {
                 ErrorMessageBox("Отсортированные элементы нельзя удалять.");
             }
@@ -162,9 +162,12 @@ namespace LB4
 
         }
 
-        //TODO: XML
-        //TODO: RSDN
-        private bool CheckingForSorting;
+        //TODO: XML+
+        //TODO: RSDN+
+        /// <summary>
+        /// Проверка на сортировку
+        /// </summary>
+        private bool _checkingForSorting;
 
         /// <summary>
         /// Сброс сортировки
@@ -177,7 +180,7 @@ namespace LB4
             this.dataGridView1.DataSource = _elementList;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
-            CheckingForSorting = false;
+            _checkingForSorting = false;
         }
 
 
@@ -194,19 +197,19 @@ namespace LB4
                 MessageBoxIcon.Error,
                 MessageBoxDefaultButton.Button1);
         }
-
-        //TODO: private
-        //TODO: условная компиляция
+#if !RELEAS
+        //TODO: private+
+        //TODO: условная компиляция+
         /// <summary>
         /// Random
         /// </summary>
-        public Random Rnd = new Random();
+        private Random Rnd = new Random();
 
-        //TODO: private
+        //TODO: private+
         /// <summary>
         /// Список рандомных элементов
         /// </summary>
-        public List<ElementBase> ElementBases =>
+        private List<ElementBase> ElementBases =>
             new List<ElementBase>()
             {
                 new Resistor(Rnd.Next(0, 1000), "Резистор"),
@@ -226,7 +229,7 @@ namespace LB4
             _elementList.Add(ElementBases[Rnd.Next(0, ElementBases.Count)]);
             dataGridView1.DataSource = _elementList;
         }
-
+#endif
         /// <summary>
         /// Реализация проверки выбранных параметров на форме
         /// </summary>
@@ -268,7 +271,7 @@ namespace LB4
         {
             var sortedEmployees = new BindingList<ElementBase>();
 
-            CheckingForSorting = true;
+            _checkingForSorting = true;
             if (CheckSortParam())
             {
                 return;

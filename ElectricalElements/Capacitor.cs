@@ -8,7 +8,7 @@ namespace ElectricalElements
     /// </summary>
     public class Capacitor : ElementBase
     {
-        private const int V = 1;
+       
 
         /// <summary>
         /// Частота электрического тока
@@ -33,6 +33,11 @@ namespace ElectricalElements
                     throw new ArgumentException("Частота электрического тока " +
                                                 "не может быть отрицательной!");
                 }
+                if (value == double.NaN)
+                {
+                    throw new ArgumentException("Частота электрического тока " +
+                                                "не может быть пустым значением!");
+                }
                 _frequency = value;
             }
         }
@@ -49,6 +54,11 @@ namespace ElectricalElements
                 {
                     throw new ArgumentException("Емкость конденсатора " +
                                                 "не может быть отрицательной!");
+                }
+                if (value == double.NaN)
+                {
+                    throw new ArgumentException(" Емкость конденсатора " +
+                                                "не может быть пустым значением!");
                 }
                 _capacitance = value;
             }
@@ -72,7 +82,7 @@ namespace ElectricalElements
         /// <returns></returns>
         public override Complex CalculatedImpedance()
         {
-            return V/new Complex(0, Capacitance * Frequency);
+            return 1/new Complex(0, Capacitance * Frequency);
         }
 
         /// <summary>

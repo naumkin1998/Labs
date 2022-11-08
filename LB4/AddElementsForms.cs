@@ -116,8 +116,10 @@ namespace LB4
             }
         }
 
-        //TODO: XML
-
+        //TODO: XML+
+        /// <summary>
+        /// Ошибка при неккоректном вводе данных
+        /// </summary>
         private void ErroneousDataEntry()
         {
             ErrorMessageBox("Некорректный ввод данных или пустое поле." +

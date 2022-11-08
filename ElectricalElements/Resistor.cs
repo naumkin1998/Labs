@@ -28,6 +28,11 @@ namespace ElectricalElements
                     throw new ArgumentException("Активное сопротивление элемента " +
                                                 "не может быть отрицательным!");
                 }
+                if (value == double.NaN)
+                {
+                    throw new ArgumentException("Активное сопротивление элемента " +
+                                                "не может быть пустым значением!");
+                }
 
                 _resistance = value;
             }
