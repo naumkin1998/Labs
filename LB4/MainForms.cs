@@ -13,8 +13,6 @@ namespace LB4
     /// </summary>
     public partial class MainForm : Form
     {
-
-
         /// <summary>
         /// Начальный список элементов
         /// </summary>
@@ -37,7 +35,7 @@ namespace LB4
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Columns[0].HeaderText = "Тип элемента";
             this.dataGridView1.Columns[1].HeaderText = "Импеданс";
-            this.comboBoxSortingAction.SelectedIndexChanged +=  new System.EventHandler(ColumnSortComboBox_SelectedIndexChanged);
+            this.comboBoxSortingAction.SelectedIndexChanged +=  ColumnSortComboBox_SelectedIndexChanged;
 #if !DEBUG
             this.RandomElementButton.Visible = false;
 #endif
@@ -152,7 +150,6 @@ namespace LB4
                 }
 
                 dataGridView1.DataSource = _elementList;
-                //BUG: добавить другие варианты исключений+
             }
             catch (ArgumentException _)
             {
@@ -165,6 +162,8 @@ namespace LB4
 
         }
 
+        //TODO: XML
+        //TODO: RSDN
         private bool CheckingForSorting;
 
         /// <summary>
@@ -196,14 +195,14 @@ namespace LB4
                 MessageBoxDefaultButton.Button1);
         }
 
-        //TODO: условная компиляция+
-        //TODO: RSDN +
+        //TODO: private
+        //TODO: условная компиляция
         /// <summary>
         /// Random
         /// </summary>
         public Random Rnd = new Random();
 
-        //TODO: RSDN+
+        //TODO: private
         /// <summary>
         /// Список рандомных элементов
         /// </summary>
@@ -267,7 +266,6 @@ namespace LB4
         /// <param name="e"></param>
         private void SortButton_Click(object sender, EventArgs e)
         {
-            //TODO: RSDN+
             var sortedEmployees = new BindingList<ElementBase>();
 
             CheckingForSorting = true;
@@ -337,17 +335,17 @@ namespace LB4
         /// <param name="e"></param>
         private void ColumnSortComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            if (ColumnSortComboBox.SelectedIndex == 0)
+            switch (ColumnSortComboBox.SelectedIndex)
             {
-                labelSortAction.Visible = false;
-                comboBoxSortingAction.SelectedIndex = 1;
-                comboBoxSortingAction.Visible = false;
-            } 
-            if (ColumnSortComboBox.SelectedIndex == 1 )
-            {
-                labelSortAction.Visible = true;
-                comboBoxSortingAction.Visible = true;
+                case 0:
+                    labelSortAction.Visible = false;
+                    comboBoxSortingAction.SelectedIndex = 1;
+                    comboBoxSortingAction.Visible = false;
+                    break;
+                case 1:
+                    labelSortAction.Visible = true;
+                    comboBoxSortingAction.Visible = true;
+                    break;
             }
         }
     }

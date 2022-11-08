@@ -56,14 +56,12 @@ namespace LB4
                 MessageBoxIcon.Error,
                 MessageBoxDefaultButton.Button1);
         }
-
-        //TODO: нарушешение инкапсулции+
+        
         /// <summary>
         /// Новый элемент
         /// </summary>
         public EventHandler<ElementsEventArgs> ElementAdded;
-
-        //TODO: RSDN+
+        
         /// <summary>
         /// Добавление элемента
         /// </summary>
@@ -72,8 +70,7 @@ namespace LB4
         private void ButtonAddElement_Click(object sender, EventArgs e)
         {
             ElementBase element = null;
-            //TODO: Дубли+
-            if (RadioButtonResistor.Checked == true)
+            if (RadioButtonResistor.Checked)
             {
                 try
                 {
@@ -85,7 +82,7 @@ namespace LB4
                     ErroneousDataEntry();
                 }
             }
-            if (RadioButtonInductance.Checked == true)
+            if (RadioButtonInductance.Checked)
             {
                 try
                 {
@@ -119,6 +116,7 @@ namespace LB4
             }
         }
 
+        //TODO: XML
 
         private void ErroneousDataEntry()
         {

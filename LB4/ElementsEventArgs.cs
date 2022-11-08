@@ -3,7 +3,6 @@ using ElectricalElements;
 
 namespace LB4
 {
-    //TODO: Дублируется+
     /// <summary>
     /// Класс DiscountEventArgs
     /// </summary>
