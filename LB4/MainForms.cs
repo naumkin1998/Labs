@@ -161,9 +161,7 @@ namespace LB4
             }
 
         }
-
-        //TODO: XML+
-        //TODO: RSDN+
+        
         /// <summary>
         /// Проверка на сортировку
         /// </summary>
@@ -197,15 +195,13 @@ namespace LB4
                 MessageBoxIcon.Error,
                 MessageBoxDefaultButton.Button1);
         }
+        //TODO: Опечатки
 #if !RELEAS
-        //TODO: private+
-        //TODO: условная компиляция+
         /// <summary>
         /// Random
         /// </summary>
         private Random Rnd = new Random();
-
-        //TODO: private+
+        
         /// <summary>
         /// Список рандомных элементов
         /// </summary>

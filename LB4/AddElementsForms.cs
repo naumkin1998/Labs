@@ -116,7 +116,6 @@ namespace LB4
             }
         }
 
-        //TODO: XML+
         /// <summary>
         /// Ошибка при неккоректном вводе данных
         /// </summary>
