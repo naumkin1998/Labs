@@ -142,6 +142,7 @@ namespace LB4
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Сортировка";
+#if !RELEAS
             // 
             // RandomElementButton
             // 
@@ -152,6 +153,7 @@ namespace LB4
             this.RandomElementButton.Text = "Случайный элемент";
             this.RandomElementButton.UseVisualStyleBackColor = true;
             this.RandomElementButton.Click += new System.EventHandler(this.RandomElementButton_Click);
+#endif
             // 
             // CancelFilterButton
             // 
