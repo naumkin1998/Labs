@@ -96,8 +96,10 @@ namespace ElectricalElements
         {
             return $"Емкость конденсатора : {this.Capacitance}" +
                    $"\nЧастота электрического тока : {this.Frequency}" +   
-                   //TODO: RSDN
-                   $"\nКомплексное сопротивление элемента: {Impedance.Real} {Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
+                   //TODO: RSDN+                   
+                   $"\nКомплексное сопротивление элемента: {Impedance.Real} " +
+                   $"{Impedance.Imaginary.ToString("+#.#;-0.000000000000; 0")}i";
+                  
         }
 
     }

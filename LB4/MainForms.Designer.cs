@@ -37,8 +37,12 @@ namespace LB4
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            //TODO:
+            //TODO:+
+#if !RELEASE
             this.RandomElementButton = new System.Windows.Forms.Button();
+#endif
+
+
             this.CancelFilterButton = new System.Windows.Forms.Button();
             this.SortButton = new System.Windows.Forms.Button();
             this.comboBoxSortingAction = new System.Windows.Forms.ComboBox();
@@ -128,7 +132,9 @@ namespace LB4
             // 
             // groupBox3
             // 
+#if !RELEASE
             this.groupBox3.Controls.Add(this.RandomElementButton);
+#endif
             this.groupBox3.Controls.Add(this.CancelFilterButton);
             this.groupBox3.Controls.Add(this.SortButton);
             this.groupBox3.Controls.Add(this.comboBoxSortingAction);
@@ -143,8 +149,9 @@ namespace LB4
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Сортировка";
-            //TODO: Опечатки
-#if !RELEAS
+            //TODO: Опечатки+
+#if !RELEASE
+
             // 
             // RandomElementButton
             // 
