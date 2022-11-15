@@ -200,7 +200,7 @@ namespace LB4
         /// <summary>
         /// Random
         /// </summary>
-        private Random Rnd = new Random();
+        readonly private Random Rnd = new Random();
         
         /// <summary>
         /// Список рандомных элементов
