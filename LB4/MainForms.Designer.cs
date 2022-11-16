@@ -37,7 +37,6 @@ namespace LB4
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            //TODO:+
 #if !RELEASE
             this.RandomElementButton = new System.Windows.Forms.Button();
 #endif
@@ -149,7 +148,6 @@ namespace LB4
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Сортировка";
-            //TODO: Опечатки+
 #if !RELEASE
 
             // 

@@ -195,7 +195,7 @@ namespace LB4
                 MessageBoxIcon.Error,
                 MessageBoxDefaultButton.Button1);
         }
-        //TODO: Опечатки+
+
 #if !RELEASE
         /// <summary>
         /// Random
